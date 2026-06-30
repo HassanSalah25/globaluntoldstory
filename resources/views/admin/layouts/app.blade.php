@@ -9,6 +9,62 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         [x-cloak] { display: none !important; }
+
+        #app-preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            background: #111827;
+            transition: opacity .5s ease, visibility .5s ease;
+        }
+        #app-preloader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .app-preloader__logo {
+            display: flex;
+            height: 4rem;
+            width: 4rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            background: #dc2626;
+            box-shadow: 0 10px 25px -5px rgba(220, 38, 38, .5);
+            animation: app-preloader-pulse 1.4s ease-in-out infinite;
+        }
+        .app-preloader__logo span {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: #fff;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+        }
+        .app-preloader__title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            letter-spacing: -.01em;
+        }
+        .app-preloader__spinner {
+            height: 1.75rem;
+            width: 1.75rem;
+            border-radius: 9999px;
+            border: 3px solid rgba(255, 255, 255, .15);
+            border-top-color: #dc2626;
+            animation: app-preloader-spin .8s linear infinite;
+        }
+        @keyframes app-preloader-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%      { transform: scale(1.08); opacity: .85; }
+        }
+        @keyframes app-preloader-spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="h-full"
@@ -17,6 +73,15 @@
           mobileOpen: false
       }"
       @resize.window="sidebarOpen = window.innerWidth >= 1024">
+
+    {{-- ── Preloader ───────────────────────────────── --}}
+    <div id="app-preloader" role="status" aria-label="Loading">
+        <div class="app-preloader__logo">
+            <span>US</span>
+        </div>
+        <p class="app-preloader__title">The Untold Story</p>
+        <div class="app-preloader__spinner"></div>
+    </div>
 
     {{-- ── Mobile overlay ─────────────────────────── --}}
     <div x-show="mobileOpen"
@@ -362,6 +427,21 @@
     </div>
 
     @include('admin.components.media-picker-modal')
+
+    <script>
+        (function () {
+            var preloader = document.getElementById('app-preloader');
+            if (!preloader) return;
+            var hide = function () { preloader.classList.add('is-hidden'); };
+            if (document.readyState === 'complete') {
+                hide();
+            } else {
+                window.addEventListener('load', hide);
+                // Safety fallback so the preloader never gets stuck.
+                setTimeout(hide, 4000);
+            }
+        })();
+    </script>
 
     @stack('scripts')
 </body>
