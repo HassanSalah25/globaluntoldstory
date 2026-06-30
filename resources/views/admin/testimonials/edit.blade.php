@@ -29,8 +29,13 @@
             <h3 class="text-base font-semibold text-gray-900 mb-4">Settings</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Avatar URL</label>
-                    <input type="text" name="avatar_url" value="{{ old('avatar_url', $testimonial->avatar_url) }}" placeholder="https://..." class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                    @include('admin.components.image-picker', [
+                        'name' => 'avatar_url',
+                        'label' => 'Avatar',
+                        'value' => old('avatar_url', $testimonial->avatar_url),
+                        'previewRounded' => 'full',
+                        'previewAspect' => 'aspect-square max-w-[120px]',
+                    ])
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>

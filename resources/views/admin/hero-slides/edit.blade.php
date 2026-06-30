@@ -2,7 +2,7 @@
 @section('title', 'Edit Hero Slide')
 
 @section('content')
-<div class="max-w-3xl mx-auto">
+<div class=" mx-auto">
 
     {{-- Header --}}
     <div class="flex items-center gap-4 mb-6">
@@ -30,14 +30,10 @@
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
             <h3 class="text-base font-semibold text-gray-900 mb-4">General Settings</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                    <input type="text" name="image_url" value="{{ old('image_url', $heroSlide->image_url ?? '') }}" placeholder="https://..." class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Gradient CSS</label>
-                    <input type="text" name="gradient" value="{{ old('gradient', $heroSlide->gradient ?? '') }}" placeholder="e.g. from-slate-900 via-red-950 to-slate-900" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
+                @include('admin.hero-slides._media-fields', [
+                    'imageValue' => old('image_url', $heroSlide->image_url ?? ''),
+                    'gradientValue' => old('gradient', $heroSlide->gradient ?? ''),
+                ])
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Sort Order</label>
                     <input type="number" name="sort_order" value="{{ old('sort_order', $heroSlide->sort_order ?? 0) }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">

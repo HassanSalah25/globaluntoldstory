@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="mx-auto max-w-3xl space-y-6">
+<div class="mx-auto  space-y-6">
 
     {{-- ── Profile Info ─────────────────────────────── --}}
     <div class="rounded-2xl border border-gray-100 bg-white shadow-sm ring-1 ring-gray-950/5">

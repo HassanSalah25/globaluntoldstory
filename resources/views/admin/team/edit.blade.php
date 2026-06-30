@@ -37,13 +37,13 @@
                     <input type="number" name="sort_order" value="{{ old('sort_order', $member->sort_order ?? 0) }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                    <input type="text" name="image_url" value="{{ old('image_url', $member->image_url ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    @if($member->image_url)
-                    <div class="mt-2">
-                        <img src="{{ $member->image_url }}" alt="" class="w-16 h-16 rounded-full object-cover border border-gray-200">
-                    </div>
-                    @endif
+                    @include('admin.components.image-picker', [
+                        'name' => 'image_url',
+                        'label' => 'Profile Image',
+                        'value' => old('image_url', $member->image_url ?? ''),
+                        'previewRounded' => 'full',
+                        'previewAspect' => 'aspect-square max-w-[120px]',
+                    ])
                 </div>
                 <div class="flex items-center gap-3 pt-2">
                     <input type="checkbox" name="is_active" id="is_active" value="1" {{ old('is_active', $member->is_active) ? 'checked' : '' }} class="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500">

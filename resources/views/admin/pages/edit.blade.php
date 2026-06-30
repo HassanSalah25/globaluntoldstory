@@ -3,7 +3,7 @@
 @section('title', 'Edit Page')
 
 @section('content')
-<div class="max-w-3xl">
+<div class="">
 
     <div class="flex items-center gap-4 mb-6">
         <a href="{{ route('admin.pages.index') }}"

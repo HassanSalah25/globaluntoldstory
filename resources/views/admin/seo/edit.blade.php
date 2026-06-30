@@ -109,11 +109,11 @@
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">{{ old('og_description_' . $locale, $t?->og_description) }}</textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">OG Image URL</label>
-                        <input type="url" name="og_image_url_{{ $locale }}"
-                            value="{{ old('og_image_url_' . $locale, $t?->og_image_url) }}"
-                            placeholder="https://..."
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        @include('admin.components.image-picker', [
+                            'name' => 'og_image_url_' . $locale,
+                            'label' => 'OG Image',
+                            'value' => old('og_image_url_' . $locale, $t?->og_image_url),
+                        ])
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Twitter Title</label>
@@ -129,11 +129,11 @@
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">{{ old('twitter_description_' . $locale, $t?->twitter_description) }}</textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Twitter Image URL</label>
-                        <input type="url" name="twitter_image_url_{{ $locale }}"
-                            value="{{ old('twitter_image_url_' . $locale, $t?->twitter_image_url) }}"
-                            placeholder="https://..."
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        @include('admin.components.image-picker', [
+                            'name' => 'twitter_image_url_' . $locale,
+                            'label' => 'Twitter Image',
+                            'value' => old('twitter_image_url_' . $locale, $t?->twitter_image_url),
+                        ])
                     </div>
                 </div>
             </div>

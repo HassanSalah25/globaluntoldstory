@@ -2,7 +2,7 @@
 @section('title', 'Add Service')
 
 @section('content')
-<div class="max-w-3xl mx-auto">
+<div class=" mx-auto">
 
     <div class="flex items-center gap-4 mb-6">
         <a href="{{ route('admin.services.index') }}" class="text-gray-400 hover:text-gray-600">

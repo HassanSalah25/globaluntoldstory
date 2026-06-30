@@ -2,7 +2,7 @@
 @section('title', 'Add Blog Post')
 
 @section('content')
-<div class="max-w-3xl mx-auto">
+<div class=" mx-auto">
 
     <div class="flex items-center gap-4 mb-6">
         <a href="{{ route('admin.blog.index') }}" class="text-gray-400 hover:text-gray-600">
@@ -37,12 +37,20 @@
                     <input type="text" name="author_name" value="{{ old('author_name') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Author Image URL</label>
-                    <input type="text" name="author_image_url" value="{{ old('author_image_url') }}" placeholder="https://..." class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                    @include('admin.components.image-picker', [
+                        'name' => 'author_image_url',
+                        'label' => 'Author Image',
+                        'value' => old('author_image_url'),
+                        'previewRounded' => 'full',
+                        'previewAspect' => 'aspect-square max-w-[120px]',
+                    ])
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image URL</label>
-                    <input type="text" name="featured_image_url" value="{{ old('featured_image_url') }}" placeholder="https://..." class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                    @include('admin.components.image-picker', [
+                        'name' => 'featured_image_url',
+                        'label' => 'Featured Image',
+                        'value' => old('featured_image_url'),
+                    ])
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Published At</label>

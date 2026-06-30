@@ -103,6 +103,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Media Library
         Route::get('media', [Admin\MediaController::class, 'index'])->name('media.index');
+        Route::get('media/picker', [Admin\MediaController::class, 'picker'])->name('media.picker');
         Route::post('media', [Admin\MediaController::class, 'store'])->name('media.store');
         Route::delete('media/{media_asset}', [Admin\MediaController::class, 'destroy'])->name('media.destroy');
         Route::patch('media/{media_asset}/alt', [Admin\MediaController::class, 'updateAlt'])->name('media.update-alt');

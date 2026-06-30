@@ -23,6 +23,42 @@ class MediaController extends Controller
         return view('admin.media.index', compact('mediaAssets', 'folders'));
     }
 
+    public function picker(Request $request)
+    {
+        $query = MediaAsset::query()
+            ->where('mime_type', 'like', 'image/%')
+            ->latest();
+
+        if ($folder = $request->input('folder')) {
+            $query->where('folder', $folder);
+        }
+
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('filename', 'like', "%{$search}%")
+                    ->orWhere('alt_text', 'like', "%{$search}%");
+            });
+        }
+
+        $mediaAssets = $query->paginate(24);
+
+        return response()->json([
+            'data' => $mediaAssets->getCollection()->map(fn (MediaAsset $asset) => [
+                'id' => $asset->id,
+                'url' => $asset->url,
+                'filename' => $asset->filename,
+                'folder' => $asset->folder,
+            ])->values(),
+            'current_page' => $mediaAssets->currentPage(),
+            'last_page' => $mediaAssets->lastPage(),
+            'folders' => MediaAsset::select('folder')
+                ->distinct()
+                ->whereNotNull('folder')
+                ->orderBy('folder')
+                ->pluck('folder'),
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -32,8 +68,9 @@ class MediaController extends Controller
         ]);
 
         $uploaded = 0;
-        $year  = now()->format('Y');
-        $month = now()->format('m');
+        $assets   = [];
+        $year     = now()->format('Y');
+        $month    = now()->format('m');
 
         $files = [];
 
@@ -52,7 +89,7 @@ class MediaController extends Controller
             $safeName     = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '_', $originalName);
             $path         = Storage::disk('public')->putFileAs("media/{$year}/{$month}", $file, $safeName);
 
-            MediaAsset::create([
+            $asset = MediaAsset::create([
                 'disk'        => 'public',
                 'path'        => $path,
                 'filename'    => $originalName,
@@ -63,13 +100,23 @@ class MediaController extends Controller
                 'uploaded_by' => auth()->id(),
             ]);
 
+            $assets[] = [
+                'id' => $asset->id,
+                'url' => $asset->url,
+                'filename' => $asset->filename,
+            ];
+
             $uploaded++;
         }
 
         $message = "{$uploaded} file(s) uploaded successfully.";
 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'message' => $message]);
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'assets' => $assets,
+            ]);
         }
 
         return redirect()->back()->with('success', $message);

@@ -31,15 +31,10 @@
          class="fixed inset-0 z-40 bg-black/60 lg:hidden"></div>
 
     {{-- ── Sidebar ─────────────────────────────────── --}}
-    <aside class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-gray-900"
-           :class="{
-               'translate-x-0': mobileOpen,
-               '-translate-x-full': !mobileOpen
-           }"
-           style="transition: transform 0.25s ease; transform: translateX(-100%);"
-           x-bind:style="mobileOpen || (window.innerWidth >= 1024 && sidebarOpen)
-               ? 'transform: translateX(0); transition: transform 0.25s ease;'
-               : 'transform: translateX(-100%); transition: transform 0.25s ease;'">
+    <aside class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-gray-900 transform transition-transform duration-300 ease-in-out"
+           :class="mobileOpen
+               ? 'translate-x-0'
+               : '-translate-x-full ' + (sidebarOpen ? 'lg:translate-x-0' : 'lg:-translate-x-full')">
 
         {{-- Logo --}}
         <div class="flex h-16 shrink-0 items-center justify-between border-b border-gray-800 px-4">
@@ -365,6 +360,8 @@
             </p>
         </footer>
     </div>
+
+    @include('admin.components.media-picker-modal')
 
     @stack('scripts')
 </body>

@@ -117,7 +117,7 @@
                             <input x-model="alt" type="text" placeholder="Alt text"
                                 class="flex-1 border border-gray-300 rounded px-1.5 py-0.5 text-xs focus:ring-1 focus:ring-red-500 focus:border-transparent min-w-0">
                             <button @click="
-                                fetch('{{ route('admin.media.updateAlt', $asset) }}', {
+                                fetch('{{ route('admin.media.update-alt', $asset) }}', {
                                     method: 'PUT',
                                     headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
                                     body: JSON.stringify({alt_text: alt})

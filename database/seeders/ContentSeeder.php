@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Award;
 use App\Models\BlogPost;
+use App\Services\Media\FrontendMediaImporter;
 use App\Models\Category;
 use App\Models\ClientLogo;
 use App\Models\Faq;
@@ -32,6 +33,11 @@ use Illuminate\Database\Seeder;
 
 class ContentSeeder extends Seeder
 {
+    private function media(string $key): string
+    {
+        return FrontendMediaImporter::resolvedUrl($key);
+    }
+
     public function run(): void
     {
         $this->seedSettings();
@@ -257,7 +263,7 @@ class ContentSeeder extends Seeder
                     'page_id' => $page->id,
                     'type' => 'story',
                     'sort_order' => 1,
-                    'settings' => ['image' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop'],
+                    'settings' => ['image' => $this->media('film-production')],
                     'is_active' => true,
                 ]);
                 $this->seedTranslations($story, [
@@ -308,7 +314,7 @@ class ContentSeeder extends Seeder
         $slides = [
             [
                 'sort_order' => 1,
-                'image_url' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1400&auto=format&fit=crop',
+                'image_url' => $this->media('film-production'),
                 'gradient' => 'linear-gradient(160deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.35) 100%)',
                 'en' => [
                     'badge' => '🎬 Film & Video Production services in Egypt and MENA',
@@ -335,7 +341,7 @@ class ContentSeeder extends Seeder
             ],
             [
                 'sort_order' => 2,
-                'image_url' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1400&auto=format&fit=crop',
+                'image_url' => $this->media('cinema-camera'),
                 'gradient' => 'linear-gradient(160deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.5) 100%)',
                 'en' => [
                     'badge' => 'Where story meets execution',
@@ -477,31 +483,31 @@ class ContentSeeder extends Seeder
 
         $items = [
             [
-                'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop',
+                'avatar' => $this->media('portrait-man-1'),
                 'type' => 'client',
                 'en' => ['name' => 'Commercial Production', 'role' => 'Bold visuals for brands', 'text' => 'From concept to final frame — commercials that captivate, move, and stay with audiences.'],
                 'ar' => ['name' => 'أحمد الشمري', 'role' => 'مدير تسويق، شركة النخبة', 'text' => 'Untold غيّرت طريقة تفكيرنا في التسويق الرقمي. النتائج تجاوزت توقعاتنا بكثير.'],
             ],
             [
-                'avatar' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=150&auto=format&fit=crop',
+                'avatar' => $this->media('cinema-camera'),
                 'type' => 'client',
                 'en' => ['name' => 'Documentary Production', 'role' => 'Stories that travel', 'text' => 'Real stories crafted with cinematic precision and disciplined execution.'],
                 'ar' => ['name' => 'سارة القحطاني', 'role' => 'رائدة أعمال', 'text' => 'تعاملت مع وكالات كثيرة لكن Untold الأكثر احترافية والأسرع في التنفيذ. أنصح بها بشدة.'],
             ],
             [
-                'avatar' => 'https://images.unsplash.com/photo-1574717026530-2e874b7698a8?q=80&w=150&auto=format&fit=crop',
+                'avatar' => $this->media('portrait-man-2'),
                 'type' => 'client',
                 'en' => ['name' => 'Post Production', 'role' => 'Premium finishing', 'text' => 'Editing, color, VFX, and sound — polished and aligned with your tone.'],
                 'ar' => ['name' => 'محمد العتيبي', 'role' => 'مؤسس، براند ماكس', 'text' => 'زادت مبيعاتنا ٣٠٠٪ خلال ٦ أشهر من العمل مع Untold. فريق رائع!'],
             ],
             [
-                'avatar' => 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=150&auto=format&fit=crop',
+                'avatar' => $this->media('camera-equipment'),
                 'type' => 'client',
                 'en' => ['name' => 'On-Ground Production', 'role' => 'Egypt & MENA', 'text' => 'Permits, crews, logistics, locations, and full on-the-ground support for international shoots.'],
                 'ar' => ['name' => 'لطيفة الدوسري', 'role' => 'مديرة تنفيذية، ريادة', 'text' => 'الاحترافية والإبداع في كل تفصيلة. لن أتعامل مع أي وكالة أخرى بعد الآن.'],
             ],
             [
-                'avatar' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop',
+                'avatar' => $this->media('executive-portrait'),
                 'type' => 'ceo',
                 'en' => ['name' => 'Khaled Bendary', 'role' => 'CEO, The Untold Story', 'text' => '"Predictable budgets. Premium results. The Untold Story delivers the full production cycle with disciplined execution."'],
                 'ar' => ['name' => 'Khaled Bendary', 'role' => 'CEO, The Untold Story', 'text' => '"ميزانيات متوقعة. نتائج متميزة. The Untold Story تقدّم دورة الإنتاج الكاملة بتنفيذ منضبط."'],
@@ -557,21 +563,21 @@ class ContentSeeder extends Seeder
         PortfolioItem::query()->delete();
 
         $projects = [
-            ['al-nokhba-digital-marketing', 'digital-ads', 'Al-Nokhba Group', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop', '3 Months', '$14,000', '+240% Sales Increase, 5.2x ROI', '+240% Sales', 'large', 'Al-Nokhba Digital Marketing Blitz', 'حملة النخبة للتسويق الرقمي', '+240% Sales Increase, 5.2x ROI', 'زيادة المبيعات +٢٤٠٪، عائد الاستثمار ٥.٢ ضعف'],
-            ['rikaz-real-estate-identity', 'branding', 'Rikaz Development', 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop', '1 Month', '$7,000', 'Unique modern logo & comprehensive brand guidelines', 'Full Identity', 'small', 'Rikaz Real Estate Visual Identity', 'الهوية البصرية لشركة ركاز العقارية', 'Unique modern logo & comprehensive brand guidelines', 'تصميم شعار فريد ودليل هوية بصرية كاملة'],
-            ['masar-app-launch-video', 'video', 'Masar EdTech', 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop', '2 Months', '$9,500', '3.5M Views, +180% App Downloads boost', '3.5M Views', 'large', 'Masar Learning App Launch Video', 'فيديو إطلاق تطبيق مسار التعليمي', '3.5M Views, +180% App Downloads boost', '٣.٥ مليون مشاهدة، زيادة التحميلات +١٨٠٪'],
-            ['gourmet-social-growth', 'social', 'Gourmet International', 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600&auto=format&fit=crop', '6 Months', '$5,000/mo', '+45k New followers, +130% Monthly engagement', '+45k Followers', 'small', 'Gourmet Burgers Social Growth & Content', 'إدارة السوشيال ميديا لمطاعم جورميه', '+45k New followers, +130% Monthly engagement', '+٤٥ ألف متابع جديد، تفاعل شهري +١٣٠٪'],
-            ['fashion-brand-google-campaign', 'digital-ads', 'Fashion Brand Ltd', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=600&auto=format&fit=crop', '4 Months', '$22,000', '+320% Return on Ad Spend, 8,000+ Conversions', '+320% ROAS', 'small', 'Fashion Brand Google Search Campaign', 'حملة إعلانات جوجل لبراند فاشن', '+320% Return on Ad Spend, 8,000+ Conversions', '+٣٢٠٪ عائد على الإنفاق الإعلاني، ٨ آلاف تحويل'],
-            ['myhealth-influencer-campaign', 'social', 'MyHealth Ltd', 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop', '2 Months', '$11,000', 'Featured by 15 major fitness influencers, sold out stock', 'Sold Out', 'small', 'MyHealth Influencer Launch Campaign', 'حملة المؤثرين لمنتج صحتي الرياضي', 'Featured by 15 major fitness influencers, sold out stock', 'تغطية من ١٥ مؤثر، مبيعات نفدت بالكامل'],
+            ['al-nokhba-digital-marketing', 'digital-ads', 'Al-Nokhba Group', 'digital-marketing', '3 Months', '$14,000', '+240% Sales Increase, 5.2x ROI', '+240% Sales', 'large', 'Al-Nokhba Digital Marketing Blitz', 'حملة النخبة للتسويق الرقمي', '+240% Sales Increase, 5.2x ROI', 'زيادة المبيعات +٢٤٠٪، عائد الاستثمار ٥.٢ ضعف'],
+            ['rikaz-real-estate-identity', 'branding', 'Rikaz Development', 'branding-design', '1 Month', '$7,000', 'Unique modern logo & comprehensive brand guidelines', 'Full Identity', 'small', 'Rikaz Real Estate Visual Identity', 'الهوية البصرية لشركة ركاز العقارية', 'Unique modern logo & comprehensive brand guidelines', 'تصميم شعار فريد ودليل هوية بصرية كاملة'],
+            ['masar-app-launch-video', 'video', 'Masar EdTech', 'gaming-video', '2 Months', '$9,500', '3.5M Views, +180% App Downloads boost', '3.5M Views', 'large', 'Masar Learning App Launch Video', 'فيديو إطلاق تطبيق مسار التعليمي', '3.5M Views, +180% App Downloads boost', '٣.٥ مليون مشاهدة، زيادة التحميلات +١٨٠٪'],
+            ['gourmet-social-growth', 'social', 'Gourmet International', 'social-media', '6 Months', '$5,000/mo', '+45k New followers, +130% Monthly engagement', '+45k Followers', 'small', 'Gourmet Burgers Social Growth & Content', 'إدارة السوشيال ميديا لمطاعم جورميه', '+45k New followers, +130% Monthly engagement', '+٤٥ ألف متابع جديد، تفاعل شهري +١٣٠٪'],
+            ['fashion-brand-google-campaign', 'digital-ads', 'Fashion Brand Ltd', 'fashion-retail', '4 Months', '$22,000', '+320% Return on Ad Spend, 8,000+ Conversions', '+320% ROAS', 'small', 'Fashion Brand Google Search Campaign', 'حملة إعلانات جوجل لبراند فاشن', '+320% Return on Ad Spend, 8,000+ Conversions', '+٣٢٠٪ عائد على الإنفاق الإعلاني، ٨ آلاف تحويل'],
+            ['myhealth-influencer-campaign', 'social', 'MyHealth Ltd', 'gaming-arena', '2 Months', '$11,000', 'Featured by 15 major fitness influencers, sold out stock', 'Sold Out', 'small', 'MyHealth Influencer Launch Campaign', 'حملة المؤثرين لمنتج صحتي الرياضي', 'Featured by 15 major fitness influencers, sold out stock', 'تغطية من ١٥ مؤثر، مبيعات نفدت بالكامل'],
         ];
 
         foreach ($projects as $i => $p) {
-            [$slug, $catSlug, $client, $img, $duration, $budget, $results, $metric, $grid, $enTitle, $arTitle, $enResults, $arResults] = $p;
+            [$slug, $catSlug, $client, $mediaKey, $duration, $budget, $results, $metric, $grid, $enTitle, $arTitle, $enResults, $arResults] = $p;
             $item = PortfolioItem::query()->create([
                 'slug' => $slug,
                 'category_id' => $categories['portfolio'][$catSlug] ?? null,
                 'client_name' => $client,
-                'image_url' => $img,
+                'image_url' => $this->media($mediaKey),
                 'duration' => $duration,
                 'budget' => $budget,
                 'results' => $results,
@@ -601,8 +607,8 @@ class ContentSeeder extends Seeder
             'slug' => 'future-of-digital-marketing-2024',
             'category_id' => $categories['blog']['marketing-strategy'] ?? null,
             'author_name' => 'Ahmed Al-Zahrani',
-            'author_image_url' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop',
-            'featured_image_url' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+            'author_image_url' => $this->media('portrait-man-1'),
+            'featured_image_url' => $this->media('analytics-dashboard'),
             'published_at' => Carbon::parse('2024-06-01'),
             'read_time_minutes' => 8,
             'is_featured' => true,
@@ -677,7 +683,7 @@ class ContentSeeder extends Seeder
 
         $member = TeamMember::query()->create([
             'slug' => 'khaled-bendary',
-            'image_url' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop',
+            'image_url' => $this->media('executive-portrait'),
             'sort_order' => 1,
             'is_active' => true,
         ]);
