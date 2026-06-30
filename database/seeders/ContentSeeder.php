@@ -263,7 +263,7 @@ class ContentSeeder extends Seeder
                     'page_id' => $page->id,
                     'type' => 'story',
                     'sort_order' => 1,
-                    'settings' => ['image' => $this->media('film-production')],
+                    'settings' => ['image' => $this->media('about-story-photo')],
                     'is_active' => true,
                 ]);
                 $this->seedTranslations($story, [
@@ -314,7 +314,7 @@ class ContentSeeder extends Seeder
         $slides = [
             [
                 'sort_order' => 1,
-                'image_url' => $this->media('film-production'),
+                'image_url' => $this->media('hero-slide-1'),
                 'gradient' => 'linear-gradient(160deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.35) 100%)',
                 'en' => [
                     'badge' => '🎬 Film & Video Production services in Egypt and MENA',
@@ -341,7 +341,7 @@ class ContentSeeder extends Seeder
             ],
             [
                 'sort_order' => 2,
-                'image_url' => $this->media('cinema-camera'),
+                'image_url' => $this->media('hero-slide-2'),
                 'gradient' => 'linear-gradient(160deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.5) 100%)',
                 'en' => [
                     'badge' => 'Where story meets execution',
@@ -422,25 +422,30 @@ class ContentSeeder extends Seeder
     {
         Service::query()->delete();
 
+        // [slug, icon, image_key, enTitle, arTitle, enDesc, arDesc]
+        // The first 4 entries are the featured service cards (800×540 images)
         $services = [
-            ['photography', '📷', 'Photography', 'التصوير', 'Premium photography for brands, products, executives, and events with clean lighting and consistent delivery.', 'تصوير متميز للعلامات والمنتجات والتنفيذيين والفعاليات بإضاءة نظيفة وتسليم متسق.'],
-            ['commercial', '📺', 'Commercial Advertising Production', 'إنتاج الإعلانات التجارية', 'High impact commercials and campaign films from concept to filming and final delivery.', 'إعلانات وأفلام حملات عالية التأثير من الفكرة إلى التصوير والتسليم النهائي.'],
-            ['post-production', '✂️', 'Post Production and Final Delivery', 'ما بعد الإنتاج والتسليم النهائي', 'Editing, color, sound, mastering, and multi format versions that meet platform and broadcast specs.', 'مونتاج، ألوان، صوت، mastering، ونسخ متعددة الصيغ تلبي مواصفات المنصات والبث.'],
-            ['events', '🎤', 'Event Coverage and Live Production', 'تغطية الفعاليات والإنتاج المباشر', 'Multi camera coverage, live streaming, drone, and same day edits for conferences, launches, and concerts.', 'تغطية متعددة الكameras، بث مباشر، طائرات بدون طيار، ومontages في نفس اليوم للمؤتmerات والإطلاقات والحفلات.'],
-            ['documentary', '🎬', 'Documentary Production', 'إنتاج الأفلام الوثائقية', 'Research led documentaries and doc series built for platforms, broadcasters, and institutions.', 'أفلام وثائقية وسلاسل doc مبنية على البحث للمنصات والقنوات والمؤسسات.'],
-            ['on-ground-egypt', '🇪🇬', 'On Ground Production Services in Egypt', 'خدمات الإنتاج على أرض الواقع في مصر', 'Permits, fixing, crew, gear, logistics, and location scouting for international shoots across Egypt.', 'تصاريح، fixing، طاقم، معدات، لوجستيات، وlocation scouting للتصوير الدولي في مصر.'],
-            ['podcast', '🎙️', 'Podcast Production', 'إنتاج البودكاست', 'Audio and video podcast production with studio or on location setup, editing, and clips for distribution.', 'إنتاج بودكast صوتي ومرئي في الاستودio أو on location، مع montage ومقاطع للتوزيع.'],
-            ['corporate', '🏢', 'Corporate and Industrial Content', 'المحتوى المؤسسي والصناعي', 'Clear, credible corporate films for oil and gas, education, real estate, and complex industries.', 'أفلام مؤسسية واضحة وموثوقة للنفط والغاز والتعليم والعقارات والصناعات المعقدة.'],
-            ['tv-broadcast', '📡', 'TV Shows and Live Broadcast Production', 'إنتاج البرامج التلفزيونية والبث المباشر', 'Studio and field production with control room workflow, run downs, graphics packages, and delivery.', 'إنتاج استودio وميداني مع control room workflow وrun downs وحزم graphics وتسليم.'],
-            ['motion-cgi', '✨', 'Motion CGI and AI Powered Visuals', 'الموشن CGI والمرئيات المدعومة بالذكاء الاصطناعي', '2D motion, 3D, CGI, and AI assisted visuals to elevate storytelling and explain complex ideas.', 'موشن 2D و3D وCGI ومرئيات بمساعدة AI لرفع السرد وشرح الأفكار المعقدة.'],
-            ['dubbing', '🌐', 'Dubbing Voice Over and Localization', 'الدبلجة والتعليق الصوتي والتعريب', 'Subtitles, voice over, dubbing, ADR, and multi language packaging aligned with delivery standards.', 'ترجمة، تعليق صوتي، دبلجة، ADR، وتعبئة متعددة اللغات وفق معايير التسليم.'],
-            ['marketing', '📊', 'Marketing Solutions and Performance', 'حلول التسويق والأداء', 'Content strategy, media buying, creative testing, and campaign systems built around production.', 'استراتيجية محتوى، media buying، اختبار إبداعي، وأنظمة حملات مبنية حول الإنتاج.'],
+            ['on-ground-egypt', '🇪🇬', 'svc-on-ground', 'svc-all-on-ground', 'On Ground Production Services in Egypt', 'خدمات الإنتاج على أرض الواقع في مصر', 'Permits, fixing, crew, gear, logistics, and location scouting for international shoots across Egypt.', 'تصاريح، fixing، طاقم، معدات، لوجستيات، وlocation scouting للتصوير الدولي في مصر.'],
+            ['commercial', '📺', 'svc-commercial', 'svc-all-commercial', 'Commercial Advertising Production', 'إنتاج الإعلانات التجارية', 'High impact commercials and campaign films from concept to filming and final delivery.', 'إعلانات وأفلام حملات عالية التأثير من الفكرة إلى التصوير والتسليم النهائي.'],
+            ['documentary', '🎬', 'svc-documentary', 'svc-all-documentary', 'Documentary Production', 'إنتاج الأفلام الوثائقية', 'Research led documentaries and doc series built for platforms, broadcasters, and institutions.', 'أفلام وثائقية وسلاسل doc مبنية على البحث للمنصات والقنوات والمؤسسات.'],
+            ['corporate', '🏢', 'svc-corporate', 'svc-all-corporate', 'Corporate and Industrial Content', 'المحتوى المؤسسي والصناعي', 'Clear, credible corporate films for oil and gas, education, real estate, and complex industries.', 'أفلام مؤسسية واضحة وموثوقة للنفط والغاز والتعليم والعقارات والصناعات المعقدة.'],
+            ['events', '🎤', null, 'svc-all-events', 'Event Coverage and Live Production', 'تغطية الفعاليات والإنتاج المباشر', 'Multi camera coverage, live streaming, drone, and same day edits for conferences, launches, and concerts.', 'تغطية متعددة الكameras، بث مباشر، طائرات بدون طيار، ومontages في نفس اليوم للمؤتmerات والإطلاقات والحفلات.'],
+            ['tv-broadcast', '📡', null, 'svc-all-tv-broadcast', 'TV Shows and Live Broadcast Production', 'إنتاج البرامج التلفزيونية والبث المباشر', 'Studio and field production with control room workflow, run downs, graphics packages, and delivery.', 'إنتاج استودio وميداني مع control room workflow وrun downs وحزم graphics وتسليم.'],
+            ['podcast', '🎙️', null, 'svc-all-podcast', 'Podcast Production', 'إنتاج البودكاست', 'Audio and video podcast production with studio or on location setup, editing, and clips for distribution.', 'إنتاج بودكast صوتي ومرئي في الاستودio أو on location، مع montage ومقاطع للتوزيع.'],
+            ['post-production', '✂️', null, 'svc-all-post-production', 'Post Production and Final Delivery', 'ما بعد الإنتاج والتسليم النهائي', 'Editing, color, sound, mastering, and multi format versions that meet platform and broadcast specs.', 'مونتاج، ألوان، صوت، mastering، ونسخ متعددة الصيغ تلبي مواصفات المنصات والبث.'],
+            ['motion-cgi', '✨', null, 'svc-all-motion-cgi', 'Motion CGI and AI Powered Visuals', 'الموشن CGI والمرئيات المدعومة بالذكاء الاصطناعي', '2D motion, 3D, CGI, and AI assisted visuals to elevate storytelling and explain complex ideas.', 'موشن 2D و3D وCGI ومرئيات بمساعدة AI لرفع السرد وشرح الأفكار المعقدة.'],
+            ['dubbing', '🌐', null, 'svc-all-dubbing', 'Dubbing Voice Over and Localization', 'الدبلجة والتعليق الصوتي والتعريب', 'Subtitles, voice over, dubbing, ADR, and multi language packaging aligned with delivery standards.', 'ترجمة، تعليق صوتي، دبلجة، ADR، وتعبئة متعددة اللغات وفق معايير التسليم.'],
+            ['photography', '📷', null, 'svc-all-photography', 'Photography', 'التصوير', 'Premium photography for brands, products, executives, and events with clean lighting and consistent delivery.', 'تصوير متميز للعلامات والمنتجات والتنفيذيين والفعاليات بإضاءة نظيفة وتسليم متسق.'],
+            ['marketing', '📊', null, 'svc-all-marketing', 'Marketing Solutions and Performance', 'حلول التسويق والأداء', 'Content strategy, media buying, creative testing, and campaign systems built around production.', 'استراتيجية محتوى، media buying، اختبار إبداعي، وأنظمة حملات مبنية حول الإنتاج.'],
+            ['original-ip', '💡', null, 'svc-all-original-ip', 'Original IP Development', 'تطوير الملكية الفكرية الأصلية', 'Original story formats and creative IP developed in-house, designed to travel across markets and inspire audiences.', 'صيغ قصصية أصلية وملكية فكرية إبداعية مطوّرة داخلياً، مصمّمة للسفر عبر الأسواق وإلهام الجمهور.'],
         ];
 
-        foreach ($services as $i => [$slug, $icon, $enTitle, $arTitle, $enDesc, $arDesc]) {
+        foreach ($services as $i => [$slug, $icon, $featuredImgKey, $allImgKey, $enTitle, $arTitle, $enDesc, $arDesc]) {
+            $imgKey = $featuredImgKey ?? $allImgKey;
             $service = Service::query()->create([
                 'slug' => $slug,
                 'icon' => $icon,
+                'image_url' => $imgKey ? $this->media($imgKey) : null,
                 'sort_order' => $i + 1,
                 'is_active' => true,
                 'is_featured' => $i < 4,
@@ -608,7 +613,7 @@ class ContentSeeder extends Seeder
             'category_id' => $categories['blog']['marketing-strategy'] ?? null,
             'author_name' => 'Ahmed Al-Zahrani',
             'author_image_url' => $this->media('portrait-man-1'),
-            'featured_image_url' => $this->media('analytics-dashboard'),
+            'featured_image_url' => $this->media('blog-film-production'),
             'published_at' => Carbon::parse('2024-06-01'),
             'read_time_minutes' => 8,
             'is_featured' => true,

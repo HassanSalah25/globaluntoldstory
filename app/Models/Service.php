@@ -10,7 +10,7 @@ class Service extends Model
 {
     use HasTranslations;
 
-    protected $fillable = ['slug', 'icon', 'sort_order', 'is_active', 'is_featured'];
+    protected $fillable = ['slug', 'icon', 'image_url', 'sort_order', 'is_active', 'is_featured'];
 
     protected function casts(): array
     {

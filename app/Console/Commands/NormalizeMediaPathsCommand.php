@@ -15,7 +15,7 @@ use Illuminate\Console\Command;
 
 class NormalizeMediaPathsCommand extends Command
 {
-    protected $signature = '    ';
+    protected $signature = 'media:normalize-paths';
 
     protected $description = 'Convert stored full media URLs to storage-relative paths';
 

@@ -51,6 +51,7 @@ class ServiceCatalogService
             'id' => $service->slug,
             'slug' => $service->slug,
             'icon' => $service->icon,
+            'imageUrl' => $service->image_url ? \App\Support\MediaUrl::toPublicUrl($service->image_url) ?? asset('storage/'.$service->image_url) : null,
             'title' => $t?->title,
             'shortDesc' => $t?->short_desc,
             'price' => $t?->price ?? '',
