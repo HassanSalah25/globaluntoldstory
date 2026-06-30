@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\ContactRequestController as AdminContactRequestController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LeadController as AdminLeadController;
+use App\Http\Controllers\Api\V1\AboutController;
 use App\Http\Controllers\Api\V1\BlogController;
 use App\Http\Controllers\Api\V1\ContactController;
 use App\Http\Controllers\Api\V1\FaqController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Api\V1\PortfolioController;
 use App\Http\Controllers\Api\V1\SeoController;
 use App\Http\Controllers\Api\V1\ServiceController;
 use App\Http\Controllers\Api\V1\SitemapController;
+use App\Http\Controllers\Api\V1\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -28,6 +30,8 @@ Route::prefix('v1')->group(function () {
     Route::get('portfolio/{slug}', [PortfolioController::class, 'show']);
     Route::get('blog', [BlogController::class, 'index']);
     Route::get('blog/{slug}', [BlogController::class, 'show']);
+    Route::get('about', [AboutController::class, 'index']);
+    Route::get('testimonials', [TestimonialController::class, 'index']);
     Route::get('faqs', [FaqController::class, 'index']);
     Route::get('seo/{type}/{slug?}', [SeoController::class, 'show']);
     Route::get('sitemap.xml', [SitemapController::class, 'index']);

@@ -2,8 +2,10 @@
 
 namespace App\Services\Content;
 
+use App\Models\ClientLogo;
 use App\Models\Menu;
 use App\Models\Office;
+use App\Models\PartnerLabel;
 use App\Models\Service;
 use App\Services\Settings\SettingService;
 
@@ -24,7 +26,21 @@ class LayoutService
                 'enabled' => (bool) (int) $this->settings->get('announcement.enabled', $locale),
             ],
             'common_labels' => $this->settings->getCommonLabels($locale),
+            'partner_labels' => $this->getPartnerLabels($locale),
+            'client_logos' => $this->getClientLogos($locale),
         ];
+    }
+
+    private function getPartnerLabels(string $locale): array
+    {
+        return PartnerLabel::query()->orderBy('sort_order')->with('translations')->get()
+            ->map(fn ($p) => $p->translate($locale)?->label)->filter()->values()->all();
+    }
+
+    private function getClientLogos(string $locale): array
+    {
+        return ClientLogo::query()->where('is_active', true)->orderBy('sort_order')->with('translations')->get()
+            ->map(fn ($c) => ['name' => $c->name, 'displayName' => $c->translate($locale)?->display_name])->values()->all();
     }
 
     private function getNavLinks(string $locale): array

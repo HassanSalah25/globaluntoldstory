@@ -399,7 +399,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->unique(['feature_highlight_id', 'locale']);
+            $table->unique(['feature_highlight_id', 'locale'], 'fh_trans_locale_uniq');
         });
 
         Schema::create('offices', function (Blueprint $table) {

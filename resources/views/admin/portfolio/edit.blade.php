@@ -1,0 +1,139 @@
+@extends('admin.layouts.app')
+@section('title', 'Edit Portfolio Project')
+
+@section('content')
+<div class="max-w-3xl mx-auto">
+
+    <div class="flex items-center gap-4 mb-6">
+        <a href="{{ route('admin.portfolio.index') }}" class="text-gray-400 hover:text-gray-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </a>
+        <div>
+            <h2 class="text-2xl font-bold text-gray-900">Edit Portfolio Project</h2>
+            <p class="text-sm text-gray-500">{{ $portfolio->slug }}</p>
+        </div>
+    </div>
+
+    @if($errors->any())
+    <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
+        <ul class="list-disc list-inside space-y-1">
+            @foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach
+        </ul>
+    </div>
+    @endif
+
+    <form method="POST" action="{{ route('admin.portfolio.update', $portfolio) }}">
+        @csrf @method('PUT')
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+            <h3 class="text-base font-semibold text-gray-900 mb-4">Project Details</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Slug <span class="text-red-500">*</span></label>
+                    <input type="text" name="slug" value="{{ old('slug', $portfolio->slug ?? '') }}" required class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Client Name</label>
+                    <input type="text" name="client_name" value="{{ old('client_name', $portfolio->client_name ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                    <input type="text" name="image_url" value="{{ old('image_url', $portfolio->image_url ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                    <select name="category_id" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                        <option value="">— Select Category —</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $portfolio->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->translations->where('locale', 'en')->first()->name ?? $category->slug }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+                    <input type="text" name="duration" value="{{ old('duration', $portfolio->duration ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Budget</label>
+                    <input type="text" name="budget" value="{{ old('budget', $portfolio->budget ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Results</label>
+                    <input type="text" name="results" value="{{ old('results', $portfolio->results ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Metric</label>
+                    <input type="text" name="metric" value="{{ old('metric', $portfolio->metric ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Sort Order</label>
+                    <input type="number" name="sort_order" value="{{ old('sort_order', $portfolio->sort_order ?? 0) }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Grid Size</label>
+                    <select name="grid_size" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                        <option value="small" {{ old('grid_size', $portfolio->grid_size) === 'small' ? 'selected' : '' }}>Small</option>
+                        <option value="medium" {{ old('grid_size', $portfolio->grid_size) === 'medium' ? 'selected' : '' }}>Medium</option>
+                        <option value="large" {{ old('grid_size', $portfolio->grid_size) === 'large' ? 'selected' : '' }}>Large</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-6 pt-2">
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" name="is_featured" id="is_featured" value="1" {{ old('is_featured', $portfolio->is_featured) ? 'checked' : '' }} class="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                        <label for="is_featured" class="text-sm font-medium text-gray-700">Featured</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" name="is_active" id="is_active" value="1" {{ old('is_active', $portfolio->is_active) ? 'checked' : '' }} class="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500">
+                        <label for="is_active" class="text-sm font-medium text-gray-700">Active</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
+            <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
+            <div class="flex border-b border-gray-200 mb-6">
+                <button type="button" @click="tab = 'en'" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
+                <button type="button" @click="tab = 'ar'" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
+            </div>
+
+            <div x-show="tab === 'en'" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Title <span class="text-red-500">*</span></label>
+                    <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}" required class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Results Text</label>
+                    <textarea name="results_text_en" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('results_text_en', $translations['en']->results_text ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Metric (translated)</label>
+                    <input type="text" name="metric_en" value="{{ old('metric_en', $translations['en']->metric ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+            </div>
+
+            <div x-show="tab === 'ar'" dir="rtl" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان <span class="text-red-500">*</span></label>
+                    <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">نص النتائج</label>
+                    <textarea name="results_text_ar" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('results_text_ar', $translations['ar']->results_text ?? '') }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">المقياس</label>
+                    <input type="text" name="metric_ar" value="{{ old('metric_ar', $translations['ar']->metric ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Changes</button>
+            <a href="{{ route('admin.portfolio.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-2.5 rounded-lg font-medium">Cancel</a>
+        </div>
+    </form>
+</div>
+@endsection

@@ -21,15 +21,11 @@ class FaqController extends ApiController
                 $t = $faq->translate($locale);
 
                 return [
-                    'q' => $t?->question,
-                    'a' => $t?->answer,
+                    'question' => $t?->question,
+                    'answer' => $t?->answer,
                 ];
             })->values()->all();
 
-        return $this->success([
-            'badge' => $locale === 'ar' ? 'الأسئلة الشائعة' : 'FAQ',
-            'title' => $locale === 'ar' ? 'أجوبة لأهم أسئلتك' : 'Answers to Your Key Questions',
-            'list' => $items,
-        ], $locale);
+        return $this->success($items, $locale);
     }
 }
