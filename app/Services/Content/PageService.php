@@ -15,6 +15,7 @@ use App\Models\TimelineEvent;
 use App\Models\ValueItem;
 use App\Services\Seo\SeoService;
 use App\Services\Settings\SettingService;
+use App\Support\MediaUrl;
 use Illuminate\Support\Str;
 
 class PageService
@@ -137,7 +138,7 @@ class PageService
                 'storyDesc3' => $storyParagraphs[2] ?? null,
                 'storyDesc4' => $storyParagraphs[3] ?? null,
                 'storyCta' => $story?->cta_label,
-                'storyImage' => $storySection?->settings['image'] ?? null,
+                'storyImage' => MediaUrl::toPublicUrl($storySection?->settings['image'] ?? null),
                 'aboutStats' => $stats,
                 'missionTitle' => $mission?->title,
                 'missionDesc' => $mission?->content,

@@ -9,13 +9,14 @@ use App\Models\PageSection;
 use App\Models\PortfolioItem;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
+use App\Support\MediaUrl;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class FrontendMediaImporter
 {
     /** @var array<string, string>|null */
-    private static ?array $resolvedUrls = null;
+    private static ?array $resolvedPaths = null;
 
     public function definitions(): array
     {
@@ -23,25 +24,25 @@ class FrontendMediaImporter
     }
 
     /**
-     * @return array<string, string> Map of registry key => public URL
+     * @return array<string, string> Map of registry key => storage-relative path
      */
     public function import(bool $force = false): array
     {
-        $urls = [];
+        $paths = [];
 
         foreach ($this->definitions() as $key => $definition) {
-            $urls[$key] = $this->importOne($key, $definition, $force);
+            $paths[$key] = $this->importOne($key, $definition, $force);
         }
 
-        self::$resolvedUrls = $urls;
+        self::$resolvedPaths = $paths;
 
-        return $urls;
+        return $paths;
     }
 
-    public static function resolvedUrl(string $key): string
+    public static function resolvedPath(string $key): string
     {
-        if (self::$resolvedUrls !== null && isset(self::$resolvedUrls[$key])) {
-            return self::$resolvedUrls[$key];
+        if (self::$resolvedPaths !== null && isset(self::$resolvedPaths[$key])) {
+            return self::$resolvedPaths[$key];
         }
 
         $definitions = require database_path('data/frontend-media.php');
@@ -58,10 +59,24 @@ class FrontendMediaImporter
             ->first();
 
         if ($asset) {
-            return $asset->url;
+            return $asset->path;
         }
 
-        return $definition['source'];
+        return "media/{$definition['folder']}/{$definition['filename']}";
+    }
+
+    public static function resolvedUrl(string $key): string
+    {
+        $path = self::resolvedPath($key);
+        $publicUrl = MediaUrl::toPublicUrl($path);
+
+        if ($publicUrl !== null) {
+            return $publicUrl;
+        }
+
+        $definitions = require database_path('data/frontend-media.php');
+
+        return $definitions[$key]['source'];
     }
 
     public function syncContentReferences(): int
@@ -70,28 +85,28 @@ class FrontendMediaImporter
         $updated = 0;
 
         HeroSlide::query()->each(function (HeroSlide $slide) use ($photoMap, &$updated) {
-            $newUrl = $this->resolveUrl($slide->image_url, $photoMap);
+            $newPath = $this->resolvePath($slide->getRawMediaPath('image_url'), $photoMap);
 
-            if ($newUrl && $newUrl !== $slide->image_url) {
-                $slide->update(['image_url' => $newUrl]);
+            if ($newPath && $newPath !== $slide->getRawMediaPath('image_url')) {
+                $slide->update(['image_url' => $newPath]);
                 $updated++;
             }
         });
 
         PortfolioItem::query()->each(function (PortfolioItem $item) use ($photoMap, &$updated) {
-            $newUrl = $this->resolveUrl($item->image_url, $photoMap);
+            $newPath = $this->resolvePath($item->getRawMediaPath('image_url'), $photoMap);
 
-            if ($newUrl && $newUrl !== $item->image_url) {
-                $item->update(['image_url' => $newUrl]);
+            if ($newPath && $newPath !== $item->getRawMediaPath('image_url')) {
+                $item->update(['image_url' => $newPath]);
                 $updated++;
             }
         });
 
         Testimonial::query()->each(function (Testimonial $item) use ($photoMap, &$updated) {
-            $newUrl = $this->resolveUrl($item->avatar_url, $photoMap);
+            $newPath = $this->resolvePath($item->getRawMediaPath('avatar_url'), $photoMap);
 
-            if ($newUrl && $newUrl !== $item->avatar_url) {
-                $item->update(['avatar_url' => $newUrl]);
+            if ($newPath && $newPath !== $item->getRawMediaPath('avatar_url')) {
+                $item->update(['avatar_url' => $newPath]);
                 $updated++;
             }
         });
@@ -99,15 +114,15 @@ class FrontendMediaImporter
         BlogPost::query()->each(function (BlogPost $post) use ($photoMap, &$updated) {
             $changes = [];
 
-            if ($newUrl = $this->resolveUrl($post->author_image_url, $photoMap)) {
-                if ($newUrl !== $post->author_image_url) {
-                    $changes['author_image_url'] = $newUrl;
+            if ($newPath = $this->resolvePath($post->getRawMediaPath('author_image_url'), $photoMap)) {
+                if ($newPath !== $post->getRawMediaPath('author_image_url')) {
+                    $changes['author_image_url'] = $newPath;
                 }
             }
 
-            if ($newUrl = $this->resolveUrl($post->featured_image_url, $photoMap)) {
-                if ($newUrl !== $post->featured_image_url) {
-                    $changes['featured_image_url'] = $newUrl;
+            if ($newPath = $this->resolvePath($post->getRawMediaPath('featured_image_url'), $photoMap)) {
+                if ($newPath !== $post->getRawMediaPath('featured_image_url')) {
+                    $changes['featured_image_url'] = $newPath;
                 }
             }
 
@@ -118,10 +133,10 @@ class FrontendMediaImporter
         });
 
         TeamMember::query()->each(function (TeamMember $member) use ($photoMap, &$updated) {
-            $newUrl = $this->resolveUrl($member->image_url, $photoMap);
+            $newPath = $this->resolvePath($member->getRawMediaPath('image_url'), $photoMap);
 
-            if ($newUrl && $newUrl !== $member->image_url) {
-                $member->update(['image_url' => $newUrl]);
+            if ($newPath && $newPath !== $member->getRawMediaPath('image_url')) {
+                $member->update(['image_url' => $newPath]);
                 $updated++;
             }
         });
@@ -133,10 +148,11 @@ class FrontendMediaImporter
                 return;
             }
 
-            $newUrl = $this->resolveUrl($settings['image'], $photoMap);
+            $currentPath = MediaUrl::toStoragePath($settings['image']);
+            $newPath = $this->resolvePath($currentPath, $photoMap);
 
-            if ($newUrl && $newUrl !== $settings['image']) {
-                $settings['image'] = $newUrl;
+            if ($newPath && $newPath !== $currentPath) {
+                $settings['image'] = $newPath;
                 $section->update(['settings' => $settings]);
                 $updated++;
             }
@@ -160,7 +176,7 @@ class FrontendMediaImporter
             ->first();
 
         if ($existing && ! $force && Storage::disk($existing->disk)->exists($existing->path)) {
-            return $existing->url;
+            return $existing->path;
         }
 
         $response = Http::timeout(90)
@@ -195,7 +211,7 @@ class FrontendMediaImporter
                 'alt_text' => $definition['alt'] ?? null,
             ]);
 
-            return $existing->fresh()->url;
+            return $existing->fresh()->path;
         }
 
         $asset = MediaAsset::create([
@@ -209,14 +225,14 @@ class FrontendMediaImporter
             'uploaded_by' => null,
         ]);
 
-        return $asset->url;
+        return $asset->path;
     }
 
     /**
-     * @param  array<string, string>  $urls
+     * @param  array<string, string>  $paths
      * @return array<string, string>
      */
-    private function buildPhotoIdMap(array $urls): array
+    private function buildPhotoIdMap(array $paths): array
     {
         $map = [];
 
@@ -224,11 +240,11 @@ class FrontendMediaImporter
             $photoId = $this->extractPhotoId($definition['source']);
 
             if ($photoId) {
-                $map[$photoId] = $urls[$key];
+                $map[$photoId] = $paths[$key];
             }
 
             foreach ($definition['legacy_photo_ids'] ?? [] as $legacyId) {
-                $map[$legacyId] = $urls[$key];
+                $map[$legacyId] = $paths[$key];
             }
         }
 
@@ -238,13 +254,13 @@ class FrontendMediaImporter
     /**
      * @param  array<string, string>  $photoMap
      */
-    private function resolveUrl(?string $url, array $photoMap): ?string
+    private function resolvePath(?string $value, array $photoMap): ?string
     {
-        if (! $url) {
+        if (! $value) {
             return null;
         }
 
-        $photoId = $this->extractPhotoId($url);
+        $photoId = $this->extractPhotoId($value);
 
         return $photoId ? ($photoMap[$photoId] ?? null) : null;
     }

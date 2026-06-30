@@ -17,19 +17,19 @@ class ImportFrontendMediaCommand extends Command
     {
         $this->info('Importing frontend images into the media library...');
 
-        $urls = $importer->import($this->option('force'));
+        $paths = $importer->import($this->option('force'));
 
-        foreach ($urls as $key => $url) {
-            $this->line("  <fg=green>✓</> {$key}: {$url}");
+        foreach ($paths as $key => $path) {
+            $this->line("  <fg=green>✓</> {$key}: {$path}");
         }
 
         if ($this->option('sync-content')) {
             $updated = $importer->syncContentReferences();
-            $this->info("Updated {$updated} content record(s) to use media library URLs.");
+            $this->info("Updated {$updated} content record(s) to use media library paths.");
         }
 
         $this->newLine();
-        $this->info('Done. Run with --sync-content to update existing CMS image URLs.');
+        $this->info('Done. Run with --sync-content to update existing CMS image references.');
 
         return self::SUCCESS;
     }

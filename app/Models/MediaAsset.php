@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
+use App\Support\MediaUrl;
 
 class MediaAsset extends Model
 {
@@ -22,7 +22,7 @@ class MediaAsset extends Model
 
     public function getUrlAttribute(): string
     {
-        return asset(Storage::disk($this->disk)->url($this->path));
+        return MediaUrl::toPublicUrl($this->path) ?? '';
     }
 
     public function isImage(): bool

@@ -79,7 +79,7 @@
             {{-- Thumbnail --}}
             <div class="relative aspect-square bg-gray-50">
                 @if(str_starts_with($asset->mime_type ?? '', 'image/'))
-                <img src="{{ Storage::url($asset->path) }}" alt="{{ $asset->alt_text }}"
+                <img src="{{ $asset->url }}" alt="{{ $asset->alt_text }}"
                     class="w-full h-full object-cover">
                 @else
                 <div class="w-full h-full flex flex-col items-center justify-center text-gray-400 p-2">
@@ -92,7 +92,7 @@
 
                 {{-- Overlay actions --}}
                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
-                    <button onclick="navigator.clipboard.writeText('{{ Storage::url($asset->path) }}')"
+                    <button onclick="navigator.clipboard.writeText('{{ $asset->url }}')"
                         class="bg-white text-gray-800 px-2 py-1 rounded text-xs font-medium hover:bg-gray-100"
                         title="Copy URL">
                         Copy URL

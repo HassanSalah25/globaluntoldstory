@@ -64,7 +64,7 @@
            name="{{ $name }}"
            @if($parentModel) x-model="{{ $parentModel }}" @else x-model="url" @endif
            value="{{ $value }}"
-           placeholder="Selected image URL will appear here"
+           placeholder="Image from media library"
            {{ $required ? 'required' : '' }}
            class="mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-600 focus:border-transparent focus:ring-2 focus:ring-red-500">
 

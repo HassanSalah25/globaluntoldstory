@@ -35,7 +35,7 @@ class ContentSeeder extends Seeder
 {
     private function media(string $key): string
     {
-        return FrontendMediaImporter::resolvedUrl($key);
+        return FrontendMediaImporter::resolvedPath($key);
     }
 
     public function run(): void

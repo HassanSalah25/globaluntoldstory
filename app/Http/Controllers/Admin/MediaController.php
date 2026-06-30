@@ -46,6 +46,7 @@ class MediaController extends Controller
             'data' => $mediaAssets->getCollection()->map(fn (MediaAsset $asset) => [
                 'id' => $asset->id,
                 'url' => $asset->url,
+                'path' => $asset->path,
                 'filename' => $asset->filename,
                 'folder' => $asset->folder,
             ])->values(),
@@ -103,6 +104,7 @@ class MediaController extends Controller
             $assets[] = [
                 'id' => $asset->id,
                 'url' => $asset->url,
+                'path' => $asset->path,
                 'filename' => $asset->filename,
             ];
 
