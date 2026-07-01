@@ -35,6 +35,14 @@ return [
         'alt' => 'The Untold Story film production team at the Pyramids of Giza in Egypt',
     ],
 
+    // ── Home page photography section (800×1000) ──────────────────────────────
+    'home-photography-section' => [
+        'local' => database_path('data/media/professional-cinema-camera-equipment-egypt-arri-alexa-mini-lf-film-production-equipment.webp'),
+        'filename' => 'professional-cinema-camera-equipment-egypt-arri-alexa-mini-lf-film-production-equipment.webp',
+        'folder' => 'frontend',
+        'alt' => 'ARRI Alexa Mini LF cinema camera and professional film production equipment',
+    ],
+
     // ── Blog image ────────────────────────────────────────────────────────────
     'blog-film-production' => [
         'local' => database_path('data/media/professional-cinema-camera-film-production.webp'),

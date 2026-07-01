@@ -11,7 +11,9 @@ use App\Models\ProcessStep;
 use App\Models\Service;
 use App\Models\Stat;
 use App\Models\Testimonial;
+use App\Services\Media\FrontendMediaImporter;
 use App\Services\Seo\SeoService;
+use App\Support\MediaUrl;
 
 class HomePageService
 {
@@ -39,7 +41,24 @@ class HomePageService
             ->where('slug', 'photography')
             ->with('translations')
             ->first();
-        $photographyT = $photographyService?->translate($locale);
+
+        $photographyCopy = $locale === 'ar'
+            ? [
+                'badge' => 'التصوير',
+                'title' => 'معدات الكاميرات السينمائية الاحترافية',
+                'description' => 'كاميرا ARRI Alexa Mini LF السينمائية ومعدات التصوير السينمائي المستخدمة في الإنتاجات التجارية والأفلام الوثائقية والمحتوى المرتبط بالعلامات ومشاريع الأفلام في مصر.',
+                'tagline' => 'مصقول ومتناسق مع أسلوبك',
+            ]
+            : [
+                'badge' => 'Photography',
+                'title' => 'Professional Cinema Camera Equipment',
+                'description' => 'Professional ARRI Alexa Mini LF cinema camera and filmmaking equipment used for commercial productions, documentaries, branded content, and film projects in Egypt.',
+                'tagline' => 'Polished and aligned with your tone',
+            ];
+
+        $photographyImage = MediaUrl::toPublicUrl(
+            FrontendMediaImporter::resolvedPath('home-photography-section')
+        );
 
         return [
             'hero_slides' => $this->getHeroSlides($locale),
@@ -55,10 +74,11 @@ class HomePageService
                 'portfolioTitle' => $locale === 'ar' ? 'مشاريع من إنجاز The Untold Story' : 'Projects done by The Untold Story',
                 'quoteBadge' => $locale === 'ar' ? 'حيث تلتقي القصة بالتنفيذ' : 'Where story meets execution',
                 'quoteTitle' => $locale === 'ar' ? 'ميزانيات متوقعة. نتائج متميزة.' : 'Predictable budgets. Premium results.',
-                'photographyBadge' => $locale === 'ar' ? 'تصوير يتماشى مع الفيلم' : 'Photography',
-                'photographyTitle' => $photographyT?->title ?? 'Photography that matches the film.',
-                'photographyDesc' => $photographyT?->short_desc,
-                'photographyTagline' => $locale === 'ar' ? 'مصقول ومتناسق مع أسلوبك' : 'Polished and aligned with your tone',
+                'photographyBadge' => $photographyCopy['badge'],
+                'photographyTitle' => $photographyCopy['title'],
+                'photographyDesc' => $photographyCopy['description'],
+                'photographyTagline' => $photographyCopy['tagline'],
+                'photographyImage' => $photographyImage,
                 'creativeTitle' => 'Creative Creations',
                 'creativeSubtitle' => 'Behind every Frame',
                 'blogBadge' => $locale === 'ar' ? 'المدونة' : 'News & Insights',
@@ -73,10 +93,11 @@ class HomePageService
             'process' => $this->getProcess($locale),
             'testimonials' => $this->getTestimonials($locale),
             'photography' => [
-                'badge' => $locale === 'ar' ? 'تصوير يتماشى مع الفيلم' : 'Photography',
-                'title' => $photographyT?->title ?? 'Photography that matches the film.',
-                'description' => $photographyT?->short_desc,
-                'tagline' => $locale === 'ar' ? 'مصقول ومتناسق مع أسلوبك' : 'Polished and aligned with your tone',
+                'badge' => $photographyCopy['badge'],
+                'title' => $photographyCopy['title'],
+                'description' => $photographyCopy['description'],
+                'tagline' => $photographyCopy['tagline'],
+                'image' => $photographyImage,
                 'icon' => $photographyService?->icon,
             ],
             'awards' => $this->getAwards($locale),
