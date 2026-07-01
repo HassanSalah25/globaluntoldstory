@@ -19,16 +19,16 @@ class TeamMemberController extends Controller
             });
         }
 
-        $teamMembers = $query->paginate(15)->withQueryString();
+        $members = $query->paginate(15)->withQueryString();
 
-        return view('admin.team-members.index', compact('teamMembers'));
+        return view('admin.team.index', compact('members'));
     }
 
     public function create()
     {
         $locales = ['en', 'ar'];
 
-        return view('admin.team-members.create', compact('locales'));
+        return view('admin.team.create', compact('locales'));
     }
 
     public function store(Request $request)
@@ -62,21 +62,22 @@ class TeamMemberController extends Controller
             );
         }
 
-        return redirect()->route('admin.team-members.index')->with('success', 'Team member created successfully.');
+        return redirect()->route('admin.team.index')->with('success', 'Team member created successfully.');
     }
 
-    public function edit(TeamMember $teamMember)
+    public function edit(TeamMember $team)
     {
         $locales = ['en', 'ar'];
-        $translations = $teamMember->translations->keyBy('locale');
+        $member = $team;
+        $translations = $team->translations->keyBy('locale');
 
-        return view('admin.team-members.edit', compact('teamMember', 'locales', 'translations'));
+        return view('admin.team.edit', compact('member', 'locales', 'translations'));
     }
 
-    public function update(Request $request, TeamMember $teamMember)
+    public function update(Request $request, TeamMember $team)
     {
         $request->validate([
-            'slug'       => 'required|string|max:255|unique:team_members,slug,' . $teamMember->id,
+            'slug'       => 'required|string|max:255|unique:team_members,slug,' . $team->id,
             'image_url'  => 'nullable|string|max:255',
             'sort_order' => 'required|integer',
             'name_en'    => 'required|string|max:255',
@@ -87,7 +88,7 @@ class TeamMemberController extends Controller
             'bio_ar'     => 'nullable|string',
         ]);
 
-        $teamMember->update([
+        $team->update([
             'slug'       => $request->slug,
             'image_url'  => $request->image_url,
             'sort_order' => $request->sort_order,
@@ -95,7 +96,7 @@ class TeamMemberController extends Controller
         ]);
 
         foreach (['en', 'ar'] as $locale) {
-            $teamMember->translations()->updateOrCreate(
+            $team->translations()->updateOrCreate(
                 ['locale' => $locale],
                 [
                     'name' => $request->input("name_{$locale}"),
@@ -105,14 +106,14 @@ class TeamMemberController extends Controller
             );
         }
 
-        return redirect()->route('admin.team-members.index')->with('success', 'Team member updated successfully.');
+        return redirect()->route('admin.team.index')->with('success', 'Team member updated successfully.');
     }
 
-    public function destroy(TeamMember $teamMember)
+    public function destroy(TeamMember $team)
     {
-        $teamMember->delete();
+        $team->delete();
 
-        return redirect()->route('admin.team-members.index')->with('success', 'Team member deleted successfully.');
+        return redirect()->route('admin.team.index')->with('success', 'Team member deleted successfully.');
     }
 
     public function toggle(TeamMember $teamMember)
