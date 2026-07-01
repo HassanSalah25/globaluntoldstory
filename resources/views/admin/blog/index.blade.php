@@ -77,7 +77,7 @@
                     <td class="px-4 py-3">
                         <div class="flex items-center justify-end gap-2">
                             <a href="{{ route('admin.blog.edit', $post) }}" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-lg text-sm font-medium">Edit</a>
-                            <form action="{{ route('admin.blog.toggle-published', $post) }}" method="POST" class="inline">
+                            <form action="{{ route('admin.blog.toggle', $post) }}" method="POST" class="inline">
                                 @csrf @method('PATCH')
                                 <button type="submit" class="bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1.5 rounded-lg text-sm font-medium">
                                     {{ $post->is_published ? 'Unpublish' : 'Publish' }}

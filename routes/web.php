@@ -45,7 +45,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::patch('portfolio/{portfolio_item}/toggle', [Admin\PortfolioItemController::class, 'toggle'])->name('portfolio.toggle');
 
         // Blog
-        Route::resource('blog', Admin\BlogPostController::class)->names('blog');
+        Route::resource('blog', Admin\BlogPostController::class)->names('blog')->parameters(['blog' => 'blog_post']);
         Route::patch('blog/{blog_post}/toggle', [Admin\BlogPostController::class, 'toggle'])->name('blog.toggle');
 
         // FAQs

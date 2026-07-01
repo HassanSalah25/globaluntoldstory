@@ -23,7 +23,7 @@ class BlogPostController extends Controller
 
         $blogPosts = $query->paginate(15)->withQueryString();
 
-        return view('admin.blog-posts.index', compact('blogPosts'));
+        return view('admin.blog.index', ['posts' => $blogPosts]);
     }
 
     public function create()
@@ -31,7 +31,7 @@ class BlogPostController extends Controller
         $locales = ['en', 'ar'];
         $categories = Category::with('translations')->get();
 
-        return view('admin.blog-posts.create', compact('locales', 'categories'));
+        return view('admin.blog.create', compact('locales', 'categories'));
     }
 
     public function store(Request $request)
@@ -84,7 +84,7 @@ class BlogPostController extends Controller
             );
         }
 
-        return redirect()->route('admin.blog-posts.index')->with('success', 'Blog post created successfully.');
+        return redirect()->route('admin.blog.index')->with('success', 'Blog post created successfully.');
     }
 
     public function edit(BlogPost $blogPost)
@@ -93,7 +93,12 @@ class BlogPostController extends Controller
         $translations = $blogPost->translations->keyBy('locale');
         $categories = Category::with('translations')->get();
 
-        return view('admin.blog-posts.edit', compact('blogPost', 'locales', 'translations', 'categories'));
+        return view('admin.blog.edit', [
+            'post'         => $blogPost,
+            'locales'      => $locales,
+            'translations' => $translations,
+            'categories'   => $categories,
+        ]);
     }
 
     public function update(Request $request, BlogPost $blogPost)
@@ -147,14 +152,14 @@ class BlogPostController extends Controller
             );
         }
 
-        return redirect()->route('admin.blog-posts.index')->with('success', 'Blog post updated successfully.');
+        return redirect()->route('admin.blog.index')->with('success', 'Blog post updated successfully.');
     }
 
     public function destroy(BlogPost $blogPost)
     {
         $blogPost->delete();
 
-        return redirect()->route('admin.blog-posts.index')->with('success', 'Blog post deleted successfully.');
+        return redirect()->route('admin.blog.index')->with('success', 'Blog post deleted successfully.');
     }
 
     public function toggle(BlogPost $blogPost)
