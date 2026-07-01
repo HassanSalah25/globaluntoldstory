@@ -33,10 +33,16 @@ class HomePageService
             ->first();
 
         $sections = $page?->sections->keyBy('type') ?? collect();
+        $heroSplit = $sections->get('hero_split');
         $servicesIntro = $sections->get('services_intro');
         $ctaBanner = $sections->get('cta_banner');
+        $heroSplitT = $heroSplit?->translate($locale);
         $servicesIntroT = $servicesIntro?->translate($locale);
         $ctaBannerT = $ctaBanner?->translate($locale);
+        $heroSettings = $heroSplit?->settings ?? [];
+        $pipeline = $heroSettings['production_pipeline']
+            ?? $servicesIntro?->settings['production_pipeline']
+            ?? [];
 
         $photographyService = Service::query()
             ->where('slug', 'photography')
@@ -63,7 +69,8 @@ class HomePageService
 
         return [
             'hero_slides' => $this->getHeroSlides($locale),
-            'hero' => $this->getHeroFromFirstSlide($locale),
+            'hero' => $this->getHero($locale, $heroSplit, $heroSplitT),
+            'hero_split' => $this->mapHeroSplit($heroSplit, $heroSplitT, $locale),
             'stats' => $this->getStats($locale),
             'services' => $this->services->listFeatured($locale),
             'home_data' => [
@@ -71,7 +78,7 @@ class HomePageService
                 'servicesTitle' => $servicesIntroT?->title,
                 'servicesSubtext' => $servicesIntroT?->subtitle,
                 'servicesCta' => $servicesIntroT?->content,
-                'productionPipeline' => $servicesIntro?->settings['production_pipeline'] ?? [],
+                'productionPipeline' => $pipeline,
                 'portfolioTitle' => $locale === 'ar' ? 'مشاريع من إنجاز The Untold Story' : 'Projects done by The Untold Story',
                 'quoteBadge' => $locale === 'ar' ? 'حيث تلتقي القصة بالتنفيذ' : 'Where story meets execution',
                 'quoteTitle' => $locale === 'ar' ? 'ميزانيات متوقعة. نتائج متميزة.' : 'Predictable budgets. Premium results.',
@@ -138,6 +145,66 @@ class HomePageService
                     'ctaSecondaryHref' => $t?->cta_secondary_url,
                 ];
             })->values()->all();
+    }
+
+    private function getHero(string $locale, ?PageSection $heroSplit, $heroSplitT): array
+    {
+        if ($heroSplit && $heroSplitT) {
+            $settings = $heroSplit->settings ?? [];
+            $suffixKey = $locale === 'ar' ? 'headline_suffix_ar' : 'headline_suffix_en';
+            $secondaryLabelKey = $locale === 'ar' ? 'cta_secondary_label_ar' : 'cta_secondary_label_en';
+
+            return [
+                'badge' => $heroSplitT->badge,
+                'headline1' => $heroSplitT->title,
+                'headline2' => $heroSplitT->subtitle,
+                'headline3' => $settings[$suffixKey] ?? null,
+                'subtext' => $heroSplitT->content,
+                'cta1' => [
+                    'label' => $heroSplitT->cta_label,
+                    'href' => $heroSplitT->cta_url,
+                ],
+                'cta2' => [
+                    'label' => $settings[$secondaryLabelKey] ?? null,
+                    'href' => $settings['cta_secondary_url'] ?? null,
+                ],
+                'image' => MediaUrl::toPublicUrl($settings['image'] ?? null),
+                'quoteBadge' => null,
+            ];
+        }
+
+        return $this->getHeroFromFirstSlide($locale);
+    }
+
+    private function mapHeroSplit(?PageSection $heroSplit, $heroSplitT, string $locale): ?array
+    {
+        if (! $heroSplit || ! $heroSplitT) {
+            return null;
+        }
+
+        $settings = $heroSplit->settings ?? [];
+        $suffixKey = $locale === 'ar' ? 'headline_suffix_ar' : 'headline_suffix_en';
+        $secondaryLabelKey = $locale === 'ar' ? 'cta_secondary_label_ar' : 'cta_secondary_label_en';
+
+        return [
+            'badge' => $heroSplitT->badge,
+            'headline' => [
+                'start' => $heroSplitT->title,
+                'highlight' => $heroSplitT->subtitle,
+                'end' => $settings[$suffixKey] ?? null,
+            ],
+            'description' => $heroSplitT->content,
+            'image' => MediaUrl::toPublicUrl($settings['image'] ?? null),
+            'ctaPrimary' => [
+                'label' => $heroSplitT->cta_label,
+                'href' => $heroSplitT->cta_url,
+            ],
+            'ctaSecondary' => [
+                'label' => $settings[$secondaryLabelKey] ?? null,
+                'href' => $settings['cta_secondary_url'] ?? null,
+            ],
+            'productionPipeline' => $settings['production_pipeline'] ?? [],
+        ];
     }
 
     private function getHeroFromFirstSlide(string $locale): array
