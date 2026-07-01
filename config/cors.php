@@ -1,19 +1,26 @@
 <?php
 
+$allowedOrigins = array_values(array_unique(array_filter(array_merge(
+    array_map('trim', explode(',', (string) env('FRONTEND_URL', 'http://localhost:3000'))),
+    array_map('trim', explode(',', (string) env('CORS_ALLOWED_ORIGINS', ''))),
+    // Next.js dev is often opened at 127.0.0.1 while FRONTEND_URL uses localhost.
+    ['http://localhost:3000', 'http://127.0.0.1:3000'],
+))));
+
+$allowedOriginPatterns = array_values(array_filter(array_map(
+    'trim',
+    explode(',', (string) env('CORS_ALLOWED_ORIGINS_PATTERNS', ''))
+)));
+
 return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie', 'storage/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => array_values(array_unique(array_filter([
-        env('FRONTEND_URL', 'http://localhost:3000'),
-        // Next.js dev is often opened at 127.0.0.1 while FRONTEND_URL uses localhost.
-        'http://localhost:3000',
-        'http://127.0.0.1:3000',
-    ]))),
+    'allowed_origins' => $allowedOrigins,
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => $allowedOriginPatterns,
 
     'allowed_headers' => ['*'],
 
