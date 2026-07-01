@@ -8,6 +8,7 @@ use App\Models\PageSection;
 use App\Models\PortfolioItem;
 use App\Models\Resource;
 use App\Models\SeoMetaTranslation;
+use App\Models\Service;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Support\MediaUrl;
@@ -28,6 +29,7 @@ class NormalizeMediaPathsCommand extends Command
         $updated += $this->normalizeModel(Testimonial::class, ['avatar_url']);
         $updated += $this->normalizeModel(BlogPost::class, ['author_image_url', 'featured_image_url']);
         $updated += $this->normalizeModel(TeamMember::class, ['image_url']);
+        $updated += $this->normalizeModel(Service::class, ['image_url']);
         $updated += $this->normalizeModel(Resource::class, ['file_url']);
         $updated += $this->normalizeModel(SeoMetaTranslation::class, ['og_image_url', 'twitter_image_url']);
         $updated += $this->normalizePageSections();

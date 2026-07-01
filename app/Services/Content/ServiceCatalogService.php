@@ -3,18 +3,9 @@
 namespace App\Services\Content;
 
 use App\Models\Service;
-use App\Services\Media\FrontendMediaImporter;
-use App\Support\MediaUrl;
 
 class ServiceCatalogService
 {
-    private const FEATURED_IMAGE_KEYS = [
-        'on-ground-egypt' => 'svc-on-ground',
-        'commercial' => 'svc-commercial',
-        'documentary' => 'svc-documentary',
-        'corporate' => 'svc-corporate',
-    ];
-
     private const FEATURED_COPY = [
         'on-ground-egypt' => [
             'en' => [
@@ -107,7 +98,7 @@ class ServiceCatalogService
             'id' => $service->slug,
             'slug' => $service->slug,
             'icon' => $service->icon,
-            'imageUrl' => $this->resolveImageUrl($service, $featuredImage),
+            'imageUrl' => $service->image_url,
             'title' => $title,
             'shortDesc' => $shortDesc,
             'price' => $t?->price ?? '',
@@ -121,20 +112,5 @@ class ServiceCatalogService
         }
 
         return $data;
-    }
-
-    private function resolveImageUrl(Service $service, bool $featuredImage = false): ?string
-    {
-        $path = $service->image_url;
-
-        if ($featuredImage && isset(self::FEATURED_IMAGE_KEYS[$service->slug])) {
-            $path = FrontendMediaImporter::resolvedPath(self::FEATURED_IMAGE_KEYS[$service->slug]);
-        }
-
-        if (! $path) {
-            return null;
-        }
-
-        return MediaUrl::toPublicUrl($path) ?? asset('storage/'.$path);
     }
 }

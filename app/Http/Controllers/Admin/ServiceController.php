@@ -35,6 +35,7 @@ class ServiceController extends Controller
     {
         $request->validate([
             'icon'        => 'nullable|string|max:255',
+            'image_url'   => 'nullable|string|max:255',
             'sort_order'  => 'required|integer',
             'title_en'    => 'required|string|max:255',
             'title_ar'    => 'required|string|max:255',
@@ -49,6 +50,7 @@ class ServiceController extends Controller
         $service = Service::create([
             'slug'        => Str::slug($request->title_en),
             'icon'        => $request->icon,
+            'image_url'   => $request->image_url,
             'sort_order'  => $request->sort_order,
             'is_active'   => $request->boolean('is_active'),
             'is_featured' => $request->boolean('is_featured'),
@@ -82,6 +84,7 @@ class ServiceController extends Controller
         $request->validate([
             'slug'        => 'required|string|max:255|unique:services,slug,' . $service->id,
             'icon'        => 'nullable|string|max:255',
+            'image_url'   => 'nullable|string|max:255',
             'sort_order'  => 'required|integer',
             'title_en'    => 'required|string|max:255',
             'title_ar'    => 'required|string|max:255',
@@ -96,6 +99,7 @@ class ServiceController extends Controller
         $service->update([
             'slug'        => $request->slug,
             'icon'        => $request->icon,
+            'image_url'   => $request->image_url,
             'sort_order'  => $request->sort_order,
             'is_active'   => $request->boolean('is_active'),
             'is_featured' => $request->boolean('is_featured'),

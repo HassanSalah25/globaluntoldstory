@@ -34,7 +34,7 @@
         <table class="w-full text-sm">
             <thead class="bg-gray-50 border-b border-gray-200">
                 <tr>
-                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Icon</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Image</th>
                     <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Title (EN)</th>
                     <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Slug</th>
                     <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Featured</th>
@@ -46,7 +46,11 @@
                 @forelse($services as $service)
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-4 py-3">
+                        @if($service->image_url)
+                        <img src="{{ $service->image_url }}" alt="" class="w-14 h-10 object-cover rounded">
+                        @else
                         <span class="text-2xl">{{ $service->icon ?? '📌' }}</span>
+                        @endif
                     </td>
                     <td class="px-4 py-3 font-medium text-gray-900">{{ $service->translations->where('locale', 'en')->first()->title ?? '-' }}</td>
                     <td class="px-4 py-3 text-gray-500 font-mono text-xs">{{ $service->slug }}</td>
