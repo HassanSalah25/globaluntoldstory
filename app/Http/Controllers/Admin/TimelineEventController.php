@@ -18,9 +18,9 @@ class TimelineEventController extends Controller
             });
         }
 
-        $timelineEvents = $query->paginate(15)->withQueryString();
+        $events = $query->paginate(15)->withQueryString();
 
-        return view('admin.timeline.index', compact('timelineEvents'));
+        return view('admin.timeline.index', compact('events'));
     }
 
     public function create()
@@ -61,15 +61,16 @@ class TimelineEventController extends Controller
         return redirect()->route('admin.timeline.index')->with('success', 'Timeline event created successfully.');
     }
 
-    public function edit(TimelineEvent $timelineEvent)
+    public function edit(TimelineEvent $timeline)
     {
         $locales = ['en', 'ar'];
-        $translations = $timelineEvent->translations->keyBy('locale');
+        $event = $timeline;
+        $translations = $timeline->translations->keyBy('locale');
 
-        return view('admin.timeline.edit', compact('timelineEvent', 'locales', 'translations'));
+        return view('admin.timeline.edit', compact('event', 'locales', 'translations'));
     }
 
-    public function update(Request $request, TimelineEvent $timelineEvent)
+    public function update(Request $request, TimelineEvent $timeline)
     {
         $request->validate([
             'year'            => 'required|string|max:20',
@@ -81,14 +82,14 @@ class TimelineEventController extends Controller
             'description_ar'  => 'nullable|string',
         ]);
 
-        $timelineEvent->update([
+        $timeline->update([
             'year'       => $request->year,
             'icon'       => $request->icon,
             'sort_order' => $request->sort_order,
         ]);
 
         foreach (['en', 'ar'] as $locale) {
-            $timelineEvent->translations()->updateOrCreate(
+            $timeline->translations()->updateOrCreate(
                 ['locale' => $locale],
                 [
                     'title'       => $request->input("title_{$locale}"),
@@ -100,9 +101,9 @@ class TimelineEventController extends Controller
         return redirect()->route('admin.timeline.index')->with('success', 'Timeline event updated successfully.');
     }
 
-    public function destroy(TimelineEvent $timelineEvent)
+    public function destroy(TimelineEvent $timeline)
     {
-        $timelineEvent->delete();
+        $timeline->delete();
 
         return redirect()->route('admin.timeline.index')->with('success', 'Timeline event deleted successfully.');
     }
