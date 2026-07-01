@@ -64,8 +64,8 @@
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
             <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
             <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab = 'en'" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
-                <button type="button" @click="tab = 'ar'" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
+                <button type="button" @click="tab = 'en'; $nextTick(() => { window.initRichTextEditors?.(); window.resizeRichTextEditors?.(); })" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
+                <button type="button" @click="tab = 'ar'; $nextTick(() => { window.initRichTextEditors?.(); window.resizeRichTextEditors?.(); })" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
             </div>
 
             <div x-show="tab === 'en'" class="space-y-4">
@@ -77,10 +77,11 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Short Description</label>
                     <textarea name="short_desc_en" rows="2" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('short_desc_en', $translations['en']->short_desc ?? '') }}</textarea>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Description</label>
-                    <textarea name="full_desc_en" rows="5" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('full_desc_en', $translations['en']->full_desc ?? '') }}</textarea>
-                </div>
+                @include('admin.components.rich-text-editor', [
+                    'name' => 'full_desc_en',
+                    'label' => 'Full Description',
+                    'value' => old('full_desc_en', $translations['en']->full_desc ?? ''),
+                ])
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Price</label>
                     <input type="text" name="price_en" value="{{ old('price_en', $translations['en']->price ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
@@ -96,10 +97,12 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">وصف مختصر</label>
                     <textarea name="short_desc_ar" rows="2" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('short_desc_ar', $translations['ar']->short_desc ?? '') }}</textarea>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">وصف كامل</label>
-                    <textarea name="full_desc_ar" rows="5" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('full_desc_ar', $translations['ar']->full_desc ?? '') }}</textarea>
-                </div>
+                @include('admin.components.rich-text-editor', [
+                    'name' => 'full_desc_ar',
+                    'label' => 'وصف كامل',
+                    'value' => old('full_desc_ar', $translations['ar']->full_desc ?? ''),
+                    'dir' => 'rtl',
+                ])
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">السعر</label>
                     <input type="text" name="price_ar" value="{{ old('price_ar', $translations['ar']->price ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
