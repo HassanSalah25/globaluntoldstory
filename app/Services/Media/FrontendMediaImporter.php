@@ -53,6 +53,10 @@ class FrontendMediaImporter
 
         $definition = $definitions[$key];
 
+        if (! empty($definition['local']) && is_readable($definition['local'])) {
+            return "media/{$definition['folder']}/{$definition['filename']}";
+        }
+
         $asset = MediaAsset::query()
             ->where('folder', $definition['folder'])
             ->where('filename', $definition['filename'])
@@ -76,7 +80,7 @@ class FrontendMediaImporter
 
         $definitions = require database_path('data/frontend-media.php');
 
-        return $definitions[$key]['source'];
+        return $definitions[$key]['source'] ?? $path;
     }
 
     public function syncContentReferences(): int
@@ -179,25 +183,38 @@ class FrontendMediaImporter
             return $existing->path;
         }
 
-        $response = Http::timeout(90)
-            ->withHeaders(['User-Agent' => 'GlobalUntoldStory/1.0'])
-            ->get($definition['source']);
+        if (! empty($definition['local'])) {
+            $localPath = $definition['local'];
 
-        if (! $response->successful()) {
-            $fallbackSource = strtok($definition['source'], '?');
+            if (! is_readable($localPath)) {
+                throw new \RuntimeException("Local media file not found for [{$key}]: {$localPath}");
+            }
+
+            $content = file_get_contents($localPath);
+            $mimeType = mime_content_type($localPath) ?: 'image/webp';
+            $size = strlen($content);
+        } else {
             $response = Http::timeout(90)
                 ->withHeaders(['User-Agent' => 'GlobalUntoldStory/1.0'])
-                ->get($fallbackSource);
+                ->get($definition['source']);
+
+            if (! $response->successful()) {
+                $fallbackSource = strtok($definition['source'], '?');
+                $response = Http::timeout(90)
+                    ->withHeaders(['User-Agent' => 'GlobalUntoldStory/1.0'])
+                    ->get($fallbackSource);
+            }
+
+            if (! $response->successful()) {
+                throw new \RuntimeException("Failed to download [{$key}] from {$definition['source']} (HTTP {$response->status()})");
+            }
+
+            $content = $response->body();
+            $mimeType = $response->header('Content-Type') ?: 'image/jpeg';
+            $size = strlen($content);
         }
 
-        if (! $response->successful()) {
-            throw new \RuntimeException("Failed to download [{$key}] from {$definition['source']} (HTTP {$response->status()})");
-        }
-
-        Storage::disk('public')->put($path, $response->body());
-
-        $mimeType = $response->header('Content-Type') ?: 'image/jpeg';
-        $size = strlen($response->body());
+        Storage::disk('public')->put($path, $content);
 
         if ($existing) {
             if ($existing->path !== $path && Storage::disk($existing->disk)->exists($existing->path)) {
@@ -237,7 +254,9 @@ class FrontendMediaImporter
         $map = [];
 
         foreach ($this->definitions() as $key => $definition) {
-            $photoId = $this->extractPhotoId($definition['source']);
+            $photoId = isset($definition['source'])
+                ? $this->extractPhotoId($definition['source'])
+                : null;
 
             if ($photoId) {
                 $map[$photoId] = $paths[$key];

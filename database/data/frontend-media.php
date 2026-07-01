@@ -9,16 +9,16 @@
 return [
     // ── Hero slider images ────────────────────────────────────────────────────
     'hero-slide-1' => [
-        'source' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1400&auto=format&fit=crop',
+        'local' => database_path('data/media/on-ground-production-services-egypt-giza-pyramids.webp'),
         'filename' => 'on-ground-production-services-egypt-giza-pyramids.webp',
         'folder' => 'frontend',
         'alt' => 'The Untold Story production team at the Giza Pyramids providing on-ground film production services in Egypt',
     ],
     'hero-slide-2' => [
-        'source' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1400&auto=format&fit=crop',
+        'local' => database_path('data/media/film-production-services-egypt-abu-simbel.webp'),
         'filename' => 'film-production-services-egypt-abu-simbel.webp',
         'folder' => 'frontend',
-        'alt' => 'Professional film production services in Egypt by The Untold Story at Abu Simbel',
+        'alt' => 'The Untold Story production team filming at Abu Simbel Temple as part of a professional film production project in Egypt',
     ],
 
     // ── About page images ─────────────────────────────────────────────────────
@@ -45,108 +45,108 @@ return [
 
     // ── 4 Featured service card images (800×540) ──────────────────────────────
     'svc-on-ground' => [
-        'source' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/on-ground-production-services-egypt-pyramids.webp'),
         'filename' => 'on-ground-production-services-egypt-pyramids.webp',
         'folder' => 'frontend',
         'alt' => 'Film crew providing on-ground production services at the Pyramids of Giza',
     ],
     'svc-commercial' => [
-        'source' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/commercial-food-advertising-production-egypt.webp'),
         'filename' => 'commercial-food-advertising-production-egypt.webp',
         'folder' => 'frontend',
         'alt' => 'Woman featured in a commercial food advertising production campaign',
     ],
     'svc-documentary' => [
-        'source' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/documentary-production-egypt-pyramids.webp'),
         'filename' => 'documentary-production-egypt-pyramids.webp',
         'folder' => 'frontend',
-        'alt' => 'Documentary production at the Pyramids of Giza in Egypt',
+        'alt' => 'Documentary film crew filming at the Pyramids of Giza in Egypt',
     ],
     'svc-corporate' => [
-        'source' => 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/industrial-content-production-egypt.webp'),
         'filename' => 'industrial-content-production-egypt.webp',
         'folder' => 'frontend',
-        'alt' => 'Industrial facility used for corporate and industrial video production',
+        'alt' => 'Industrial machinery used in a corporate and industrial content production project',
     ],
 
     // ── All services page images ──────────────────────────────────────────────
     'svc-all-on-ground' => [
-        'source' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/on-ground-production-services-egypt.webp'),
         'filename' => 'on-ground-production-services-egypt.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Professional camera operator on location for on-ground production services in Egypt',
+        'alt' => 'Professional camera operator on location',
     ],
     'svc-all-commercial' => [
-        'source' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/commercial-advertising-production-egypt.webp'),
         'filename' => 'commercial-advertising-production-egypt.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Commercial advertising production featuring branded content and product placement',
+        'alt' => 'Food and beverage commercial advertising production featuring branded content and product placement',
     ],
     'svc-all-documentary' => [
-        'source' => 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/documentary-production-egypt.webp'),
         'filename' => 'documentary-production-egypt.webp',
         'folder' => 'frontend/services',
         'alt' => 'Documentary production concept inspired by Egyptian heritage and historical storytelling',
     ],
     'svc-all-corporate' => [
-        'source' => 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/corporate-industrial-content-production.webp'),
         'filename' => 'corporate-industrial-content-production.webp',
         'folder' => 'frontend/services',
         'alt' => 'Industrial facility used for corporate and industrial video production',
     ],
     'svc-all-events' => [
-        'source' => 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/event-coverage-live-production.webp'),
         'filename' => 'event-coverage-live-production.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Live event coverage and multi-camera production setup',
+        'alt' => 'Broadcast control room managing live event coverage and multi-camera production',
     ],
     'svc-all-tv-broadcast' => [
-        'source' => 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/tv-shows-live-broadcast-production.png'),
         'filename' => 'tv-shows-live-broadcast-production.png',
         'folder' => 'frontend/services',
-        'alt' => 'TV shows and live broadcast production studio setup',
+        'alt' => 'Television broadcast studio with professional cameras and green screen production setup',
     ],
     'svc-all-podcast' => [
-        'source' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/podcast-production-services.webp'),
         'filename' => 'podcast-production-services.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Professional podcast production services with studio setup',
+        'alt' => 'Professional podcast recording studio with microphones and interview setup',
     ],
     'svc-all-post-production' => [
-        'source' => 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/post-production-finishing-services.webp'),
         'filename' => 'post-production-finishing-services.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Post-production and finishing services with color grading and editing',
+        'alt' => 'Professional video editing and color grading workstation',
     ],
     'svc-all-motion-cgi' => [
-        'source' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/motion-cgi-ai-powered-visuals.webp'),
         'filename' => 'motion-cgi-ai-powered-visuals.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Motion graphics, CGI, and AI-powered visual effects production',
+        'alt' => 'Artificial intelligence and CGI concept for advanced visual production',
     ],
     'svc-all-dubbing' => [
-        'source' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/voice-over-localization-services.png'),
         'filename' => 'voice-over-localization-services.png',
         'folder' => 'frontend/services',
-        'alt' => 'Professional voice-over, dubbing, and localization services',
+        'alt' => 'Voice-over artist recording in a professional studio',
     ],
     'svc-all-photography' => [
-        'source' => 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/professional-photography-services.webp'),
         'filename' => 'professional-photography-services.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Professional photography services for brands, products, and events',
+        'alt' => 'Professional photography equipment including cameras, lenses, and accessories',
     ],
     'svc-all-marketing' => [
-        'source' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/marketing-solutions-performance.webp'),
         'filename' => 'marketing-solutions-performance.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Marketing solutions and performance analytics dashboard',
+        'alt' => 'Digital marketing dashboard displaying performance analytics and growth metrics',
     ],
     'svc-all-original-ip' => [
-        'source' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop',
+        'local' => database_path('data/media/original-ip-development-creative-concepts.webp'),
         'filename' => 'original-ip-development-creative-concepts.webp',
         'folder' => 'frontend/services',
-        'alt' => 'Original IP development and creative concept production',
+        'alt' => 'Creative character concept representing original intellectual property development and content creation',
     ],
 
     // ── Legacy keys kept for backward compatibility ───────────────────────────
