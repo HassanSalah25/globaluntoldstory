@@ -41,6 +41,9 @@
     .tox .tox-statusbar {
         border-top-color: #e5e7eb !important;
     }
+    .tox .tox-throbber {
+        display: none !important;
+    }
 </style>
 @endpush
 @push('scripts')
@@ -58,49 +61,67 @@
 
   window.resizeRichTextEditors = resizeAllEditors;
 
+  function isVisible(element) {
+    return !!(element.offsetParent || element.getClientRects().length);
+  }
+
+  function initEditor(textarea) {
+    if (textarea.getAttribute('data-tinymce-init') === '1') return;
+    if (!isVisible(textarea)) return;
+
+    textarea.setAttribute('data-tinymce-init', '1');
+    var dir = textarea.getAttribute('dir') || 'ltr';
+
+    tinymce.init({
+      target: textarea,
+      base_url: tinymceBase,
+      suffix: '.min',
+      license_key: 'gpl',
+      skin_url: tinymceBase + '/skins/ui/oxide',
+      content_css: false,
+      height: 300,
+      menubar: false,
+      branding: false,
+      promotion: false,
+      resize: true,
+      directionality: dir,
+      plugins: 'lists link autolink code',
+      toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | removeformat | code',
+      block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4',
+      content_style: 'body { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 1.6; margin: 12px; color: #111827; }',
+      setup: function (editor) {
+        editor.on('change input undo redo', function () {
+          editor.save();
+        });
+      },
+      init_instance_callback: function (editor) {
+        editor.fire('ResizeEditor');
+      },
+    });
+  }
+
   window.initRichTextEditors = function () {
     if (typeof tinymce === 'undefined') return;
-
-    document.querySelectorAll('[data-rich-text-editor]:not([data-tinymce-init])').forEach(function (textarea) {
-      textarea.setAttribute('data-tinymce-init', '1');
-      var dir = textarea.getAttribute('dir') || 'ltr';
-
-      tinymce.init({
-        target: textarea,
-        base_url: tinymceBase,
-        suffix: '.min',
-        license_key: 'gpl',
-        height: 320,
-        min_height: 200,
-        menubar: false,
-        branding: false,
-        promotion: false,
-        directionality: dir,
-        plugins: 'lists link autolink code table autoresize',
-        toolbar: 'undo redo | blocks | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | removeformat | code',
-        block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4',
-        content_style: 'body { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; line-height: 1.6; margin: 12px; }',
-        setup: function (editor) {
-          editor.on('change input undo redo', function () {
-            editor.save();
-          });
-        },
-        init_instance_callback: function () {
-          resizeAllEditors();
-        },
-      });
-    });
+    document.querySelectorAll('[data-rich-text-editor]').forEach(initEditor);
   };
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function bootEditors() {
     window.initRichTextEditors();
+  }
 
-    document.querySelectorAll('form').forEach(function (form) {
-      form.addEventListener('submit', function () {
-        if (typeof tinymce !== 'undefined') {
-          tinymce.triggerSave();
-        }
-      });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootEditors);
+  } else {
+    bootEditors();
+  }
+
+  window.addEventListener('load', bootEditors);
+
+  document.querySelectorAll('form').forEach(function (form) {
+    form.addEventListener('submit', function () {
+      if (typeof tinymce !== 'undefined') {
+        tinymce.triggerSave();
+      }
     });
   });
 })();
