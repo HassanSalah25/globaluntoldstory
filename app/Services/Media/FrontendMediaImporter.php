@@ -7,6 +7,7 @@ use App\Models\HeroSlide;
 use App\Models\MediaAsset;
 use App\Models\PageSection;
 use App\Models\PortfolioItem;
+use App\Models\Service;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Support\MediaUrl;
@@ -81,6 +82,94 @@ class FrontendMediaImporter
         $definitions = require database_path('data/frontend-media.php');
 
         return $definitions[$key]['source'] ?? $path;
+    }
+
+    /**
+     * Update CMS records to use the latest registry image paths.
+     */
+    public function syncRegistryContentPaths(): int
+    {
+        $paths = self::$resolvedPaths ?? $this->import();
+        $updated = 0;
+
+        $heroKeys = [1 => 'hero-slide-1', 2 => 'hero-slide-2'];
+        HeroSlide::query()->orderBy('sort_order')->each(function (HeroSlide $slide) use ($heroKeys, $paths, &$updated) {
+            $key = $heroKeys[$slide->sort_order] ?? null;
+
+            if (! $key || ! isset($paths[$key])) {
+                return;
+            }
+
+            if ($slide->getRawMediaPath('image_url') !== $paths[$key]) {
+                $slide->update(['image_url' => $paths[$key]]);
+                $updated++;
+            }
+        });
+
+        $serviceKeys = [
+            'on-ground-egypt' => 'svc-all-on-ground',
+            'commercial' => 'svc-all-commercial',
+            'documentary' => 'svc-all-documentary',
+            'corporate' => 'svc-all-corporate',
+            'events' => 'svc-all-events',
+            'tv-broadcast' => 'svc-all-tv-broadcast',
+            'podcast' => 'svc-all-podcast',
+            'post-production' => 'svc-all-post-production',
+            'motion-cgi' => 'svc-all-motion-cgi',
+            'dubbing' => 'svc-all-dubbing',
+            'photography' => 'svc-all-photography',
+            'marketing' => 'svc-all-marketing',
+            'original-ip' => 'svc-all-original-ip',
+        ];
+
+        Service::query()->each(function (Service $service) use ($serviceKeys, $paths, &$updated) {
+            $key = $serviceKeys[$service->slug] ?? null;
+
+            if (! $key || ! isset($paths[$key])) {
+                return;
+            }
+
+            if ($service->getRawMediaPath('image_url') !== $paths[$key]) {
+                $service->update(['image_url' => $paths[$key]]);
+                $updated++;
+            }
+        });
+
+        PageSection::query()
+            ->where('type', 'story')
+            ->whereHas('page', fn ($q) => $q->where('slug', 'about'))
+            ->each(function (PageSection $section) use ($paths, &$updated) {
+                $settings = $section->settings;
+
+                if (! is_array($settings) || ! isset($paths['about-story-photo'])) {
+                    return;
+                }
+
+                $newPath = $paths['about-story-photo'];
+
+                if (($settings['image'] ?? null) !== $newPath) {
+                    $settings['image'] = $newPath;
+                    $section->update(['settings' => $settings]);
+                    $updated++;
+                }
+            });
+
+        BlogPost::query()
+            ->where('slug', 'professional-film-production-equipment')
+            ->each(function (BlogPost $post) use ($paths, &$updated) {
+                if (! isset($paths['blog-film-production'])) {
+                    return;
+                }
+
+                $newPath = $paths['blog-film-production'];
+
+                if ($post->getRawMediaPath('featured_image_url') !== $newPath) {
+                    $post->update(['featured_image_url' => $newPath]);
+                    $updated++;
+                }
+            });
+
+        return $updated;
     }
 
     public function syncContentReferences(): int

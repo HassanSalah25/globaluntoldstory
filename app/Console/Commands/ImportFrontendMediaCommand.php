@@ -8,10 +8,10 @@ use Illuminate\Console\Command;
 class ImportFrontendMediaCommand extends Command
 {
     protected $signature = 'media:import-frontend
-                            {--force : Re-download images even if they already exist}
-                            {--sync-content : Update CMS records that still point at external URLs}';
+                            {--force : Re-import images even if they already exist}
+                            {--sync-content : Update CMS records to use registry image paths}';
 
-    protected $description = 'Download frontend seed images into the media library';
+    protected $description = 'Import frontend seed images into the media library';
 
     public function handle(FrontendMediaImporter $importer): int
     {
@@ -24,8 +24,10 @@ class ImportFrontendMediaCommand extends Command
         }
 
         if ($this->option('sync-content')) {
-            $updated = $importer->syncContentReferences();
-            $this->info("Updated {$updated} content record(s) to use media library paths.");
+            $registryUpdated = $importer->syncRegistryContentPaths();
+            $legacyUpdated = $importer->syncContentReferences();
+            $this->info("Updated {$registryUpdated} registry-linked content record(s).");
+            $this->info("Updated {$legacyUpdated} legacy Unsplash-linked content record(s).");
         }
 
         $this->newLine();
