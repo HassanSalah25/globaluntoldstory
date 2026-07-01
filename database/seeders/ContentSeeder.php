@@ -303,6 +303,29 @@ class ContentSeeder extends Seeder
                     'cta_label' => 'تواصل معنا',
                     'cta_url' => '/contact',
                 ]);
+
+                $photography = PageSection::query()->create([
+                    'page_id' => $page->id,
+                    'type' => 'photography',
+                    'sort_order' => 3,
+                    'settings' => ['image' => $this->media('home-photography-section')],
+                    'is_active' => true,
+                ]);
+                $this->seedTranslations($photography, [
+                    'badge' => 'Photography',
+                    'title' => 'Professional Cinema Camera Equipment',
+                    'content' => 'Professional ARRI Alexa Mini LF cinema camera and filmmaking equipment used for commercial productions, documentaries, branded content, and film projects in Egypt.',
+                    'subtitle' => 'Polished and aligned with your tone',
+                    'cta_label' => 'Contact Us',
+                    'cta_url' => '/contact',
+                ], [
+                    'badge' => 'التصوير',
+                    'title' => 'معدات الكاميرات السينمائية الاحترافية',
+                    'content' => 'كاميرا ARRI Alexa Mini LF السينمائية ومعدات التصوير السينمائي المستخدمة في الإنتاجات التجارية والأفلام الوثائقية والمحتوى المرتبط بالعلامات ومشاريع الأفلام في مصر.',
+                    'subtitle' => 'مصقول ومتناسق مع أسلوبك',
+                    'cta_label' => 'تواصل معنا',
+                    'cta_url' => '/contact',
+                ]);
             }
 
             if ($slug === 'about') {

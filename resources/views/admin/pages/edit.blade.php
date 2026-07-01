@@ -126,6 +126,7 @@
             $sectionLabels = [
                 'hero_split' => 'Hero (split content + image)',
                 'story' => 'Story (split content + image)',
+                'photography' => 'Photography (split content + image)',
                 'services_intro' => 'Services intro',
                 'cta_banner' => 'CTA banner',
                 'mission' => 'Mission',
@@ -154,7 +155,7 @@
                                 @if(!$section->is_active)
                                     <span class="text-xs text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">Inactive</span>
                                 @endif
-                                @if(in_array($section->type, ['hero_split', 'story'], true))
+                                @if(in_array($section->type, ['hero_split', 'story', 'photography'], true))
                                     <span class="text-xs text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded">Split layout</span>
                                 @endif
                             </div>

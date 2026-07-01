@@ -4,24 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageSection;
+use App\Support\MediaUrl;
 use Illuminate\Http\Request;
 
 class PageSectionController extends Controller
 {
-    private const SPLIT_TYPES = ['hero_split', 'story'];
-
     public function edit(PageSection $pageSection)
     {
         $pageSection->load(['page.translations', 'translations']);
 
         $translations = $pageSection->translations->keyBy('locale');
+        $settings = $pageSection->settings ?? [];
+        $imageValue = $this->resolveImageFieldValue($settings['image'] ?? null);
+
         $view = match ($pageSection->type) {
             'hero_split' => 'admin.page-sections.edit-hero-split',
             'story' => 'admin.page-sections.edit-story',
+            'photography' => 'admin.page-sections.edit-photography',
             default => 'admin.page-sections.edit-default',
         };
 
-        return view($view, compact('pageSection', 'translations'));
+        return view($view, compact('pageSection', 'translations', 'imageValue'));
     }
 
     public function update(Request $request, PageSection $pageSection)
@@ -31,8 +34,8 @@ class PageSectionController extends Controller
 
         $settings = $pageSection->settings ?? [];
 
-        if (in_array($pageSection->type, self::SPLIT_TYPES, true)) {
-            $settings['image'] = $validated['image'] ?? $settings['image'] ?? null;
+        if (array_key_exists('image', $validated)) {
+            $settings['image'] = $validated['image'] ?: null;
         }
 
         if ($pageSection->type === 'hero_split') {
@@ -68,13 +71,21 @@ class PageSectionController extends Controller
         }
 
         return redirect()
-            ->route('admin.pages.edit', $pageSection->page_id)
+            ->route('admin.page-sections.edit', $pageSection)
             ->with('success', 'Section updated successfully.');
+    }
+
+    private function resolveImageFieldValue(?string $storedPath): string
+    {
+        $resolved = MediaUrl::toPublicUrl($storedPath) ?? $storedPath ?? '';
+
+        return old('image', $resolved);
     }
 
     private function rulesForType(string $type): array
     {
         $base = [
+            'image' => 'nullable|string|max:500',
             'is_active' => 'boolean',
             'badge_en' => 'nullable|string|max:255',
             'badge_ar' => 'nullable|string|max:255',
@@ -101,6 +112,9 @@ class PageSectionController extends Controller
                 'production_pipeline' => 'nullable|string',
             ]),
             'story' => array_merge($base, [
+                'image' => 'required|string|max:500',
+            ]),
+            'photography' => array_merge($base, [
                 'image' => 'required|string|max:500',
             ]),
             'services_intro' => array_merge($base, [

@@ -36,10 +36,13 @@ class HomePageService
         $heroSplit = $sections->get('hero_split');
         $servicesIntro = $sections->get('services_intro');
         $ctaBanner = $sections->get('cta_banner');
+        $photographySection = $sections->get('photography');
         $heroSplitT = $heroSplit?->translate($locale);
         $servicesIntroT = $servicesIntro?->translate($locale);
         $ctaBannerT = $ctaBanner?->translate($locale);
+        $photographyT = $photographySection?->translate($locale);
         $heroSettings = $heroSplit?->settings ?? [];
+        $photographySettings = $photographySection?->settings ?? [];
         $pipeline = $heroSettings['production_pipeline']
             ?? $servicesIntro?->settings['production_pipeline']
             ?? [];
@@ -63,9 +66,11 @@ class HomePageService
                 'tagline' => 'Polished and aligned with your tone',
             ];
 
-        $photographyImage = MediaUrl::toPublicUrl(
-            FrontendMediaImporter::resolvedPath('home-photography-section')
-        );
+        $photographyImage = $photographySection
+            ? MediaUrl::toPublicUrl($photographySettings['image'] ?? null)
+            : MediaUrl::toPublicUrl(
+                FrontendMediaImporter::resolvedPath('home-photography-section')
+            );
 
         return [
             'hero_slides' => $this->getHeroSlides($locale),
@@ -82,10 +87,10 @@ class HomePageService
                 'portfolioTitle' => $locale === 'ar' ? 'مشاريع من إنجاز The Untold Story' : 'Projects done by The Untold Story',
                 'quoteBadge' => $locale === 'ar' ? 'حيث تلتقي القصة بالتنفيذ' : 'Where story meets execution',
                 'quoteTitle' => $locale === 'ar' ? 'ميزانيات متوقعة. نتائج متميزة.' : 'Predictable budgets. Premium results.',
-                'photographyBadge' => $photographyCopy['badge'],
-                'photographyTitle' => $photographyCopy['title'],
-                'photographyDesc' => $photographyCopy['description'],
-                'photographyTagline' => $photographyCopy['tagline'],
+                'photographyBadge' => $photographyT?->badge ?? $photographyCopy['badge'],
+                'photographyTitle' => $photographyT?->title ?? $photographyCopy['title'],
+                'photographyDesc' => $photographyT?->content ?? $photographyCopy['description'],
+                'photographyTagline' => $photographyT?->subtitle ?? $photographyCopy['tagline'],
                 'photographyImage' => $photographyImage,
                 'creativeTitle' => 'Creative Creations',
                 'creativeSubtitle' => 'Behind every Frame',
@@ -101,10 +106,10 @@ class HomePageService
             'process' => $this->getProcess($locale),
             'testimonials' => $this->getTestimonials($locale),
             'photography' => [
-                'badge' => $photographyCopy['badge'],
-                'title' => $photographyCopy['title'],
-                'description' => $photographyCopy['description'],
-                'tagline' => $photographyCopy['tagline'],
+                'badge' => $photographyT?->badge ?? $photographyCopy['badge'],
+                'title' => $photographyT?->title ?? $photographyCopy['title'],
+                'description' => $photographyT?->content ?? $photographyCopy['description'],
+                'tagline' => $photographyT?->subtitle ?? $photographyCopy['tagline'],
                 'image' => $photographyImage,
                 'icon' => $photographyService?->icon,
             ],

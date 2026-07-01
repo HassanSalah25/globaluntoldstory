@@ -5,6 +5,7 @@
 @php
     $settings = $pageSection->settings ?? [];
     $pipeline = implode("\n", $settings['production_pipeline'] ?? []);
+    $imageValue = $imageValue ?? '';
     $sectionLabel = match ($pageSection->type) {
         'services_intro' => 'Services Intro',
         'cta_banner' => 'CTA Banner',
@@ -12,6 +13,7 @@
         'vision' => 'Vision',
         default => ucfirst(str_replace('_', ' ', $pageSection->type)),
     };
+    $hasImage = true;
 @endphp
 <div class="mx-auto max-w-3xl">
 
@@ -24,6 +26,12 @@
             <p class="text-sm text-gray-500">{{ $pageSection->type }}</p>
         </div>
     </div>
+
+    @if(session('success'))
+    <div class="mb-4 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-sm">
+        {{ session('success') }}
+    </div>
+    @endif
 
     @if($errors->any())
     <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
@@ -121,6 +129,31 @@
                 <textarea name="production_pipeline" rows="4"
                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm font-mono">{{ old('production_pipeline', $pipeline) }}</textarea>
                 <p class="mt-1 text-xs text-gray-500">One tag per line.</p>
+            </div>
+            @endif
+
+            @if($hasImage)
+            <div class="mt-6 pt-6 border-t border-gray-200"
+                 x-data="{ imageUrl: @js($imageValue), imagePreviewOk: true }">
+                <h3 class="text-base font-semibold text-gray-900 mb-4">Section Image</h3>
+                @include('admin.components.image-picker', [
+                    'name' => 'image',
+                    'label' => 'Image',
+                    'value' => $imageValue,
+                    'parentModel' => 'imageUrl',
+                    'showPreview' => false,
+                    'help' => 'Browse the media library or upload a new image for this section.',
+                ])
+                <div x-show="imageUrl" x-cloak class="mt-4 overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+                    <div class="relative aspect-video bg-gray-100">
+                        <img :src="imageUrl" alt="" class="h-full w-full object-cover"
+                             x-on:load="imagePreviewOk = true"
+                             x-on:error="imagePreviewOk = false">
+                        <div x-show="!imagePreviewOk" class="absolute inset-0 flex items-center justify-center bg-gray-100 px-4 text-center text-sm text-gray-500">
+                            Image preview could not load.
+                        </div>
+                    </div>
+                </div>
             </div>
             @endif
         </div>

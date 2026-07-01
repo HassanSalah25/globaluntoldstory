@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Edit Story Section')
+@section('title', 'Edit Photography Section')
 
 @section('content')
 @php
@@ -13,8 +13,8 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </a>
         <div>
-            <h2 class="text-2xl font-bold text-gray-900">Story Section</h2>
-            <p class="text-sm text-gray-500">Split layout — edit story content and image separately</p>
+            <h2 class="text-2xl font-bold text-gray-900">Photography Section</h2>
+            <p class="text-sm text-gray-500">Split layout — edit photography content and image separately</p>
         </div>
     </div>
 
@@ -46,8 +46,8 @@
 
         @component('admin.page-sections._split-layout', [
             'imageValue' => $imageValue,
-            'imageLabel' => 'Story Image',
-            'imageHelp' => 'Displayed beside the story text on the About page.',
+            'imageLabel' => 'Photography Image',
+            'imageHelp' => 'Displayed beside the photography text on the homepage. Recommended: 800×1000.',
         ])
             @slot('content')
                 @component('admin.page-sections._translation-tabs')
@@ -63,10 +63,14 @@
                                    class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
-                            <textarea name="content_en" rows="10"
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <textarea name="content_en" rows="5"
                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('content_en', $translations['en']->content ?? '') }}</textarea>
-                            <p class="mt-1 text-xs text-gray-500">Separate paragraphs with a blank line.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Tagline</label>
+                            <input type="text" name="subtitle_en" value="{{ old('subtitle_en', $translations['en']->subtitle ?? '') }}"
+                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
@@ -93,9 +97,14 @@
                                    class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">المحتوى</label>
-                            <textarea name="content_ar" rows="10"
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الوصف</label>
+                            <textarea name="content_ar" rows="5"
                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('content_ar', $translations['ar']->content ?? '') }}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">العبارة</label>
+                            <input type="text" name="subtitle_ar" value="{{ old('subtitle_ar', $translations['ar']->subtitle ?? '') }}"
+                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>

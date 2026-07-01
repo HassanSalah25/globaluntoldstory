@@ -5,7 +5,7 @@
 @php
     $settings = $pageSection->settings ?? [];
     $pipeline = implode("\n", $settings['production_pipeline'] ?? []);
-    $imageValue = old('image', $settings['image'] ?? '');
+    $imageValue = $imageValue ?? '';
 @endphp
 <div class="mx-auto">
 
@@ -18,6 +18,12 @@
             <p class="text-sm text-gray-500">Split layout — edit text content and hero image separately</p>
         </div>
     </div>
+
+    @if(session('success'))
+    <div class="mb-4 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg text-sm">
+        {{ session('success') }}
+    </div>
+    @endif
 
     @if($errors->any())
     <div class="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">
