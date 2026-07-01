@@ -120,27 +120,55 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-base font-semibold text-gray-800">Page Sections</h2>
-            <span class="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">Placeholder — section editor coming soon</span>
         </div>
+
+        @php
+            $sectionLabels = [
+                'hero_split' => 'Hero (split content + image)',
+                'story' => 'Story (split content + image)',
+                'services_intro' => 'Services intro',
+                'cta_banner' => 'CTA banner',
+                'mission' => 'Mission',
+                'vision' => 'Vision',
+            ];
+        @endphp
 
         @if(isset($page->sections) && $page->sections->count())
             <div class="space-y-3">
                 @foreach($page->sections->sortBy('sort_order') as $section)
-                    <div class="flex items-center justify-between border border-gray-200 rounded-lg p-3 bg-gray-50">
+                    @php
+                        $sectionTitle = $section->translations->firstWhere('locale', 'en')?->title
+                            ?? $section->translations->firstWhere('locale', 'en')?->badge
+                            ?? null;
+                    @endphp
+                    <div class="flex items-center justify-between border border-gray-200 rounded-lg p-4 bg-gray-50">
                         <div>
-                            <span class="text-xs font-medium text-gray-500 uppercase">{{ $section->type }}</span>
-                            <span class="ml-2 text-xs text-gray-400">Sort: {{ $section->sort_order }}</span>
+                            <p class="text-sm font-medium text-gray-900">
+                                {{ $sectionLabels[$section->type] ?? ucfirst(str_replace('_', ' ', $section->type)) }}
+                            </p>
+                            @if($sectionTitle)
+                                <p class="text-xs text-gray-500 mt-0.5 truncate max-w-md">{{ $sectionTitle }}</p>
+                            @endif
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-xs text-gray-400">Sort: {{ $section->sort_order }}</span>
+                                @if(!$section->is_active)
+                                    <span class="text-xs text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">Inactive</span>
+                                @endif
+                                @if(in_array($section->type, ['hero_split', 'story'], true))
+                                    <span class="text-xs text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded">Split layout</span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-800 text-xs font-medium">Edit</a>
-                            <span class="text-gray-300">|</span>
-                            <a href="#" class="text-red-600 hover:text-red-800 text-xs font-medium">Delete</a>
-                        </div>
+                        <a href="{{ route('admin.page-sections.edit', $section) }}"
+                           class="inline-flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700">
+                            Edit
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
                     </div>
                 @endforeach
             </div>
         @else
-            <p class="text-sm text-gray-500 text-center py-6">No sections added yet. Section management will be available in a future update.</p>
+            <p class="text-sm text-gray-500 text-center py-6">No sections on this page yet.</p>
         @endif
     </div>
 

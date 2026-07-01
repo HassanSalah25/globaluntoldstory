@@ -94,6 +94,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Pages
         Route::resource('pages', Admin\PageController::class)->names('pages');
         Route::patch('pages/{page}/toggle', [Admin\PageController::class, 'toggle'])->name('pages.toggle');
+        Route::get('page-sections/{page_section}/edit', [Admin\PageSectionController::class, 'edit'])->name('page-sections.edit');
+        Route::put('page-sections/{page_section}', [Admin\PageSectionController::class, 'update'])->name('page-sections.update');
 
         // Settings
         Route::resource('settings', Admin\SettingController::class)->only(['index', 'edit', 'update'])->names('settings');

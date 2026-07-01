@@ -236,6 +236,37 @@ class ContentSeeder extends Seeder
             $page->sections()->delete();
 
             if ($slug === 'home') {
+                $heroSplit = PageSection::query()->create([
+                    'page_id' => $page->id,
+                    'type' => 'hero_split',
+                    'sort_order' => 0,
+                    'settings' => [
+                        'image' => $this->media('hero-slide-1'),
+                        'production_pipeline' => ['Planning', 'Filming', 'Live', 'Post & final delivery', 'Localization'],
+                        'headline_suffix_en' => 'production services in Egypt',
+                        'headline_suffix_ar' => 'خدمات الإنتاج في مصر',
+                        'cta_secondary_label_en' => 'Our Work',
+                        'cta_secondary_label_ar' => 'أعمالنا',
+                        'cta_secondary_url' => '/portfolio',
+                    ],
+                    'is_active' => true,
+                ]);
+                $this->seedTranslations($heroSplit, [
+                    'badge' => 'On-Ground Production Services in Egypt',
+                    'title' => 'The Untold Story delivers',
+                    'subtitle' => 'on-ground',
+                    'content' => 'The Untold Story delivers professional on-ground production services in Egypt, including filming permits, location management, production logistics, local crew support, and full-service film production at iconic locations such as the Giza Pyramids.',
+                    'cta_label' => 'Contact us for Next project',
+                    'cta_url' => '/contact',
+                ], [
+                    'badge' => 'خدمات الإنتاج الميداني في مصر',
+                    'title' => 'تقدّم The Untold Story',
+                    'subtitle' => 'إنتاجاً ميدانياً',
+                    'content' => 'تقدّم The Untold Story خدمات إنتاج ميداني احترافية في مصر، تشمل تصاريح التصوير، وإدارة المواقع، ولوجستيات الإنتاج، ودعم الطاقم المحلي، وإنتاج أفلام متكامل في مواقع أيقونية مثل أهرامات الجيزة.',
+                    'cta_label' => 'تواصل معنا للمشروع القادم',
+                    'cta_url' => '/contact',
+                ]);
+
                 $section = PageSection::query()->create([
                     'page_id' => $page->id,
                     'type' => 'services_intro',

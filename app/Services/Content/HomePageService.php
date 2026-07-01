@@ -6,6 +6,7 @@ use App\Models\Award;
 use App\Models\Faq;
 use App\Models\HeroSlide;
 use App\Models\Page;
+use App\Models\PageSection;
 use App\Models\PortfolioItem;
 use App\Models\ProcessStep;
 use App\Models\Service;
