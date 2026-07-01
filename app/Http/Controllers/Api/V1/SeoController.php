@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Models\BlogPost;
+use App\Models\Service;
 use App\Services\Seo\SeoService;
 use Illuminate\Http\JsonResponse;
 
@@ -22,6 +23,12 @@ class SeoController extends ApiController
             'blog' => $slug
                 ? $this->seo->getForBlogPost(
                     BlogPost::query()->where('slug', $slug)->firstOrFail(),
+                    $locale
+                )
+                : null,
+            'service' => $slug
+                ? $this->seo->getForService(
+                    Service::query()->where('slug', $slug)->firstOrFail(),
                     $locale
                 )
                 : null,

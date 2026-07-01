@@ -5,6 +5,7 @@ namespace App\Services\Seo;
 use App\Models\BlogPost;
 use App\Models\Page;
 use App\Models\SeoMeta;
+use App\Models\Service;
 
 class SeoService
 {
@@ -32,6 +33,29 @@ class SeoService
         }
 
         return $this->mapSeo($seo, $locale);
+    }
+
+    public function getForService(Service $service, string $locale): array
+    {
+        $seo = SeoMeta::query()
+            ->where('seoable_type', Service::class)
+            ->where('seoable_id', $service->id)
+            ->with('translations')
+            ->first();
+
+        if ($seo) {
+            return $this->mapSeo($seo, $locale) ?? [];
+        }
+
+        $translation = $service->translate($locale);
+
+        return [
+            'metaTitle' => $translation?->title,
+            'metaDescription' => $translation?->short_desc,
+            'ogTitle' => $translation?->title,
+            'ogDescription' => $translation?->short_desc,
+            'ogImageUrl' => $service->image_url,
+        ];
     }
 
     public function getForBlogPost(BlogPost $post, string $locale): array

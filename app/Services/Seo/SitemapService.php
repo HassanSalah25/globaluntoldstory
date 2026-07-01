@@ -24,7 +24,7 @@ class SitemapService
         }
 
         Service::query()->where('is_active', true)->pluck('slug')->each(function ($slug) use ($baseUrl, &$urls) {
-            $urls[] = $this->urlEntry("{$baseUrl}/services#{$slug}", now(), 'monthly', '0.7');
+            $urls[] = $this->urlEntry("{$baseUrl}/services/{$slug}", now(), 'monthly', '0.7');
         });
 
         PortfolioItem::query()->where('is_active', true)->get(['slug', 'updated_at'])->each(function ($item) use ($baseUrl, &$urls) {

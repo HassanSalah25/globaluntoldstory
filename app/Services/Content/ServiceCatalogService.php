@@ -3,9 +3,14 @@
 namespace App\Services\Content;
 
 use App\Models\Service;
+use App\Services\Seo\SeoService;
 
 class ServiceCatalogService
 {
+    public function __construct(
+        private readonly SeoService $seo,
+    ) {}
+
     private const FEATURED_COPY = [
         'on-ground-egypt' => [
             'en' => [
@@ -83,7 +88,10 @@ class ServiceCatalogService
             ->with('translations')
             ->firstOrFail();
 
-        return $this->mapService($service, $locale, detailed: true);
+        $mapped = $this->mapService($service, $locale, detailed: true);
+        $mapped['seo'] = $this->seo->getForService($service, $locale);
+
+        return $mapped;
     }
 
     private function mapService(Service $service, string $locale, bool $detailed = false, bool $featuredImage = false): array
