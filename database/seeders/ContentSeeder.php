@@ -192,8 +192,16 @@ class ContentSeeder extends Seeder
                 'ar' => ['title' => 'The Untold Story', 'subtitle' => 'استوديو إنتاج أفلام وفيديو', 'badge' => null],
             ],
             'about' => [
-                'en' => ['title' => 'Where Ideas Come Alive and Stories Take Shape', 'subtitle' => 'We deliver the complete production cycle for brands, platforms, broadcasters, and institutions that need premium visuals with disciplined execution.', 'badge' => 'About Us'],
-                'ar' => ['title' => 'حيث تولد الأفكار وتتشكّل القصص', 'subtitle' => 'نقدّم دورة الإنتاج الكاملة للعلامات التجارية والمنصات والقنوات والمؤسسات التي تحتاج مرئيات متميزة بتنفيذ منضبط.', 'badge' => 'من نحن'],
+                'en' => [
+                    'title' => 'The Untold Story Film Production in Egypt',
+                    'subtitle' => 'The Untold Story production team at the Pyramids of Giza, representing expertise in film, video, and on-ground production services across Egypt.',
+                    'badge' => 'About Us',
+                ],
+                'ar' => [
+                    'title' => 'إنتاج أفلام The Untold Story في مصر',
+                    'subtitle' => 'فريق إنتاج The Untold Story عند أهرامات الجيزة، يمثل خبرة في الإنتاج السينمائي والفيديو والخدمات الميدانية في جميع أنحاء مصر.',
+                    'badge' => 'من نحن',
+                ],
             ],
             'services' => [
                 'en' => ['title' => 'Services', 'subtitle' => 'A full service film and video production studio across Egypt and MENA. Choose a service below or send your brief and we will recommend the right setup.', 'badge' => 'Services'],
@@ -204,8 +212,16 @@ class ContentSeeder extends Seeder
                 'ar' => ['title' => 'قصص نجاح صنعناها لعملائنا', 'subtitle' => 'نستعرض هنا بعضاً من أفضل أعمالنا وحملاتنا الإعلانية الناجحة التي ساهمت في نمو العلامات التجارية لشركائنا.', 'badge' => '🎨 معرض الأعمال'],
             ],
             'blog' => [
-                'en' => ['title' => 'News & Insights', 'subtitle' => 'Company news and updates', 'badge' => 'News & Insights'],
-                'ar' => ['title' => 'آخر الأخبار والرؤى التسويقية', 'subtitle' => 'تابع أحدث المقالات والإلهامات حول الإعلان الرقمي، التسويق، والهوية البصرية.', 'badge' => 'المدونة'],
+                'en' => [
+                    'title' => 'News & Insights',
+                    'subtitle' => 'Insights on professional film production, commercial advertising, documentaries, branded content, and cinematic storytelling from The Untold Story.',
+                    'badge' => 'News & Insights',
+                ],
+                'ar' => [
+                    'title' => 'آخر الأخبار والرؤى',
+                    'subtitle' => 'رؤى حول الإنتاج السينمائي الاحترافي والإعلانات التجارية والأفلام الوثائقية والمحتوى المرتبط بالعلامات والسرد السينمائي من The Untold Story.',
+                    'badge' => 'المدونة',
+                ],
             ],
             'contact' => [
                 'en' => ['title' => 'We Are Here to Help', 'subtitle' => 'Send us a message and one of our experts will get in touch shortly.', 'badge' => 'Contact Us'],
@@ -608,27 +624,27 @@ class ContentSeeder extends Seeder
         BlogPost::query()->delete();
 
         $featured = BlogPost::query()->create([
-            'slug' => 'future-of-digital-marketing-2024',
-            'category_id' => $categories['blog']['marketing-strategy'] ?? null,
-            'author_name' => 'Ahmed Al-Zahrani',
-            'author_image_url' => $this->media('portrait-man-1'),
+            'slug' => 'professional-film-production-equipment',
+            'category_id' => $categories['blog']['content'] ?? null,
+            'author_name' => 'The Untold Story',
+            'author_image_url' => $this->media('executive-portrait'),
             'featured_image_url' => $this->media('blog-film-production'),
-            'published_at' => Carbon::parse('2024-06-01'),
-            'read_time_minutes' => 8,
+            'published_at' => Carbon::parse('2026-06-01'),
+            'read_time_minutes' => 6,
             'is_featured' => true,
             'is_published' => true,
             'sort_order' => 0,
         ]);
         $this->seedTranslations($featured, [
-            'title' => 'The Future of Digital Marketing in 2024: 10 Trends That Will Change the Game',
-            'excerpt' => 'A comprehensive overview of the most important shifts in digital marketing this year, from AI to influencer marketing and interactive content.',
+            'title' => 'Professional Film Production Equipment',
+            'excerpt' => 'High-end RED Dragon cinema camera used in professional film production, commercial advertising, documentaries, branded content, and cinematic storytelling projects by The Untold Story.',
             'body' => null,
-            'tags' => ['AI Marketing', '2024', 'Trends'],
+            'tags' => ['Film Production', 'Cinema Camera', 'RED Dragon'],
         ], [
-            'title' => 'مستقبل التسويق الرقمي في 2024: 10 اتجاهات ستغيّر قواعد اللعبة',
-            'excerpt' => 'استعراض شامل لأهم التحولات في عالم التسويق الرقمي خلال العام الجاري، من الذكاء الاصطناعي إلى التسويق عبر المؤثرين والمحتوى التفاعلي.',
+            'title' => 'معدات الإنتاج السينمائي الاحترافية',
+            'excerpt' => 'كاميرا RED Dragon السينمائية عالية الجودة المستخدمة في الإنتاج السينمائي الاحترافي والإعلانات التجارية والأفلام الوثائقية والمحتوى المرتبط بالعلامات ومشاريع السرد السينمائي من The Untold Story.',
             'body' => null,
-            'tags' => ['AI تسويق', '2024', 'اتجاهات'],
+            'tags' => ['إنتاج سينمائي', 'كاميرا سينمائية', 'RED Dragon'],
         ]);
 
         $posts = [

@@ -23,13 +23,13 @@ return [
 
     // ── About page images ─────────────────────────────────────────────────────
     'about-story-photo' => [
-        'source' => 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop',
-        'filename' => 'cinema-camera-equipment.webp',
+        'local' => database_path('data/media/professional-cinema-camera-equipment-egypt-arri-alexa-mini-lf-film-production-equipment.webp'),
+        'filename' => 'professional-cinema-camera-equipment-egypt-arri-alexa-mini-lf-film-production-equipment.webp',
         'folder' => 'frontend',
-        'alt' => 'Professional cinema camera equipment used in film and video production in Egypt',
+        'alt' => 'ARRI Alexa Mini LF cinema camera and professional film production equipment',
     ],
     'about-hero' => [
-        'source' => 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1400&auto=format&fit=crop',
+        'local' => database_path('data/media/the-untold-story-film-production-egypt.webp'),
         'filename' => 'the-untold-story-film-production-egypt.webp',
         'folder' => 'frontend',
         'alt' => 'The Untold Story film production team at the Pyramids of Giza in Egypt',
@@ -37,7 +37,7 @@ return [
 
     // ── Blog image ────────────────────────────────────────────────────────────
     'blog-film-production' => [
-        'source' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+        'local' => database_path('data/media/professional-cinema-camera-film-production.webp'),
         'filename' => 'professional-cinema-camera-film-production.webp',
         'folder' => 'frontend',
         'alt' => 'RED Dragon cinema camera used for professional film and commercial video production',

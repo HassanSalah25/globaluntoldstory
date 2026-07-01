@@ -20,9 +20,9 @@ class PortfolioItemController extends Controller
             });
         }
 
-        $portfolioItems = $query->paginate(15)->withQueryString();
+        $portfolios = $query->paginate(15)->withQueryString();
 
-        return view('admin.portfolio-items.index', compact('portfolioItems'));
+        return view('admin.portfolio.index', compact('portfolios'));
     }
 
     public function create()
@@ -30,7 +30,7 @@ class PortfolioItemController extends Controller
         $locales = ['en', 'ar'];
         $categories = Category::with('translations')->where('type', 'portfolio')->get();
 
-        return view('admin.portfolio-items.create', compact('locales', 'categories'));
+        return view('admin.portfolio.create', compact('locales', 'categories'));
     }
 
     public function store(Request $request)
@@ -79,22 +79,22 @@ class PortfolioItemController extends Controller
             );
         }
 
-        return redirect()->route('admin.portfolio-items.index')->with('success', 'Portfolio item created successfully.');
+        return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio item created successfully.');
     }
 
-    public function edit(PortfolioItem $portfolioItem)
+    public function edit(PortfolioItem $portfolio)
     {
         $locales = ['en', 'ar'];
-        $translations = $portfolioItem->translations->keyBy('locale');
+        $translations = $portfolio->translations->keyBy('locale');
         $categories = Category::with('translations')->where('type', 'portfolio')->get();
 
-        return view('admin.portfolio-items.edit', compact('portfolioItem', 'locales', 'translations', 'categories'));
+        return view('admin.portfolio.edit', compact('portfolio', 'locales', 'translations', 'categories'));
     }
 
-    public function update(Request $request, PortfolioItem $portfolioItem)
+    public function update(Request $request, PortfolioItem $portfolio)
     {
         $request->validate([
-            'slug'          => 'required|string|max:255|unique:portfolio_items,slug,' . $portfolioItem->id,
+            'slug'          => 'required|string|max:255|unique:portfolio_items,slug,' . $portfolio->id,
             'category_id'   => 'nullable|exists:categories,id',
             'client_name'   => 'nullable|string|max:255',
             'image_url'     => 'nullable|string|max:255',
@@ -112,7 +112,7 @@ class PortfolioItemController extends Controller
             'metric_ar'     => 'nullable|string|max:255',
         ]);
 
-        $portfolioItem->update([
+        $portfolio->update([
             'slug'        => $request->slug,
             'category_id' => $request->category_id,
             'client_name' => $request->client_name,
@@ -128,7 +128,7 @@ class PortfolioItemController extends Controller
         ]);
 
         foreach (['en', 'ar'] as $locale) {
-            $portfolioItem->translations()->updateOrCreate(
+            $portfolio->translations()->updateOrCreate(
                 ['locale' => $locale],
                 [
                     'title'        => $request->input("title_{$locale}"),
@@ -138,14 +138,14 @@ class PortfolioItemController extends Controller
             );
         }
 
-        return redirect()->route('admin.portfolio-items.index')->with('success', 'Portfolio item updated successfully.');
+        return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio item updated successfully.');
     }
 
-    public function destroy(PortfolioItem $portfolioItem)
+    public function destroy(PortfolioItem $portfolio)
     {
-        $portfolioItem->delete();
+        $portfolio->delete();
 
-        return redirect()->route('admin.portfolio-items.index')->with('success', 'Portfolio item deleted successfully.');
+        return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio item deleted successfully.');
     }
 
     public function toggle(PortfolioItem $portfolioItem)

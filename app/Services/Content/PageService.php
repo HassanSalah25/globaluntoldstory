@@ -13,6 +13,7 @@ use App\Models\Stat;
 use App\Models\TeamMember;
 use App\Models\TimelineEvent;
 use App\Models\ValueItem;
+use App\Services\Media\FrontendMediaImporter;
 use App\Services\Seo\SeoService;
 use App\Services\Settings\SettingService;
 use App\Support\MediaUrl;
@@ -139,6 +140,7 @@ class PageService
                 'storyDesc4' => $storyParagraphs[3] ?? null,
                 'storyCta' => $story?->cta_label,
                 'storyImage' => MediaUrl::toPublicUrl($storySection?->settings['image'] ?? null),
+                'heroImage' => MediaUrl::toPublicUrl(FrontendMediaImporter::resolvedPath('about-hero')),
                 'aboutStats' => $stats,
                 'missionTitle' => $mission?->title,
                 'missionDesc' => $mission?->content,
