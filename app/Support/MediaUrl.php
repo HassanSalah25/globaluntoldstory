@@ -24,13 +24,22 @@ class MediaUrl
             $value = parse_url($value, PHP_URL_PATH) ?? $value;
         }
 
-        $value = ltrim($value, '/');
-
-        if (str_starts_with($value, 'storage/')) {
-            $value = substr($value, strlen('storage/'));
-        }
+        $value = self::extractStorageRelativePath(ltrim($value, '/'));
 
         return $value !== '' ? $value : null;
+    }
+
+    /**
+     * Reduce any URL or path variant to a storage-relative path (e.g. media/2026/07/file.webp).
+     * Handles subdirectory installs where paths may include api/public/storage/ prefixes.
+     */
+    private static function extractStorageRelativePath(string $value): string
+    {
+        while (preg_match('#^(?:api/public/)?storage/(.+)$#', $value, $matches)) {
+            $value = $matches[1];
+        }
+
+        return $value;
     }
 
     /**
