@@ -45,7 +45,7 @@ class ContentSeeder extends Seeder
         $this->seedPages();
         $this->seedHeroSlides();
         $this->seedStats();
-        $this->seedServices();
+        // $this->seedServices();
         $this->seedProcessSteps();
         $this->seedTestimonials();
         $categories = $this->seedCategories();
@@ -763,13 +763,19 @@ class ContentSeeder extends Seeder
             'tags' => ['إنتاج سينمائي', 'كاميرا سينمائية', 'RED Dragon'],
         ]);
 
-        $posts = [
-            ['post-1', 'digital-ads', '2026-06-20', 5, 'How to Boost ROI from Your Digital Campaigns', 'كيف ترفع عائد الاستثمار من حملاتك الرقمية', 'Discover the secrets of audience targeting, message crafting, and analytics optimization.', 'أسرار اختيار الجمهور الصحيح، صياغة الرسالة الأمثل، وتحليل الأرقام لتحسين الأداء.', 'Digital Ads', 'إعلان رقمي'],
-            ['post-2', 'design', '2026-06-15', 4, 'Top 5 Brand Identity Trends for 2026', 'أهم ٥ اتجاهات في تصميم الهوية البصرية لعام ٢٠٢٦', 'Learn the design cues that will help your brand stand out in a competitive market.', 'اكتشف ملامح التصميم التي تساعد علامتك التجارية على البروز في السوق.', 'Design', 'تصميم'],
-            ['post-3', 'content', '2026-06-10', 3, 'Creative Content Strategy Techniques That Work', 'طرق مبتكرة لبناء استراتيجية محتوى فعّالة', 'From idea to distribution — how to build content that attracts and retains customers.', 'من الفكرة إلى التوزيع — كيف تصنع محتوى يجذب العملاء ويحتفظ بهم.', 'Content', 'محتوى'],
+        $structuredArticles = [
+            ['how-to-choose-a-media-production-agency-in-egypt', 'content', '2026-06-20', 8],
+            ['the-video-production-journey-from-idea-to-impact', 'content', '2026-06-15', 6],
+            ['why-every-brand-needs-a-story-that-moves-people', 'content', '2026-06-10', 5],
         ];
 
-        foreach ($posts as $i => [$slug, $cat, $date, $readTime, $enTitle, $arTitle, $enExcerpt, $arExcerpt, $enCat, $arCat]) {
+        foreach ($structuredArticles as $i => [$slug, $cat, $date, $readTime]) {
+            $article = $this->loadStructuredArticle($slug, 'en');
+            $sections = $article['sections'] ?? [];
+            $body = $this->sectionsToHtml([], $sections);
+            $title = $this->resolveArticleTitle($slug, (string) ($article['title'] ?? ''), $sections);
+            $excerpt = $this->firstParagraphFromSections($sections) ?? \Illuminate\Support\Str::limit(strip_tags($body), 240);
+
             $post = BlogPost::query()->create([
                 'slug' => $slug,
                 'category_id' => $categories['blog'][$cat] ?? null,
@@ -781,16 +787,17 @@ class ContentSeeder extends Seeder
                 'is_published' => true,
                 'sort_order' => $i + 1,
             ]);
+
             $this->seedTranslations($post, [
-                'title' => $enTitle,
-                'excerpt' => $enExcerpt,
-                'body' => null,
-                'tags' => [$enCat],
+                'title' => $title,
+                'excerpt' => $excerpt,
+                'body' => $body,
+                'tags' => ['Production', 'Storytelling'],
             ], [
-                'title' => $arTitle,
-                'excerpt' => $arExcerpt,
-                'body' => null,
-                'tags' => [$arCat],
+                'title' => $title,
+                'excerpt' => $excerpt,
+                'body' => $body,
+                'tags' => ['إنتاج', 'سرد'],
             ]);
         }
     }
@@ -1055,5 +1062,71 @@ class ContentSeeder extends Seeder
                 'og_description' => $translationAr->subtitle,
             ]);
         }
+    }
+
+    private function loadStructuredArticle(string $slug, string $locale): array
+    {
+        $path = database_path("structured_content/content/articles/{$slug}/{$locale}.json");
+        if (! is_file($path)) {
+            return [];
+        }
+
+        return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    private function resolveArticleTitle(string $slug, string $rawTitle, array $sections): string
+    {
+        if ($rawTitle !== '' && strlen($rawTitle) <= 200 && str_word_count($rawTitle) <= 16) {
+            return $rawTitle;
+        }
+
+        foreach ($sections as $section) {
+            $heading = $section['heading'] ?? null;
+            if (is_string($heading) && $heading !== '') {
+                return \Illuminate\Support\Str::limit($heading, 200, '');
+            }
+        }
+
+        if ($rawTitle !== '') {
+            return \Illuminate\Support\Str::limit($rawTitle, 200, '…');
+        }
+
+        return \Illuminate\Support\Str::limit(\Illuminate\Support\Str::headline(str_replace('-', ' ', $slug)), 200, '');
+    }
+
+    private function sectionsToHtml(array $paragraphs, array $sections): string
+    {
+        $html = '';
+        foreach ($paragraphs as $paragraph) {
+            if ($paragraph !== '') {
+                $html .= '<p>'.e($paragraph).'</p>';
+            }
+        }
+        foreach ($sections as $section) {
+            $heading = $section['heading'] ?? null;
+            if (is_string($heading) && $heading !== '') {
+                $html .= '<h2>'.e($heading).'</h2>';
+            }
+            foreach ($section['body'] ?? [] as $paragraph) {
+                if ($paragraph !== '') {
+                    $html .= '<p>'.e($paragraph).'</p>';
+                }
+            }
+        }
+
+        return $html;
+    }
+
+    private function firstParagraphFromSections(array $sections): ?string
+    {
+        foreach ($sections as $section) {
+            foreach ($section['body'] ?? [] as $paragraph) {
+                if ($paragraph !== '') {
+                    return $paragraph;
+                }
+            }
+        }
+
+        return null;
     }
 }
