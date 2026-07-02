@@ -50,67 +50,49 @@
             'imageHelp' => 'Displayed beside the story text on the About page.',
         ])
             @slot('content')
-                @component('admin.page-sections._translation-tabs')
-                    @slot('english')
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Badge</label>
-                            <input type="text" name="badge_en" value="{{ old('badge_en', $translations['en']->badge ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                            <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
-                            <textarea name="content_en" rows="10"
-                                      class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('content_en', $translations['en']->content ?? '') }}</textarea>
-                            <p class="mt-1 text-xs text-gray-500">Separate paragraphs with a blank line.</p>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">CTA label</label>
-                                <input type="text" name="cta_label_en" value="{{ old('cta_label_en', $translations['en']->cta_label ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                @php $defaultTab = $adminLocales[0]['code'] ?? 'en'; @endphp
+                <div x-data="{ tab: '{{ $defaultTab }}' }">
+                    @include('admin.components.locale-tab-nav')
+                    @foreach($adminLocales as $locale)
+                        @component('admin.components.locale-panel', ['locale' => $locale])
+                            @include('admin.components.locale-field', [
+                                'name' => 'badge',
+                                'label' => 'Badge',
+                                'locale' => $locale,
+                                'value' => $translations[$locale['code']]->badge ?? '',
+                            ])
+                            @include('admin.components.locale-field', [
+                                'name' => 'title',
+                                'label' => 'Title',
+                                'locale' => $locale,
+                                'value' => $translations[$locale['code']]->title ?? '',
+                            ])
+                            @include('admin.components.locale-field', [
+                                'name' => 'content',
+                                'label' => 'Content',
+                                'locale' => $locale,
+                                'type' => 'textarea',
+                                'rows' => 10,
+                                'value' => $translations[$locale['code']]->content ?? '',
+                                'help' => $locale['code'] === 'en' ? 'Separate paragraphs with a blank line.' : null,
+                            ])
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                @include('admin.components.locale-field', [
+                                    'name' => 'cta_label',
+                                    'label' => 'CTA label',
+                                    'locale' => $locale,
+                                    'value' => $translations[$locale['code']]->cta_label ?? '',
+                                ])
+                                @include('admin.components.locale-field', [
+                                    'name' => 'cta_url',
+                                    'label' => 'CTA URL',
+                                    'locale' => $locale,
+                                    'value' => $translations[$locale['code']]->cta_url ?? '',
+                                ])
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">CTA URL</label>
-                                <input type="text" name="cta_url_en" value="{{ old('cta_url_en', $translations['en']->cta_url ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                        </div>
-                    @endslot
-                    @slot('arabic')
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">شارة</label>
-                            <input type="text" name="badge_ar" value="{{ old('badge_ar', $translations['ar']->badge ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">العنوان</label>
-                            <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">المحتوى</label>
-                            <textarea name="content_ar" rows="10"
-                                      class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('content_ar', $translations['ar']->content ?? '') }}</textarea>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">نص الزر</label>
-                                <input type="text" name="cta_label_ar" value="{{ old('cta_label_ar', $translations['ar']->cta_label ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">رابط الزر</label>
-                                <input type="text" name="cta_url_ar" value="{{ old('cta_url_ar', $translations['ar']->cta_url ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                        </div>
-                    @endslot
-                @endcomponent
+                        @endcomponent
+                    @endforeach
+                </div>
             @endslot
         @endcomponent
 

@@ -88,51 +88,40 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-4">Content</h3>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab = 'en'" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
-                <button type="button" @click="tab = 'ar'" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
-            </div>
-
-            <div x-show="tab === 'en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}" required class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Excerpt</label>
-                    <textarea name="excerpt_en" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('excerpt_en', $translations['en']->excerpt ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Body</label>
-                    <textarea name="body_en" rows="15" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm font-mono">{{ old('body_en', $translations['en']->body ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tags <span class="text-xs text-gray-400">(comma-separated)</span></label>
-                    <input type="text" name="tags_en" value="{{ old('tags_en', $translations['en']->tags ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-
-            <div x-show="tab === 'ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">مقتطف</label>
-                    <textarea name="excerpt_ar" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('excerpt_ar', $translations['ar']->excerpt ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">المحتوى</label>
-                    <textarea name="body_ar" rows="15" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm font-mono">{{ old('body_ar', $translations['ar']->body ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">الوسوم <span class="text-xs text-gray-400">(مفصولة بفاصلة)</span></label>
-                    <input type="text" name="tags_ar" value="{{ old('tags_ar', $translations['ar']->tags ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Content', 'refreshEditors' => true])
+            @foreach($adminLocales as $locale)
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->title ?? '',
+                        'required' => in_array($locale['code'], ['en'], true),
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'excerpt',
+                        'label' => 'Excerpt',
+                        'locale' => $locale,
+                        'type' => 'textarea',
+                        'rows' => 3,
+                        'value' => $translations[$locale['code']]->excerpt ?? '',
+                    ])
+                    @include('admin.components.rich-text-editor', [
+                        'name' => 'body_' . $locale['code'],
+                        'label' => 'Body',
+                        'value' => old('body_' . $locale['code'], $translations[$locale['code']]->body ?? ''),
+                        'dir' => $locale['rtl'] ? 'rtl' : 'ltr',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'tags',
+                        'label' => 'Tags',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->tags ?? '',
+                        'help' => $locale['code'] === 'en' ? 'Comma-separated' : null,
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex items-center gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Changes</button>

@@ -52,106 +52,78 @@
             'imageAspect' => 'aspect-[4/5]',
         ])
             @slot('content')
-                @component('admin.page-sections._translation-tabs')
-                    @slot('english')
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Badge</label>
-                            <input type="text" name="badge_en" value="{{ old('badge_en', $translations['en']->badge ?? '') }}"
-                                   placeholder="On-Ground Production Services in Egypt"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Headline (start)</label>
-                            <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}"
-                                   placeholder="The Untold Story delivers"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Headline highlight</label>
-                            <input type="text" name="subtitle_en" value="{{ old('subtitle_en', $translations['en']->subtitle ?? '') }}"
-                                   placeholder="on-ground"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Headline (end)</label>
-                            <input type="text" name="headline_suffix_en" value="{{ old('headline_suffix_en', $settings['headline_suffix_en'] ?? '') }}"
-                                   placeholder="production services in Egypt"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea name="content_en" rows="4"
-                                      class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('content_en', $translations['en']->content ?? '') }}</textarea>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Primary button label</label>
-                                <input type="text" name="cta_label_en" value="{{ old('cta_label_en', $translations['en']->cta_label ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                @php $defaultTab = $adminLocales[0]['code'] ?? 'en'; @endphp
+                <div x-data="{ tab: '{{ $defaultTab }}' }">
+                    @include('admin.components.locale-tab-nav')
+                    @foreach($adminLocales as $locale)
+                        @component('admin.components.locale-panel', ['locale' => $locale])
+                            @include('admin.components.locale-field', [
+                                'name' => 'badge',
+                                'label' => 'Badge',
+                                'locale' => $locale,
+                                'value' => $translations[$locale['code']]->badge ?? '',
+                                'placeholder' => $locale['code'] === 'en' ? 'On-Ground Production Services in Egypt' : null,
+                            ])
+                            @include('admin.components.locale-field', [
+                                'name' => 'title',
+                                'label' => 'Headline (start)',
+                                'locale' => $locale,
+                                'value' => $translations[$locale['code']]->title ?? '',
+                                'placeholder' => $locale['code'] === 'en' ? 'The Untold Story delivers' : null,
+                            ])
+                            @include('admin.components.locale-field', [
+                                'name' => 'subtitle',
+                                'label' => 'Headline highlight',
+                                'locale' => $locale,
+                                'value' => $translations[$locale['code']]->subtitle ?? '',
+                                'placeholder' => $locale['code'] === 'en' ? 'on-ground' : null,
+                            ])
+                            @include('admin.components.locale-field', [
+                                'name' => 'headline_suffix',
+                                'label' => 'Headline (end)',
+                                'locale' => $locale,
+                                'value' => $settings['headline_suffix_' . $locale['code']] ?? '',
+                                'placeholder' => $locale['code'] === 'en' ? 'production services in Egypt' : null,
+                            ])
+                            @include('admin.components.locale-field', [
+                                'name' => 'content',
+                                'label' => 'Description',
+                                'locale' => $locale,
+                                'type' => 'textarea',
+                                'rows' => 4,
+                                'value' => $translations[$locale['code']]->content ?? '',
+                            ])
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                @include('admin.components.locale-field', [
+                                    'name' => 'cta_label',
+                                    'label' => 'Primary button label',
+                                    'locale' => $locale,
+                                    'value' => $translations[$locale['code']]->cta_label ?? '',
+                                ])
+                                @include('admin.components.locale-field', [
+                                    'name' => 'cta_url',
+                                    'label' => 'Primary button URL',
+                                    'locale' => $locale,
+                                    'value' => $translations[$locale['code']]->cta_url ?? '',
+                                ])
+                                @include('admin.components.locale-field', [
+                                    'name' => 'cta_secondary_label',
+                                    'label' => 'Secondary button label',
+                                    'locale' => $locale,
+                                    'value' => $settings['cta_secondary_label_' . $locale['code']] ?? '',
+                                ])
+                                @if($locale['code'] === 'en')
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Secondary button URL</label>
+                                        <input type="text" name="cta_secondary_url" value="{{ old('cta_secondary_url', $settings['cta_secondary_url'] ?? '') }}"
+                                               class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+                                        <p class="mt-1 text-xs text-gray-500">Shared across languages</p>
+                                    </div>
+                                @endif
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Primary button URL</label>
-                                <input type="text" name="cta_url_en" value="{{ old('cta_url_en', $translations['en']->cta_url ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Secondary button label</label>
-                                <input type="text" name="cta_secondary_label_en" value="{{ old('cta_secondary_label_en', $settings['cta_secondary_label_en'] ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Secondary button URL</label>
-                                <input type="text" name="cta_secondary_url" value="{{ old('cta_secondary_url', $settings['cta_secondary_url'] ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                                <p class="mt-1 text-xs text-gray-500">Shared across languages</p>
-                            </div>
-                        </div>
-                    @endslot
-                    @slot('arabic')
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">شارة</label>
-                            <input type="text" name="badge_ar" value="{{ old('badge_ar', $translations['ar']->badge ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">بداية العنوان</label>
-                            <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">الجزء المميز من العنوان</label>
-                            <input type="text" name="subtitle_ar" value="{{ old('subtitle_ar', $translations['ar']->subtitle ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">نهاية العنوان</label>
-                            <input type="text" name="headline_suffix_ar" value="{{ old('headline_suffix_ar', $settings['headline_suffix_ar'] ?? '') }}"
-                                   class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">الوصف</label>
-                            <textarea name="content_ar" rows="4"
-                                      class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('content_ar', $translations['ar']->content ?? '') }}</textarea>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">نص الزر الرئيسي</label>
-                                <input type="text" name="cta_label_ar" value="{{ old('cta_label_ar', $translations['ar']->cta_label ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">رابط الزر الرئيسي</label>
-                                <input type="text" name="cta_url_ar" value="{{ old('cta_url_ar', $translations['ar']->cta_url ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">نص الزر الثانوي</label>
-                                <input type="text" name="cta_secondary_label_ar" value="{{ old('cta_secondary_label_ar', $settings['cta_secondary_label_ar'] ?? '') }}"
-                                       class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                            </div>
-                        </div>
-                    @endslot
-                @endcomponent
+                        @endcomponent
+                    @endforeach
+                </div>
 
                 <div class="mt-6 pt-6 border-t border-gray-200">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Production pipeline tags</label>

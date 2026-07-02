@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\FeatureHighlight;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class FeatureHighlightController extends Controller
@@ -22,15 +23,14 @@ class FeatureHighlightController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'context'        => 'required|in:services,about,why-us',
-            'icon'           => 'nullable|string|max:100',
-            'sort_order'     => 'nullable|integer|min:0',
-            'title_en'       => 'required|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'description_en' => 'nullable|string',
-            'description_ar' => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'context'    => 'required|in:services,about,why-us',
+            'icon'       => 'nullable|string|max:100',
+            'sort_order' => 'nullable|integer|min:0',
+        ], AdminLocales::fieldRules([
+            'title'       => 'string|max:255',
+            'description' => 'nullable|string',
+        ], requiredFields: ['title'])));
 
         $featureHighlight = FeatureHighlight::create([
             'context'    => $request->context,
@@ -38,15 +38,7 @@ class FeatureHighlightController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $featureHighlight->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'       => $request->input("title_{$locale}"),
-                    'description' => $request->input("description_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($featureHighlight, $request, ['title', 'description']);
 
         session()->flash('success', 'Feature highlight created successfully.');
 
@@ -62,15 +54,14 @@ class FeatureHighlightController extends Controller
 
     public function update(Request $request, FeatureHighlight $featureHighlight)
     {
-        $request->validate([
-            'context'        => 'required|in:services,about,why-us',
-            'icon'           => 'nullable|string|max:100',
-            'sort_order'     => 'nullable|integer|min:0',
-            'title_en'       => 'required|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'description_en' => 'nullable|string',
-            'description_ar' => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'context'    => 'required|in:services,about,why-us',
+            'icon'       => 'nullable|string|max:100',
+            'sort_order' => 'nullable|integer|min:0',
+        ], AdminLocales::fieldRules([
+            'title'       => 'string|max:255',
+            'description' => 'nullable|string',
+        ], requiredFields: ['title'])));
 
         $featureHighlight->update([
             'context'    => $request->context,
@@ -78,15 +69,7 @@ class FeatureHighlightController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $featureHighlight->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'       => $request->input("title_{$locale}"),
-                    'description' => $request->input("description_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($featureHighlight, $request, ['title', 'description']);
 
         session()->flash('success', 'Feature highlight updated successfully.');
 

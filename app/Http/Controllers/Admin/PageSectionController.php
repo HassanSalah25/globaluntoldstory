@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageSection;
+use App\Support\AdminLocales;
 use App\Support\MediaUrl;
 use Illuminate\Http\Request;
 
@@ -39,10 +40,10 @@ class PageSectionController extends Controller
         }
 
         if ($pageSection->type === 'hero_split') {
-            $settings['headline_suffix_en'] = $validated['headline_suffix_en'] ?? null;
-            $settings['headline_suffix_ar'] = $validated['headline_suffix_ar'] ?? null;
-            $settings['cta_secondary_label_en'] = $validated['cta_secondary_label_en'] ?? null;
-            $settings['cta_secondary_label_ar'] = $validated['cta_secondary_label_ar'] ?? null;
+            foreach (AdminLocales::codes() as $locale) {
+                $settings["headline_suffix_{$locale}"] = $validated["headline_suffix_{$locale}"] ?? null;
+                $settings["cta_secondary_label_{$locale}"] = $validated["cta_secondary_label_{$locale}"] ?? null;
+            }
             $settings['cta_secondary_url'] = $validated['cta_secondary_url'] ?? null;
             $settings['production_pipeline'] = $this->parsePipeline($validated['production_pipeline'] ?? '');
         }
@@ -56,19 +57,14 @@ class PageSectionController extends Controller
             'settings' => $settings,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $pageSection->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'badge' => $request->input("badge_{$locale}"),
-                    'title' => $request->input("title_{$locale}"),
-                    'subtitle' => $request->input("subtitle_{$locale}"),
-                    'content' => $request->input("content_{$locale}"),
-                    'cta_label' => $request->input("cta_label_{$locale}"),
-                    'cta_url' => $request->input("cta_url_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($pageSection, $request, [
+            'badge',
+            'title',
+            'subtitle',
+            'content',
+            'cta_label',
+            'cta_url',
+        ]);
 
         return redirect()
             ->route('admin.page-sections.edit', $pageSection)
@@ -84,30 +80,23 @@ class PageSectionController extends Controller
 
     private function rulesForType(string $type): array
     {
-        $base = [
+        $base = AdminLocales::expandRules([
             'image' => 'nullable|string|max:500',
             'is_active' => 'boolean',
             'badge_en' => 'nullable|string|max:255',
-            'badge_ar' => 'nullable|string|max:255',
             'title_en' => 'nullable|string|max:500',
-            'title_ar' => 'nullable|string|max:500',
             'subtitle_en' => 'nullable|string|max:500',
-            'subtitle_ar' => 'nullable|string|max:500',
             'content_en' => 'nullable|string',
-            'content_ar' => 'nullable|string',
             'cta_label_en' => 'nullable|string|max:255',
-            'cta_label_ar' => 'nullable|string|max:255',
             'cta_url_en' => 'nullable|string|max:255',
-            'cta_url_ar' => 'nullable|string|max:255',
-        ];
+        ]);
 
         return match ($type) {
-            'hero_split' => array_merge($base, [
+            'hero_split' => array_merge($base, AdminLocales::expandRules([
                 'image' => 'required|string|max:500',
                 'headline_suffix_en' => 'nullable|string|max:255',
-                'headline_suffix_ar' => 'nullable|string|max:255',
                 'cta_secondary_label_en' => 'nullable|string|max:255',
-                'cta_secondary_label_ar' => 'nullable|string|max:255',
+            ]), [
                 'cta_secondary_url' => 'nullable|string|max:255',
                 'production_pipeline' => 'nullable|string',
             ]),

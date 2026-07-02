@@ -34,22 +34,22 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-2">Translated Value</h3>
-            <p class="text-xs text-gray-400 mb-4">For settings that have different text per language.</p>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab='en'" :class="tab==='en'?'border-b-2 border-red-600 text-red-600':'text-gray-500'" class="px-4 py-2 text-sm font-medium -mb-px">English</button>
-                <button type="button" @click="tab='ar'" :class="tab==='ar'?'border-b-2 border-red-600 text-red-600':'text-gray-500'" class="px-4 py-2 text-sm font-medium -mb-px">عربي</button>
-            </div>
-            <div x-show="tab==='en'">
-                <label class="block text-sm font-medium text-gray-700 mb-1">English Value</label>
-                <textarea name="value_en" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('value_en', $setting->translations->where('locale','en')->first()?->value ?? '') }}</textarea>
-            </div>
-            <div x-show="tab==='ar'" dir="rtl">
-                <label class="block text-sm font-medium text-gray-700 mb-1">القيمة بالعربية</label>
-                <textarea name="value_ar" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('value_ar', $setting->translations->where('locale','ar')->first()?->value ?? '') }}</textarea>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Translated Value'])
+            <p class="text-xs text-gray-400 mb-4 -mt-2">For settings that have different text per language.</p>
+            @foreach($adminLocales as $locale)
+                @php $translation = $setting->translations->where('locale', $locale['code'])->first(); @endphp
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'value',
+                        'label' => $locale['label'] . ' Value',
+                        'locale' => $locale,
+                        'type' => 'textarea',
+                        'rows' => 3,
+                        'value' => $translation?->value ?? '',
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Setting</button>

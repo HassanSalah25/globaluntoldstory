@@ -38,4 +38,34 @@ enum Locale: string
     {
         return $this === self::Arabic ? 'rtl' : 'ltr';
     }
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::English => 'English',
+            self::Arabic => 'Arabic',
+            self::German => 'German',
+            self::Spanish => 'Spanish',
+            self::French => 'French',
+            self::Italian => 'Italian',
+            self::Portuguese => 'Portuguese',
+            self::Turkish => 'Turkish',
+            self::Russian => 'Russian',
+        };
+    }
+
+    public function nativeLabel(): string
+    {
+        return match ($this) {
+            self::English => 'English',
+            self::Arabic => 'عربي',
+            self::German => 'Deutsch',
+            self::Spanish => 'Español',
+            self::French => 'Français',
+            self::Italian => 'Italiano',
+            self::Portuguese => 'Português',
+            self::Turkish => 'Türkçe',
+            self::Russian => 'Русский',
+        };
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -23,15 +24,14 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'type'       => 'required|in:blog,portfolio,service',
             'icon'       => 'nullable|string|max:100',
             'sort_order' => 'nullable|integer|min:0',
-            'name_en'    => 'required|string|max:255',
-            'name_ar'    => 'nullable|string|max:255',
-            'label_en'   => 'nullable|string|max:255',
-            'label_ar'   => 'nullable|string|max:255',
-        ]);
+        ], AdminLocales::fieldRules([
+            'name'  => 'string|max:255',
+            'label' => 'nullable|string|max:255',
+        ], requiredFields: ['name'])));
 
         $category = Category::create([
             'slug'       => Str::slug($request->name_en),
@@ -40,15 +40,7 @@ class CategoryController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $category->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'name'  => $request->input("name_{$locale}"),
-                    'label' => $request->input("label_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($category, $request, ['name', 'label']);
 
         session()->flash('success', 'Category created successfully.');
 
@@ -64,15 +56,14 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'type'       => 'required|in:blog,portfolio,service',
             'icon'       => 'nullable|string|max:100',
             'sort_order' => 'nullable|integer|min:0',
-            'name_en'    => 'required|string|max:255',
-            'name_ar'    => 'nullable|string|max:255',
-            'label_en'   => 'nullable|string|max:255',
-            'label_ar'   => 'nullable|string|max:255',
-        ]);
+        ], AdminLocales::fieldRules([
+            'name'  => 'string|max:255',
+            'label' => 'nullable|string|max:255',
+        ], requiredFields: ['name'])));
 
         $category->update([
             'slug'       => Str::slug($request->name_en),
@@ -81,15 +72,7 @@ class CategoryController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $category->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'name'  => $request->input("name_{$locale}"),
-                    'label' => $request->input("label_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($category, $request, ['name', 'label']);
 
         session()->flash('success', 'Category updated successfully.');
 

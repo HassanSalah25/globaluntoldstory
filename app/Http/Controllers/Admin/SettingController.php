@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -28,11 +29,11 @@ class SettingController extends Controller
     {
         $setting = Setting::findOrFail($setting);
 
-        $request->validate([
-            'value'    => 'nullable',
-            'value_en' => 'nullable|string',
-            'value_ar' => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'value' => 'nullable',
+        ], AdminLocales::fieldRules([
+            'value' => 'nullable|string',
+        ])));
 
         $jsonValue = $request->value;
 
@@ -45,7 +46,7 @@ class SettingController extends Controller
             'value' => $jsonValue,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
+        foreach (AdminLocales::codes() as $locale) {
             $translationValue = $request->input("value_{$locale}");
 
             if ($translationValue !== null) {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Resource;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class ResourceItemController extends Controller
@@ -22,16 +23,15 @@ class ResourceItemController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'icon'           => 'nullable|string|max:100',
-            'color'          => 'nullable|string|max:50',
-            'sort_order'     => 'nullable|integer|min:0',
-            'file_url'       => 'nullable|string|max:500',
-            'title_en'       => 'required|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'type_label_en'  => 'nullable|string|max:100',
-            'type_label_ar'  => 'nullable|string|max:100',
-        ]);
+        $request->validate(array_merge([
+            'icon'       => 'nullable|string|max:100',
+            'color'      => 'nullable|string|max:50',
+            'sort_order' => 'nullable|integer|min:0',
+            'file_url'   => 'nullable|string|max:500',
+        ], AdminLocales::fieldRules([
+            'title'      => 'string|max:255',
+            'type_label' => 'nullable|string|max:100',
+        ], requiredFields: ['title'])));
 
         $resource = Resource::create([
             'icon'       => $request->icon,
@@ -40,15 +40,7 @@ class ResourceItemController extends Controller
             'file_url'   => $request->file_url,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $resource->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'      => $request->input("title_{$locale}"),
-                    'type_label' => $request->input("type_label_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($resource, $request, ['title', 'type_label']);
 
         session()->flash('success', 'Resource created successfully.');
 
@@ -64,16 +56,15 @@ class ResourceItemController extends Controller
 
     public function update(Request $request, Resource $resource)
     {
-        $request->validate([
-            'icon'           => 'nullable|string|max:100',
-            'color'          => 'nullable|string|max:50',
-            'sort_order'     => 'nullable|integer|min:0',
-            'file_url'       => 'nullable|string|max:500',
-            'title_en'       => 'required|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'type_label_en'  => 'nullable|string|max:100',
-            'type_label_ar'  => 'nullable|string|max:100',
-        ]);
+        $request->validate(array_merge([
+            'icon'       => 'nullable|string|max:100',
+            'color'      => 'nullable|string|max:50',
+            'sort_order' => 'nullable|integer|min:0',
+            'file_url'   => 'nullable|string|max:500',
+        ], AdminLocales::fieldRules([
+            'title'      => 'string|max:255',
+            'type_label' => 'nullable|string|max:100',
+        ], requiredFields: ['title'])));
 
         $resource->update([
             'icon'       => $request->icon,
@@ -82,15 +73,7 @@ class ResourceItemController extends Controller
             'file_url'   => $request->file_url,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $resource->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'      => $request->input("title_{$locale}"),
-                    'type_label' => $request->input("type_label_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($resource, $request, ['title', 'type_label']);
 
         session()->flash('success', 'Resource updated successfully.');
 

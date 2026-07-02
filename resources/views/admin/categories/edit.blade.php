@@ -40,34 +40,26 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab='en'" :class="tab==='en'?'border-b-2 border-red-600 text-red-600':'text-gray-500'" class="px-4 py-2 text-sm font-medium -mb-px">English</button>
-                <button type="button" @click="tab='ar'" :class="tab==='ar'?'border-b-2 border-red-600 text-red-600':'text-gray-500'" class="px-4 py-2 text-sm font-medium -mb-px">عربي</button>
-            </div>
-            @php $enT = $category->translations->where('locale','en')->first(); $arT = $category->translations->where('locale','ar')->first(); @endphp
-            <div x-show="tab==='en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Name <span class="text-red-500">*</span></label>
-                    <input type="text" name="name_en" value="{{ old('name_en', $enT?->name) }}" required class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Label</label>
-                    <input type="text" name="label_en" value="{{ old('label_en', $enT?->label) }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-            <div x-show="tab==='ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">الاسم</label>
-                    <input type="text" name="name_ar" value="{{ old('name_ar', $arT?->name) }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">التسمية</label>
-                    <input type="text" name="label_ar" value="{{ old('label_ar', $arT?->label) }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Translations'])
+            @foreach($adminLocales as $locale)
+                @php $t = $category->translations->where('locale', $locale['code'])->first(); @endphp
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'name',
+                        'label' => 'Name',
+                        'locale' => $locale,
+                        'value' => $t?->name ?? '',
+                        'required' => in_array($locale['code'], ['en'], true),
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'label',
+                        'label' => 'Label',
+                        'locale' => $locale,
+                        'value' => $t?->label ?? '',
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Changes</button>

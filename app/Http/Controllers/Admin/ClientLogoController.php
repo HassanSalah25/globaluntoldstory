@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ClientLogo;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class ClientLogoController extends Controller
@@ -22,13 +23,13 @@ class ClientLogoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name'             => 'required|string|max:255',
-            'sort_order'       => 'nullable|integer|min:0',
-            'is_active'        => 'boolean',
-            'display_name_en'  => 'nullable|string|max:255',
-            'display_name_ar'  => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'name'       => 'required|string|max:255',
+            'sort_order' => 'nullable|integer|min:0',
+            'is_active'  => 'boolean',
+        ], AdminLocales::fieldRules([
+            'display_name' => 'nullable|string|max:255',
+        ])));
 
         $clientLogo = ClientLogo::create([
             'name'       => $request->name,
@@ -36,12 +37,7 @@ class ClientLogoController extends Controller
             'is_active'  => $request->boolean('is_active', true),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $clientLogo->translations()->updateOrCreate(
-                ['locale' => $locale],
-                ['display_name' => $request->input("display_name_{$locale}")]
-            );
-        }
+        AdminLocales::syncTranslations($clientLogo, $request, ['display_name']);
 
         session()->flash('success', 'Client logo created successfully.');
 
@@ -57,13 +53,13 @@ class ClientLogoController extends Controller
 
     public function update(Request $request, ClientLogo $clientLogo)
     {
-        $request->validate([
-            'name'             => 'required|string|max:255',
-            'sort_order'       => 'nullable|integer|min:0',
-            'is_active'        => 'boolean',
-            'display_name_en'  => 'nullable|string|max:255',
-            'display_name_ar'  => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'name'       => 'required|string|max:255',
+            'sort_order' => 'nullable|integer|min:0',
+            'is_active'  => 'boolean',
+        ], AdminLocales::fieldRules([
+            'display_name' => 'nullable|string|max:255',
+        ])));
 
         $clientLogo->update([
             'name'       => $request->name,
@@ -71,12 +67,7 @@ class ClientLogoController extends Controller
             'is_active'  => $request->boolean('is_active', true),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $clientLogo->translations()->updateOrCreate(
-                ['locale' => $locale],
-                ['display_name' => $request->input("display_name_{$locale}")]
-            );
-        }
+        AdminLocales::syncTranslations($clientLogo, $request, ['display_name']);
 
         session()->flash('success', 'Client logo updated successfully.');
 

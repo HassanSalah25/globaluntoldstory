@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -26,26 +27,21 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
-
-        return view('admin.services.create', compact('locales'));
+        return view('admin.services.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'icon'        => 'nullable|string|max:255',
-            'image_url'   => 'nullable|string|max:255',
-            'sort_order'  => 'required|integer',
-            'title_en'    => 'required|string|max:255',
-            'title_ar'    => 'required|string|max:255',
-            'short_desc_en' => 'nullable|string',
-            'short_desc_ar' => 'nullable|string',
-            'full_desc_en'  => 'nullable|string',
-            'full_desc_ar'  => 'nullable|string',
-            'price_en'    => 'nullable|string|max:255',
-            'price_ar'    => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'icon'       => 'nullable|string|max:255',
+            'image_url'  => 'nullable|string|max:255',
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'      => 'string|max:255',
+            'short_desc' => 'nullable|string',
+            'full_desc'  => 'nullable|string',
+            'price'      => 'nullable|string|max:255',
+        ], requiredFields: ['title'])));
 
         $service = Service::create([
             'slug'        => Str::slug($request->title_en),
@@ -56,45 +52,33 @@ class ServiceController extends Controller
             'is_featured' => $request->boolean('is_featured'),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $service->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'      => $request->input("title_{$locale}"),
-                    'short_desc' => $request->input("short_desc_{$locale}"),
-                    'full_desc'  => $request->input("full_desc_{$locale}"),
-                    'price'      => $request->input("price_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($service, $request, [
+            'title', 'short_desc', 'full_desc', 'price',
+        ]);
 
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
 
     public function edit(Service $service)
     {
-        $locales = ['en', 'ar'];
         $translations = $service->translations->keyBy('locale');
 
-        return view('admin.services.edit', compact('service', 'locales', 'translations'));
+        return view('admin.services.edit', compact('service', 'translations'));
     }
 
     public function update(Request $request, Service $service)
     {
-        $request->validate([
-            'slug'        => 'required|string|max:255|unique:services,slug,' . $service->id,
-            'icon'        => 'nullable|string|max:255',
-            'image_url'   => 'nullable|string|max:255',
-            'sort_order'  => 'required|integer',
-            'title_en'    => 'required|string|max:255',
-            'title_ar'    => 'required|string|max:255',
-            'short_desc_en' => 'nullable|string',
-            'short_desc_ar' => 'nullable|string',
-            'full_desc_en'  => 'nullable|string',
-            'full_desc_ar'  => 'nullable|string',
-            'price_en'    => 'nullable|string|max:255',
-            'price_ar'    => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'slug'       => 'required|string|max:255|unique:services,slug,' . $service->id,
+            'icon'       => 'nullable|string|max:255',
+            'image_url'  => 'nullable|string|max:255',
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'      => 'string|max:255',
+            'short_desc' => 'nullable|string',
+            'full_desc'  => 'nullable|string',
+            'price'      => 'nullable|string|max:255',
+        ], requiredFields: ['title'])));
 
         $service->update([
             'slug'        => $request->slug,
@@ -105,17 +89,9 @@ class ServiceController extends Controller
             'is_featured' => $request->boolean('is_featured'),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $service->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'      => $request->input("title_{$locale}"),
-                    'short_desc' => $request->input("short_desc_{$locale}"),
-                    'full_desc'  => $request->input("full_desc_{$locale}"),
-                    'price'      => $request->input("price_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($service, $request, [
+            'title', 'short_desc', 'full_desc', 'price',
+        ]);
 
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
     }

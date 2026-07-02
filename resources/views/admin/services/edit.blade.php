@@ -61,54 +61,39 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab = 'en'; $nextTick(() => { window.initRichTextEditors?.(); window.resizeRichTextEditors?.(); })" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
-                <button type="button" @click="tab = 'ar'; $nextTick(() => { window.initRichTextEditors?.(); window.resizeRichTextEditors?.(); })" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
-            </div>
-
-            <div x-show="tab === 'en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}" required class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Short Description</label>
-                    <textarea name="short_desc_en" rows="2" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('short_desc_en', $translations['en']->short_desc ?? '') }}</textarea>
-                </div>
-                @include('admin.components.rich-text-editor', [
-                    'name' => 'full_desc_en',
-                    'label' => 'Full Description',
-                    'value' => old('full_desc_en', $translations['en']->full_desc ?? ''),
-                ])
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Price</label>
-                    <input type="text" name="price_en" value="{{ old('price_en', $translations['en']->price ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-
-            <div x-show="tab === 'ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">وصف مختصر</label>
-                    <textarea name="short_desc_ar" rows="2" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('short_desc_ar', $translations['ar']->short_desc ?? '') }}</textarea>
-                </div>
-                @include('admin.components.rich-text-editor', [
-                    'name' => 'full_desc_ar',
-                    'label' => 'وصف كامل',
-                    'value' => old('full_desc_ar', $translations['ar']->full_desc ?? ''),
-                    'dir' => 'rtl',
-                ])
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">السعر</label>
-                    <input type="text" name="price_ar" value="{{ old('price_ar', $translations['ar']->price ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Translations', 'refreshEditors' => true])
+            @foreach($adminLocales as $locale)
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->title ?? '',
+                        'required' => in_array($locale['code'], ['en'], true),
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'short_desc',
+                        'label' => 'Short Description',
+                        'locale' => $locale,
+                        'type' => 'textarea',
+                        'rows' => 2,
+                        'value' => $translations[$locale['code']]->short_desc ?? '',
+                    ])
+                    @include('admin.components.rich-text-editor', [
+                        'name' => 'full_desc_' . $locale['code'],
+                        'label' => 'Full Description',
+                        'value' => old('full_desc_' . $locale['code'], $translations[$locale['code']]->full_desc ?? ''),
+                        'dir' => $locale['rtl'] ? 'rtl' : 'ltr',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'price',
+                        'label' => 'Price',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->price ?? '',
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex items-center gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Changes</button>

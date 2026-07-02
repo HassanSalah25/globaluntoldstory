@@ -2,7 +2,7 @@
 @section('title', 'Edit SEO: ' . $seoMeta->page_slug)
 
 @section('content')
-<div x-data="{ activeTab: 'en' }">
+<div>
 
     {{-- Flash Messages --}}
     @if(session('success'))
@@ -59,86 +59,83 @@
             </div>
         </div>
 
-        {{-- Translations --}}
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-            <h3 class="text-base font-semibold text-gray-800 mb-4">Translations</h3>
-
-            {{-- Language Tabs --}}
-            <div class="flex gap-1 mb-5 border-b border-gray-200">
-                <button type="button" @click="activeTab = 'en'"
-                    :class="activeTab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-4 py-2 text-sm font-medium -mb-px">
-                    English (EN)
-                </button>
-                <button type="button" @click="activeTab = 'ar'"
-                    :class="activeTab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-4 py-2 text-sm font-medium -mb-px">
-                    Arabic (AR)
-                </button>
-            </div>
-
-            @foreach(['en' => 'English', 'ar' => 'Arabic'] as $locale => $localeName)
-            @php $t = $translations[$locale] ?? null; @endphp
-            <div x-show="activeTab === '{{ $locale }}'" x-cloak>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Meta Title</label>
-                        <input type="text" name="meta_title_{{ $locale }}"
-                            value="{{ old('meta_title_' . $locale, $t?->meta_title) }}"
-                            maxlength="70"
-                            placeholder="Page title for search engines (50–60 chars ideal)"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">OG Title</label>
-                        <input type="text" name="og_title_{{ $locale }}"
-                            value="{{ old('og_title_' . $locale, $t?->og_title) }}"
-                            placeholder="Open Graph title (leave empty to use Meta Title)"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
-                        <textarea name="meta_description_{{ $locale }}" rows="3" maxlength="160"
-                            placeholder="Page description for search engines (120–155 chars ideal)"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">{{ old('meta_description_' . $locale, $t?->meta_description) }}</textarea>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">OG Description</label>
-                        <textarea name="og_description_{{ $locale }}" rows="2"
-                            placeholder="Open Graph description"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">{{ old('og_description_' . $locale, $t?->og_description) }}</textarea>
-                    </div>
-                    <div>
-                        @include('admin.components.image-picker', [
-                            'name' => 'og_image_url_' . $locale,
-                            'label' => 'OG Image',
-                            'value' => old('og_image_url_' . $locale, $t?->og_image_url),
+        @component('admin.components.locale-tabs', ['heading' => 'Translations'])
+            @foreach($adminLocales as $locale)
+                @php $t = $translations[$locale['code']] ?? null; @endphp
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @include('admin.components.locale-field', [
+                            'name' => 'meta_title',
+                            'label' => 'Meta Title',
+                            'locale' => $locale,
+                            'value' => $t?->meta_title ?? '',
+                            'placeholder' => 'Page title for search engines (50–60 chars ideal)',
                         ])
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Twitter Title</label>
-                        <input type="text" name="twitter_title_{{ $locale }}"
-                            value="{{ old('twitter_title_' . $locale, $t?->twitter_title) }}"
-                            placeholder="Twitter card title"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Twitter Description</label>
-                        <textarea name="twitter_description_{{ $locale }}" rows="2"
-                            placeholder="Twitter card description"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-transparent">{{ old('twitter_description_' . $locale, $t?->twitter_description) }}</textarea>
-                    </div>
-                    <div>
-                        @include('admin.components.image-picker', [
-                            'name' => 'twitter_image_url_' . $locale,
-                            'label' => 'Twitter Image',
-                            'value' => old('twitter_image_url_' . $locale, $t?->twitter_image_url),
+                        @include('admin.components.locale-field', [
+                            'name' => 'og_title',
+                            'label' => 'OG Title',
+                            'locale' => $locale,
+                            'value' => $t?->og_title ?? '',
+                            'placeholder' => 'Open Graph title (leave empty to use Meta Title)',
                         ])
+                        <div class="md:col-span-2">
+                            @include('admin.components.locale-field', [
+                                'name' => 'meta_description',
+                                'label' => 'Meta Description',
+                                'locale' => $locale,
+                                'type' => 'textarea',
+                                'rows' => 3,
+                                'value' => $t?->meta_description ?? '',
+                                'placeholder' => 'Page description for search engines (120–155 chars ideal)',
+                            ])
+                        </div>
+                        <div class="md:col-span-2">
+                            @include('admin.components.locale-field', [
+                                'name' => 'og_description',
+                                'label' => 'OG Description',
+                                'locale' => $locale,
+                                'type' => 'textarea',
+                                'rows' => 2,
+                                'value' => $t?->og_description ?? '',
+                                'placeholder' => 'Open Graph description',
+                            ])
+                        </div>
+                        <div>
+                            @include('admin.components.image-picker', [
+                                'name' => 'og_image_url_' . $locale['code'],
+                                'label' => 'OG Image',
+                                'value' => old('og_image_url_' . $locale['code'], $t?->og_image_url),
+                            ])
+                        </div>
+                        @include('admin.components.locale-field', [
+                            'name' => 'twitter_title',
+                            'label' => 'Twitter Title',
+                            'locale' => $locale,
+                            'value' => $t?->twitter_title ?? '',
+                            'placeholder' => 'Twitter card title',
+                        ])
+                        <div class="md:col-span-2">
+                            @include('admin.components.locale-field', [
+                                'name' => 'twitter_description',
+                                'label' => 'Twitter Description',
+                                'locale' => $locale,
+                                'type' => 'textarea',
+                                'rows' => 2,
+                                'value' => $t?->twitter_description ?? '',
+                                'placeholder' => 'Twitter card description',
+                            ])
+                        </div>
+                        <div>
+                            @include('admin.components.image-picker', [
+                                'name' => 'twitter_image_url_' . $locale['code'],
+                                'label' => 'Twitter Image',
+                                'value' => old('twitter_image_url_' . $locale['code'], $t?->twitter_image_url),
+                            ])
+                        </div>
                     </div>
-                </div>
-            </div>
+                @endcomponent
             @endforeach
-        </div>
+        @endcomponent
 
         <div class="flex items-center gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg text-sm font-medium">

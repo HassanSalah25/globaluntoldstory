@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\HeroSlide;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class HeroSlideController extends Controller
@@ -25,36 +26,26 @@ class HeroSlideController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
-
-        return view('admin.hero-slides.create', compact('locales'));
+        return view('admin.hero-slides.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'image_url'           => 'required|string|max:255',
-            'gradient'            => 'nullable|string|max:255',
-            'sort_order'          => 'required|integer',
-            'title_en'            => 'required|string|max:255',
-            'title_ar'            => 'required|string|max:255',
-            'badge_en'            => 'nullable|string|max:255',
-            'badge_ar'            => 'nullable|string|max:255',
-            'title_highlight_en'  => 'nullable|string|max:255',
-            'title_highlight_ar'  => 'nullable|string|max:255',
-            'subtitle_en'         => 'nullable|string|max:255',
-            'subtitle_ar'         => 'nullable|string|max:255',
-            'description_en'      => 'nullable|string',
-            'description_ar'      => 'nullable|string',
-            'cta_primary_label_en'    => 'nullable|string|max:255',
-            'cta_primary_label_ar'    => 'nullable|string|max:255',
-            'cta_primary_url_en'      => 'nullable|string|max:255',
-            'cta_primary_url_ar'      => 'nullable|string|max:255',
-            'cta_secondary_label_en'  => 'nullable|string|max:255',
-            'cta_secondary_label_ar'  => 'nullable|string|max:255',
-            'cta_secondary_url_en'    => 'nullable|string|max:255',
-            'cta_secondary_url_ar'    => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'image_url'  => 'required|string|max:255',
+            'gradient'   => 'nullable|string|max:255',
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'               => 'string|max:255',
+            'badge'               => 'nullable|string|max:255',
+            'title_highlight'     => 'nullable|string|max:255',
+            'subtitle'            => 'nullable|string|max:255',
+            'description'         => 'nullable|string',
+            'cta_primary_label'   => 'nullable|string|max:255',
+            'cta_primary_url'     => 'nullable|string|max:255',
+            'cta_secondary_label' => 'nullable|string|max:255',
+            'cta_secondary_url'   => 'nullable|string|max:255',
+        ], requiredFields: ['title'])));
 
         $heroSlide = HeroSlide::create([
             'image_url'  => $request->image_url,
@@ -63,59 +54,45 @@ class HeroSlideController extends Controller
             'is_active'  => $request->boolean('is_active'),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $heroSlide->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'badge'                => $request->input("badge_{$locale}"),
-                    'title'                => $request->input("title_{$locale}"),
-                    'title_highlight'      => $request->input("title_highlight_{$locale}"),
-                    'subtitle'             => $request->input("subtitle_{$locale}"),
-                    'description'          => $request->input("description_{$locale}"),
-                    'cta_primary_label'    => $request->input("cta_primary_label_{$locale}"),
-                    'cta_primary_url'      => $request->input("cta_primary_url_{$locale}"),
-                    'cta_secondary_label'  => $request->input("cta_secondary_label_{$locale}"),
-                    'cta_secondary_url'    => $request->input("cta_secondary_url_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($heroSlide, $request, [
+            'badge',
+            'title',
+            'title_highlight',
+            'subtitle',
+            'description',
+            'cta_primary_label',
+            'cta_primary_url',
+            'cta_secondary_label',
+            'cta_secondary_url',
+        ]);
 
         return redirect()->route('admin.hero-slides.index')->with('success', 'Hero slide created successfully.');
     }
 
     public function edit(HeroSlide $heroSlide)
     {
-        $locales = ['en', 'ar'];
         $translations = $heroSlide->translations->keyBy('locale');
 
-        return view('admin.hero-slides.edit', compact('heroSlide', 'locales', 'translations'));
+        return view('admin.hero-slides.edit', compact('heroSlide', 'translations'));
     }
 
     public function update(Request $request, HeroSlide $heroSlide)
     {
-        $request->validate([
-            'image_url'           => 'required|string|max:255',
-            'gradient'            => 'nullable|string|max:255',
-            'sort_order'          => 'required|integer',
-            'title_en'            => 'required|string|max:255',
-            'title_ar'            => 'required|string|max:255',
-            'badge_en'            => 'nullable|string|max:255',
-            'badge_ar'            => 'nullable|string|max:255',
-            'title_highlight_en'  => 'nullable|string|max:255',
-            'title_highlight_ar'  => 'nullable|string|max:255',
-            'subtitle_en'         => 'nullable|string|max:255',
-            'subtitle_ar'         => 'nullable|string|max:255',
-            'description_en'      => 'nullable|string',
-            'description_ar'      => 'nullable|string',
-            'cta_primary_label_en'    => 'nullable|string|max:255',
-            'cta_primary_label_ar'    => 'nullable|string|max:255',
-            'cta_primary_url_en'      => 'nullable|string|max:255',
-            'cta_primary_url_ar'      => 'nullable|string|max:255',
-            'cta_secondary_label_en'  => 'nullable|string|max:255',
-            'cta_secondary_label_ar'  => 'nullable|string|max:255',
-            'cta_secondary_url_en'    => 'nullable|string|max:255',
-            'cta_secondary_url_ar'    => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'image_url'  => 'required|string|max:255',
+            'gradient'   => 'nullable|string|max:255',
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'               => 'string|max:255',
+            'badge'               => 'nullable|string|max:255',
+            'title_highlight'     => 'nullable|string|max:255',
+            'subtitle'            => 'nullable|string|max:255',
+            'description'         => 'nullable|string',
+            'cta_primary_label'   => 'nullable|string|max:255',
+            'cta_primary_url'     => 'nullable|string|max:255',
+            'cta_secondary_label' => 'nullable|string|max:255',
+            'cta_secondary_url'   => 'nullable|string|max:255',
+        ], requiredFields: ['title'])));
 
         $heroSlide->update([
             'image_url'  => $request->image_url,
@@ -124,22 +101,17 @@ class HeroSlideController extends Controller
             'is_active'  => $request->boolean('is_active'),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $heroSlide->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'badge'                => $request->input("badge_{$locale}"),
-                    'title'                => $request->input("title_{$locale}"),
-                    'title_highlight'      => $request->input("title_highlight_{$locale}"),
-                    'subtitle'             => $request->input("subtitle_{$locale}"),
-                    'description'          => $request->input("description_{$locale}"),
-                    'cta_primary_label'    => $request->input("cta_primary_label_{$locale}"),
-                    'cta_primary_url'      => $request->input("cta_primary_url_{$locale}"),
-                    'cta_secondary_label'  => $request->input("cta_secondary_label_{$locale}"),
-                    'cta_secondary_url'    => $request->input("cta_secondary_url_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($heroSlide, $request, [
+            'badge',
+            'title',
+            'title_highlight',
+            'subtitle',
+            'description',
+            'cta_primary_label',
+            'cta_primary_url',
+            'cta_secondary_label',
+            'cta_secondary_url',
+        ]);
 
         return redirect()->route('admin.hero-slides.index')->with('success', 'Hero slide updated successfully.');
     }

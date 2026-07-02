@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SeoMeta;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class SeoMetaController extends Controller
@@ -37,21 +38,16 @@ class SeoMetaController extends Controller
             'structured_data' => $request->input('structured_data') ? json_decode($request->input('structured_data'), true) : null,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $seoMeta->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'meta_title'            => $request->input("meta_title_{$locale}"),
-                    'meta_description'      => $request->input("meta_description_{$locale}"),
-                    'og_title'              => $request->input("og_title_{$locale}"),
-                    'og_description'        => $request->input("og_description_{$locale}"),
-                    'og_image_url'          => $request->input("og_image_url_{$locale}"),
-                    'twitter_title'         => $request->input("twitter_title_{$locale}"),
-                    'twitter_description'   => $request->input("twitter_description_{$locale}"),
-                    'twitter_image_url'     => $request->input("twitter_image_url_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($seoMeta, $request, [
+            'meta_title',
+            'meta_description',
+            'og_title',
+            'og_description',
+            'og_image_url',
+            'twitter_title',
+            'twitter_description',
+            'twitter_image_url',
+        ]);
 
         return redirect()->back()->with('success', 'SEO settings updated successfully.');
     }

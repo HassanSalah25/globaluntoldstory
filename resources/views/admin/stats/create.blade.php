@@ -63,35 +63,25 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab = 'en'" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
-                <button type="button" @click="tab = 'ar'" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
-            </div>
-
-            <div x-show="tab === 'en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Label <span class="text-red-500">*</span></label>
-                    <input type="text" name="label_en" value="{{ old('label_en') }}" required placeholder="e.g. Projects Completed" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Sub-label</label>
-                    <input type="text" name="sublabel_en" value="{{ old('sublabel_en') }}" placeholder="e.g. and counting" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-
-            <div x-show="tab === 'ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">التسمية <span class="text-red-500">*</span></label>
-                    <input type="text" name="label_ar" value="{{ old('label_ar') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">التسمية الفرعية</label>
-                    <input type="text" name="sublabel_ar" value="{{ old('sublabel_ar') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Translations'])
+            @foreach($adminLocales as $locale)
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'label',
+                        'label' => 'Label',
+                        'locale' => $locale,
+                        'required' => in_array($locale['code'], ['en'], true),
+                        'placeholder' => $locale['code'] === 'en' ? 'e.g. Projects Completed' : null,
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'sublabel',
+                        'label' => 'Sub-label',
+                        'locale' => $locale,
+                        'placeholder' => $locale['code'] === 'en' ? 'e.g. and counting' : null,
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex items-center gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Create Stat</button>

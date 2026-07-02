@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -25,71 +26,50 @@ class FaqController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
-
-        return view('admin.faqs.create', compact('locales'));
+        return view('admin.faqs.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'sort_order'   => 'required|integer',
-            'question_en'  => 'required|string|max:255',
-            'question_ar'  => 'required|string|max:255',
-            'answer_en'    => 'nullable|string',
-            'answer_ar'    => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'question' => 'string|max:255',
+            'answer'   => 'nullable|string',
+        ], requiredFields: ['question'])));
 
         $faq = Faq::create([
             'sort_order' => $request->sort_order,
             'is_active'  => $request->boolean('is_active'),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $faq->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'question' => $request->input("question_{$locale}"),
-                    'answer'   => $request->input("answer_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($faq, $request, ['question', 'answer']);
 
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully.');
     }
 
     public function edit(Faq $faq)
     {
-        $locales = ['en', 'ar'];
         $translations = $faq->translations->keyBy('locale');
 
-        return view('admin.faqs.edit', compact('faq', 'locales', 'translations'));
+        return view('admin.faqs.edit', compact('faq', 'translations'));
     }
 
     public function update(Request $request, Faq $faq)
     {
-        $request->validate([
-            'sort_order'   => 'required|integer',
-            'question_en'  => 'required|string|max:255',
-            'question_ar'  => 'required|string|max:255',
-            'answer_en'    => 'nullable|string',
-            'answer_ar'    => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'question' => 'string|max:255',
+            'answer'   => 'nullable|string',
+        ], requiredFields: ['question'])));
 
         $faq->update([
             'sort_order' => $request->sort_order,
             'is_active'  => $request->boolean('is_active'),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $faq->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'question' => $request->input("question_{$locale}"),
-                    'answer'   => $request->input("answer_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($faq, $request, ['question', 'answer']);
 
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully.');
     }

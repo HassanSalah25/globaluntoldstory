@@ -95,43 +95,33 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab = 'en'" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
-                <button type="button" @click="tab = 'ar'" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
-            </div>
-
-            <div x-show="tab === 'en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}" required class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Results Text</label>
-                    <textarea name="results_text_en" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('results_text_en', $translations['en']->results_text ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Metric (translated)</label>
-                    <input type="text" name="metric_en" value="{{ old('metric_en', $translations['en']->metric ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-
-            <div x-show="tab === 'ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">نص النتائج</label>
-                    <textarea name="results_text_ar" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('results_text_ar', $translations['ar']->results_text ?? '') }}</textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">المقياس</label>
-                    <input type="text" name="metric_ar" value="{{ old('metric_ar', $translations['ar']->metric ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Translations'])
+            @foreach($adminLocales as $locale)
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->title ?? '',
+                        'required' => in_array($locale['code'], ['en'], true),
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'results_text',
+                        'label' => 'Results Text',
+                        'locale' => $locale,
+                        'type' => 'textarea',
+                        'rows' => 3,
+                        'value' => $translations[$locale['code']]->results_text ?? '',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'metric',
+                        'label' => 'Metric (translated)',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->metric ?? '',
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex items-center gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Changes</button>

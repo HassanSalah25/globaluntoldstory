@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\MenuItem;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -75,14 +76,14 @@ class MenuController extends Controller
 
     public function storeItem(Request $request, Menu $menu)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'parent_id'  => 'nullable|exists:menu_items,id',
             'url'        => 'required|string|max:500',
             'sort_order' => 'nullable|integer|min:0',
             'is_active'  => 'boolean',
-            'label_en'   => 'required|string|max:255',
-            'label_ar'   => 'nullable|string|max:255',
-        ]);
+        ], AdminLocales::fieldRules([
+            'label' => 'string|max:255',
+        ], requiredFields: ['label'])));
 
         $item = $menu->items()->create([
             'parent_id'  => $request->parent_id,
@@ -91,12 +92,7 @@ class MenuController extends Controller
             'is_active'  => $request->boolean('is_active', true),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $item->translations()->updateOrCreate(
-                ['locale' => $locale],
-                ['label' => $request->input("label_{$locale}")]
-            );
-        }
+        AdminLocales::syncTranslations($item, $request, ['label']);
 
         session()->flash('success', 'Menu item created successfully.');
 
@@ -105,14 +101,14 @@ class MenuController extends Controller
 
     public function updateItem(Request $request, Menu $menu, MenuItem $item)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'parent_id'  => 'nullable|exists:menu_items,id',
             'url'        => 'required|string|max:500',
             'sort_order' => 'nullable|integer|min:0',
             'is_active'  => 'boolean',
-            'label_en'   => 'required|string|max:255',
-            'label_ar'   => 'nullable|string|max:255',
-        ]);
+        ], AdminLocales::fieldRules([
+            'label' => 'string|max:255',
+        ], requiredFields: ['label'])));
 
         $item->update([
             'parent_id'  => $request->parent_id,
@@ -121,12 +117,7 @@ class MenuController extends Controller
             'is_active'  => $request->boolean('is_active', true),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $item->translations()->updateOrCreate(
-                ['locale' => $locale],
-                ['label' => $request->input("label_{$locale}")]
-            );
-        }
+        AdminLocales::syncTranslations($item, $request, ['label']);
 
         session()->flash('success', 'Menu item updated successfully.');
 

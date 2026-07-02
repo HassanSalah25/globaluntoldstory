@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\TimelineEvent;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class TimelineEventController extends Controller
@@ -25,22 +26,19 @@ class TimelineEventController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
-
-        return view('admin.timeline.create', compact('locales'));
+        return view('admin.timeline.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'year'            => 'required|string|max:20',
-            'icon'            => 'nullable|string|max:255',
-            'sort_order'      => 'required|integer',
-            'title_en'        => 'required|string|max:255',
-            'title_ar'        => 'nullable|string|max:255',
-            'description_en'  => 'nullable|string',
-            'description_ar'  => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'year'       => 'required|string|max:20',
+            'icon'       => 'nullable|string|max:255',
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'       => 'string|max:255',
+            'description' => 'nullable|string',
+        ], requiredFields: ['title'])));
 
         $timelineEvent = TimelineEvent::create([
             'year'       => $request->year,
@@ -48,39 +46,29 @@ class TimelineEventController extends Controller
             'sort_order' => $request->sort_order,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $timelineEvent->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'       => $request->input("title_{$locale}"),
-                    'description' => $request->input("description_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($timelineEvent, $request, ['title', 'description']);
 
         return redirect()->route('admin.timeline.index')->with('success', 'Timeline event created successfully.');
     }
 
     public function edit(TimelineEvent $timeline)
     {
-        $locales = ['en', 'ar'];
         $event = $timeline;
         $translations = $timeline->translations->keyBy('locale');
 
-        return view('admin.timeline.edit', compact('event', 'locales', 'translations'));
+        return view('admin.timeline.edit', compact('event', 'translations'));
     }
 
     public function update(Request $request, TimelineEvent $timeline)
     {
-        $request->validate([
-            'year'            => 'required|string|max:20',
-            'icon'            => 'nullable|string|max:255',
-            'sort_order'      => 'required|integer',
-            'title_en'        => 'required|string|max:255',
-            'title_ar'        => 'nullable|string|max:255',
-            'description_en'  => 'nullable|string',
-            'description_ar'  => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'year'       => 'required|string|max:20',
+            'icon'       => 'nullable|string|max:255',
+            'sort_order' => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'       => 'string|max:255',
+            'description' => 'nullable|string',
+        ], requiredFields: ['title'])));
 
         $timeline->update([
             'year'       => $request->year,
@@ -88,15 +76,7 @@ class TimelineEventController extends Controller
             'sort_order' => $request->sort_order,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $timeline->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'       => $request->input("title_{$locale}"),
-                    'description' => $request->input("description_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($timeline, $request, ['title', 'description']);
 
         return redirect()->route('admin.timeline.index')->with('success', 'Timeline event updated successfully.');
     }

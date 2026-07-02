@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
@@ -25,25 +26,21 @@ class TestimonialController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
-
-        return view('admin.testimonials.create', compact('locales'));
+        return view('admin.testimonials.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'avatar_url' => 'nullable|string|max:255',
             'rating'     => 'required|integer|min:1|max:5',
             'sort_order' => 'required|integer',
             'type'       => 'required|in:client,award',
-            'name_en'    => 'required|string|max:255',
-            'name_ar'    => 'required|string|max:255',
-            'role_en'    => 'nullable|string|max:255',
-            'role_ar'    => 'nullable|string|max:255',
-            'text_en'    => 'nullable|string',
-            'text_ar'    => 'nullable|string',
-        ]);
+        ], AdminLocales::fieldRules([
+            'name' => 'string|max:255',
+            'role' => 'nullable|string|max:255',
+            'text' => 'nullable|string',
+        ], requiredFields: ['name'])));
 
         $testimonial = Testimonial::create([
             'avatar_url' => $request->avatar_url,
@@ -53,42 +50,30 @@ class TestimonialController extends Controller
             'type'       => $request->type,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $testimonial->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'name' => $request->input("name_{$locale}"),
-                    'role' => $request->input("role_{$locale}"),
-                    'text' => $request->input("text_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($testimonial, $request, ['name', 'role', 'text']);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial created successfully.');
     }
 
     public function edit(Testimonial $testimonial)
     {
-        $locales = ['en', 'ar'];
         $translations = $testimonial->translations->keyBy('locale');
 
-        return view('admin.testimonials.edit', compact('testimonial', 'locales', 'translations'));
+        return view('admin.testimonials.edit', compact('testimonial', 'translations'));
     }
 
     public function update(Request $request, Testimonial $testimonial)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'avatar_url' => 'nullable|string|max:255',
             'rating'     => 'required|integer|min:1|max:5',
             'sort_order' => 'required|integer',
             'type'       => 'required|in:client,award',
-            'name_en'    => 'required|string|max:255',
-            'name_ar'    => 'required|string|max:255',
-            'role_en'    => 'nullable|string|max:255',
-            'role_ar'    => 'nullable|string|max:255',
-            'text_en'    => 'nullable|string',
-            'text_ar'    => 'nullable|string',
-        ]);
+        ], AdminLocales::fieldRules([
+            'name' => 'string|max:255',
+            'role' => 'nullable|string|max:255',
+            'text' => 'nullable|string',
+        ], requiredFields: ['name'])));
 
         $testimonial->update([
             'avatar_url' => $request->avatar_url,
@@ -98,16 +83,7 @@ class TestimonialController extends Controller
             'type'       => $request->type,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $testimonial->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'name' => $request->input("name_{$locale}"),
-                    'role' => $request->input("role_{$locale}"),
-                    'text' => $request->input("text_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($testimonial, $request, ['name', 'role', 'text']);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial updated successfully.');
     }

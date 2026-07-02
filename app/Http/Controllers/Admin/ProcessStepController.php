@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProcessStep;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class ProcessStepController extends Controller
@@ -25,73 +26,52 @@ class ProcessStepController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
-
-        return view('admin.process-steps.create', compact('locales'));
+        return view('admin.process-steps.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'step_number'     => 'required|integer',
-            'sort_order'      => 'required|integer',
-            'title_en'        => 'required|string|max:255',
-            'title_ar'        => 'required|string|max:255',
-            'description_en'  => 'nullable|string',
-            'description_ar'  => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'step_number' => 'required|integer',
+            'sort_order'  => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'       => 'string|max:255',
+            'description' => 'nullable|string',
+        ], requiredFields: ['title'])));
 
         $processStep = ProcessStep::create([
             'step_number' => $request->step_number,
             'sort_order'  => $request->sort_order,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $processStep->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'       => $request->input("title_{$locale}"),
-                    'description' => $request->input("description_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($processStep, $request, ['title', 'description']);
 
         return redirect()->route('admin.process-steps.index')->with('success', 'Process step created successfully.');
     }
 
     public function edit(ProcessStep $processStep)
     {
-        $locales = ['en', 'ar'];
         $translations = $processStep->translations->keyBy('locale');
 
-        return view('admin.process-steps.edit', compact('processStep', 'locales', 'translations'));
+        return view('admin.process-steps.edit', compact('processStep', 'translations'));
     }
 
     public function update(Request $request, ProcessStep $processStep)
     {
-        $request->validate([
-            'step_number'     => 'required|integer',
-            'sort_order'      => 'required|integer',
-            'title_en'        => 'required|string|max:255',
-            'title_ar'        => 'required|string|max:255',
-            'description_en'  => 'nullable|string',
-            'description_ar'  => 'nullable|string',
-        ]);
+        $request->validate(array_merge([
+            'step_number' => 'required|integer',
+            'sort_order'  => 'required|integer',
+        ], AdminLocales::fieldRules([
+            'title'       => 'string|max:255',
+            'description' => 'nullable|string',
+        ], requiredFields: ['title'])));
 
         $processStep->update([
             'step_number' => $request->step_number,
             'sort_order'  => $request->sort_order,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $processStep->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'       => $request->input("title_{$locale}"),
-                    'description' => $request->input("description_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($processStep, $request, ['title', 'description']);
 
         return redirect()->route('admin.process-steps.index')->with('success', 'Process step updated successfully.');
     }

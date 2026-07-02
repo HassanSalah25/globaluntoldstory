@@ -8,6 +8,16 @@
 
 @section('content')
 
+{{-- Multilingual editing --}}
+<div class="mb-6 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+    <span class="font-semibold">Multilingual CMS:</span>
+    Content forms support
+    @foreach($adminLocales as $i => $locale)
+        <span class="font-medium">{{ $locale['native'] }}</span>@if($locale['required'])<span class="text-red-600">*</span>@endif@if($i < count($adminLocales) - 1), @endif
+    @endforeach
+    . English and Arabic are required; other languages are optional.
+</div>
+
 {{-- ── Stat Cards ─────────────────────────────────── --}}
 <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 

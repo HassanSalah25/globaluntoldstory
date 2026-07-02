@@ -140,29 +140,21 @@
                 </div>
             </div>
 
-            {{-- Label translations --}}
-            <div x-data="{ tab: 'en' }" class="border border-gray-200 rounded-lg p-4 mb-4">
+            @php $defaultTab = $adminLocales[0]['code'] ?? 'en'; @endphp
+            <div class="border border-gray-200 rounded-lg p-4 mb-4" x-data="{ tab: '{{ $defaultTab }}' }">
                 <p class="text-sm font-medium text-gray-700 mb-3">Item Label (Translations)</p>
-                <div class="flex border-b mb-4">
-                    <button type="button" @click="tab='en'"
-                            :class="tab==='en' ? 'border-b-2 border-red-600 text-red-600 font-medium' : 'text-gray-500 hover:text-gray-700'"
-                            class="px-4 py-2 text-sm">English</button>
-                    <button type="button" @click="tab='ar'"
-                            :class="tab==='ar' ? 'border-b-2 border-red-600 text-red-600 font-medium' : 'text-gray-500 hover:text-gray-700'"
-                            class="px-4 py-2 text-sm">عربي</button>
-                </div>
-                <div x-show="tab==='en'">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Label (EN) <span class="text-red-500">*</span></label>
-                    <input type="text" name="label_en"
-                           placeholder="e.g. About Us"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div x-show="tab==='ar'" dir="rtl">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">التسمية (AR)</label>
-                    <input type="text" name="label_ar"
-                           placeholder="مثال: من نحن"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
+                @include('admin.components.locale-tab-nav')
+                @foreach($adminLocales as $locale)
+                    @component('admin.components.locale-panel', ['locale' => $locale])
+                        @include('admin.components.locale-field', [
+                            'name' => 'label',
+                            'label' => 'Label',
+                            'locale' => $locale,
+                            'required' => in_array($locale['code'], ['en'], true),
+                            'placeholder' => $locale['code'] === 'en' ? 'e.g. About Us' : 'مثال: من نحن',
+                        ])
+                    @endcomponent
+                @endforeach
             </div>
 
             <button type="submit"

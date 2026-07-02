@@ -48,58 +48,31 @@
             </div>
         </div>
 
-        {{-- Translations --}}
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h2 class="text-base font-semibold text-gray-800 mb-4">Translations</h2>
-
-            <div class="flex border-b mb-4">
-                <button type="button" @click="tab='en'"
-                        :class="tab==='en' ? 'border-b-2 border-red-600 text-red-600 font-medium' : 'text-gray-500 hover:text-gray-700'"
-                        class="px-4 py-2 text-sm">English</button>
-                <button type="button" @click="tab='ar'"
-                        :class="tab==='ar' ? 'border-b-2 border-red-600 text-red-600 font-medium' : 'text-gray-500 hover:text-gray-700'"
-                        class="px-4 py-2 text-sm">عربي</button>
-            </div>
-
-            <div x-show="tab==='en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_en" value="{{ old('title_en') }}"
-                           placeholder="e.g. Best Digital Agency 2024"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Organization</label>
-                    <input type="text" name="organization_en" value="{{ old('organization_en') }}"
-                           placeholder="e.g. Forbes Middle East"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Year Label</label>
-                    <input type="text" name="year_label_en" value="{{ old('year_label_en') }}"
-                           placeholder="e.g. 2024"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-
-            <div x-show="tab==='ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان <span class="text-red-500">*</span></label>
-                    <input type="text" name="title_ar" value="{{ old('title_ar') }}"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">المنظمة</label>
-                    <input type="text" name="organization_ar" value="{{ old('organization_ar') }}"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">تسمية السنة</label>
-                    <input type="text" name="year_label_ar" value="{{ old('year_label_ar') }}"
-                           class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-            </div>
-        </div>
+        @component('admin.components.locale-tabs', ['heading' => 'Translations'])
+            @foreach($adminLocales as $locale)
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'locale' => $locale,
+                        'required' => in_array($locale['code'], ['en'], true),
+                        'placeholder' => $locale['code'] === 'en' ? 'e.g. Best Digital Agency 2024' : null,
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'organization',
+                        'label' => 'Organization',
+                        'locale' => $locale,
+                        'placeholder' => $locale['code'] === 'en' ? 'e.g. Forbes Middle East' : null,
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'year_label',
+                        'label' => 'Year Label',
+                        'locale' => $locale,
+                        'placeholder' => $locale['code'] === 'en' ? 'e.g. 2024' : null,
+                    ])
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex gap-3">
             <button type="submit"

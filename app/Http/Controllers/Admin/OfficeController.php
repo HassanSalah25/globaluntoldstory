@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Office;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class OfficeController extends Controller
@@ -22,21 +23,20 @@ class OfficeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'flag'           => 'nullable|string|max:10',
-            'city'           => 'required|string|max:100',
-            'country'        => 'required|string|max:100',
-            'address'        => 'nullable|string|max:500',
-            'phone'          => 'nullable|string|max:50',
-            'email'          => 'nullable|email|max:255',
-            'timezone'       => 'nullable|string|max:100',
-            'sort_order'     => 'nullable|integer|min:0',
+        $request->validate(array_merge([
+            'flag'            => 'nullable|string|max:10',
+            'city'            => 'required|string|max:100',
+            'country'         => 'required|string|max:100',
+            'address'         => 'nullable|string|max:500',
+            'phone'           => 'nullable|string|max:50',
+            'email'           => 'nullable|email|max:255',
+            'timezone'        => 'nullable|string|max:100',
+            'sort_order'      => 'nullable|integer|min:0',
             'is_headquarters' => 'boolean',
-            'title_en'       => 'nullable|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'status_en'      => 'nullable|string|max:100',
-            'status_ar'      => 'nullable|string|max:100',
-        ]);
+        ], AdminLocales::fieldRules([
+            'title'  => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:100',
+        ])));
 
         $office = Office::create([
             'flag'            => $request->flag,
@@ -50,15 +50,7 @@ class OfficeController extends Controller
             'is_headquarters' => $request->boolean('is_headquarters', false),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $office->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'  => $request->input("title_{$locale}"),
-                    'status' => $request->input("status_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($office, $request, ['title', 'status']);
 
         session()->flash('success', 'Office created successfully.');
 
@@ -74,21 +66,20 @@ class OfficeController extends Controller
 
     public function update(Request $request, Office $office)
     {
-        $request->validate([
-            'flag'           => 'nullable|string|max:10',
-            'city'           => 'required|string|max:100',
-            'country'        => 'required|string|max:100',
-            'address'        => 'nullable|string|max:500',
-            'phone'          => 'nullable|string|max:50',
-            'email'          => 'nullable|email|max:255',
-            'timezone'       => 'nullable|string|max:100',
-            'sort_order'     => 'nullable|integer|min:0',
+        $request->validate(array_merge([
+            'flag'            => 'nullable|string|max:10',
+            'city'            => 'required|string|max:100',
+            'country'         => 'required|string|max:100',
+            'address'         => 'nullable|string|max:500',
+            'phone'           => 'nullable|string|max:50',
+            'email'           => 'nullable|email|max:255',
+            'timezone'        => 'nullable|string|max:100',
+            'sort_order'      => 'nullable|integer|min:0',
             'is_headquarters' => 'boolean',
-            'title_en'       => 'nullable|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'status_en'      => 'nullable|string|max:100',
-            'status_ar'      => 'nullable|string|max:100',
-        ]);
+        ], AdminLocales::fieldRules([
+            'title'  => 'nullable|string|max:255',
+            'status' => 'nullable|string|max:100',
+        ])));
 
         $office->update([
             'flag'            => $request->flag,
@@ -102,15 +93,7 @@ class OfficeController extends Controller
             'is_headquarters' => $request->boolean('is_headquarters', false),
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $office->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'  => $request->input("title_{$locale}"),
-                    'status' => $request->input("status_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($office, $request, ['title', 'status']);
 
         session()->flash('success', 'Office updated successfully.');
 

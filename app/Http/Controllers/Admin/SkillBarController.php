@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SkillBar;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class SkillBarController extends Controller
@@ -22,13 +23,13 @@ class SkillBarController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'percent'    => 'required|integer|min:0|max:100',
             'color'      => 'nullable|string|max:50',
             'sort_order' => 'nullable|integer|min:0',
-            'label_en'   => 'required|string|max:255',
-            'label_ar'   => 'nullable|string|max:255',
-        ]);
+        ], AdminLocales::fieldRules([
+            'label' => 'string|max:255',
+        ], requiredFields: ['label'])));
 
         $skillBar = SkillBar::create([
             'percent'    => $request->percent,
@@ -36,12 +37,7 @@ class SkillBarController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $skillBar->translations()->updateOrCreate(
-                ['locale' => $locale],
-                ['label' => $request->input("label_{$locale}")]
-            );
-        }
+        AdminLocales::syncTranslations($skillBar, $request, ['label']);
 
         session()->flash('success', 'Skill bar created successfully.');
 
@@ -57,13 +53,13 @@ class SkillBarController extends Controller
 
     public function update(Request $request, SkillBar $skillBar)
     {
-        $request->validate([
+        $request->validate(array_merge([
             'percent'    => 'required|integer|min:0|max:100',
             'color'      => 'nullable|string|max:50',
             'sort_order' => 'nullable|integer|min:0',
-            'label_en'   => 'required|string|max:255',
-            'label_ar'   => 'nullable|string|max:255',
-        ]);
+        ], AdminLocales::fieldRules([
+            'label' => 'string|max:255',
+        ], requiredFields: ['label'])));
 
         $skillBar->update([
             'percent'    => $request->percent,
@@ -71,12 +67,7 @@ class SkillBarController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $skillBar->translations()->updateOrCreate(
-                ['locale' => $locale],
-                ['label' => $request->input("label_{$locale}")]
-            );
-        }
+        AdminLocales::syncTranslations($skillBar, $request, ['label']);
 
         session()->flash('success', 'Skill bar updated successfully.');
 

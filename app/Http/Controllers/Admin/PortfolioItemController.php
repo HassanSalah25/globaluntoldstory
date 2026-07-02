@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\PortfolioItem;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,31 +28,28 @@ class PortfolioItemController extends Controller
 
     public function create()
     {
-        $locales = ['en', 'ar'];
         $categories = Category::with('translations')->where('type', 'portfolio')->get();
 
-        return view('admin.portfolio.create', compact('locales', 'categories'));
+        return view('admin.portfolio.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'category_id'   => 'nullable|exists:categories,id',
-            'client_name'   => 'nullable|string|max:255',
-            'image_url'     => 'nullable|string|max:255',
-            'duration'      => 'nullable|string|max:255',
-            'budget'        => 'nullable|string|max:255',
-            'results'       => 'nullable|string|max:255',
-            'metric'        => 'nullable|string|max:255',
-            'sort_order'    => 'required|integer',
-            'grid_size'     => 'nullable|in:small,medium,large',
-            'title_en'      => 'required|string|max:255',
-            'title_ar'      => 'required|string|max:255',
-            'results_text_en' => 'nullable|string',
-            'results_text_ar' => 'nullable|string',
-            'metric_en'     => 'nullable|string|max:255',
-            'metric_ar'     => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'category_id' => 'nullable|exists:categories,id',
+            'client_name' => 'nullable|string|max:255',
+            'image_url'   => 'nullable|string|max:255',
+            'duration'    => 'nullable|string|max:255',
+            'budget'      => 'nullable|string|max:255',
+            'results'     => 'nullable|string|max:255',
+            'metric'      => 'nullable|string|max:255',
+            'sort_order'  => 'required|integer',
+            'grid_size'   => 'nullable|in:small,medium,large',
+        ], AdminLocales::fieldRules([
+            'title'        => 'string|max:255',
+            'results_text' => 'nullable|string',
+            'metric'       => 'nullable|string|max:255',
+        ], requiredFields: ['title'])));
 
         $portfolioItem = PortfolioItem::create([
             'slug'        => Str::slug($request->title_en),
@@ -68,49 +66,37 @@ class PortfolioItemController extends Controller
             'grid_size'   => $request->grid_size ?? 'medium',
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $portfolioItem->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'        => $request->input("title_{$locale}"),
-                    'results_text' => $request->input("results_text_{$locale}"),
-                    'metric'       => $request->input("metric_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($portfolioItem, $request, ['title', 'results_text', 'metric']);
 
         return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio item created successfully.');
     }
 
     public function edit(PortfolioItem $portfolio)
     {
-        $locales = ['en', 'ar'];
         $translations = $portfolio->translations->keyBy('locale');
         $categories = Category::with('translations')->where('type', 'portfolio')->get();
 
-        return view('admin.portfolio.edit', compact('portfolio', 'locales', 'translations', 'categories'));
+        return view('admin.portfolio.edit', compact('portfolio', 'translations', 'categories'));
     }
 
     public function update(Request $request, PortfolioItem $portfolio)
     {
-        $request->validate([
-            'slug'          => 'required|string|max:255|unique:portfolio_items,slug,' . $portfolio->id,
-            'category_id'   => 'nullable|exists:categories,id',
-            'client_name'   => 'nullable|string|max:255',
-            'image_url'     => 'nullable|string|max:255',
-            'duration'      => 'nullable|string|max:255',
-            'budget'        => 'nullable|string|max:255',
-            'results'       => 'nullable|string|max:255',
-            'metric'        => 'nullable|string|max:255',
-            'sort_order'    => 'required|integer',
-            'grid_size'     => 'nullable|in:small,medium,large',
-            'title_en'      => 'required|string|max:255',
-            'title_ar'      => 'required|string|max:255',
-            'results_text_en' => 'nullable|string',
-            'results_text_ar' => 'nullable|string',
-            'metric_en'     => 'nullable|string|max:255',
-            'metric_ar'     => 'nullable|string|max:255',
-        ]);
+        $request->validate(array_merge([
+            'slug'        => 'required|string|max:255|unique:portfolio_items,slug,' . $portfolio->id,
+            'category_id' => 'nullable|exists:categories,id',
+            'client_name' => 'nullable|string|max:255',
+            'image_url'   => 'nullable|string|max:255',
+            'duration'    => 'nullable|string|max:255',
+            'budget'      => 'nullable|string|max:255',
+            'results'     => 'nullable|string|max:255',
+            'metric'      => 'nullable|string|max:255',
+            'sort_order'  => 'required|integer',
+            'grid_size'   => 'nullable|in:small,medium,large',
+        ], AdminLocales::fieldRules([
+            'title'        => 'string|max:255',
+            'results_text' => 'nullable|string',
+            'metric'       => 'nullable|string|max:255',
+        ], requiredFields: ['title'])));
 
         $portfolio->update([
             'slug'        => $request->slug,
@@ -127,16 +113,7 @@ class PortfolioItemController extends Controller
             'grid_size'   => $request->grid_size ?? 'medium',
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $portfolio->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'        => $request->input("title_{$locale}"),
-                    'results_text' => $request->input("results_text_{$locale}"),
-                    'metric'       => $request->input("metric_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($portfolio, $request, ['title', 'results_text', 'metric']);
 
         return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio item updated successfully.');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Award;
+use App\Support\AdminLocales;
 use Illuminate\Http\Request;
 
 class AwardController extends Controller
@@ -22,17 +23,15 @@ class AwardController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'icon'           => 'nullable|string|max:100',
-            'color'          => 'nullable|string|max:50',
-            'sort_order'     => 'nullable|integer|min:0',
-            'title_en'       => 'required|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'organization_en' => 'nullable|string|max:255',
-            'organization_ar' => 'nullable|string|max:255',
-            'year_label_en'  => 'nullable|string|max:100',
-            'year_label_ar'  => 'nullable|string|max:100',
-        ]);
+        $request->validate(array_merge([
+            'icon'       => 'nullable|string|max:100',
+            'color'      => 'nullable|string|max:50',
+            'sort_order' => 'nullable|integer|min:0',
+        ], AdminLocales::fieldRules([
+            'title'        => 'string|max:255',
+            'organization' => 'nullable|string|max:255',
+            'year_label'   => 'nullable|string|max:100',
+        ], requiredFields: ['title'])));
 
         $award = Award::create([
             'icon'       => $request->icon,
@@ -40,16 +39,7 @@ class AwardController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $award->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'        => $request->input("title_{$locale}"),
-                    'organization' => $request->input("organization_{$locale}"),
-                    'year_label'   => $request->input("year_label_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($award, $request, ['title', 'organization', 'year_label']);
 
         session()->flash('success', 'Award created successfully.');
 
@@ -65,17 +55,15 @@ class AwardController extends Controller
 
     public function update(Request $request, Award $award)
     {
-        $request->validate([
-            'icon'           => 'nullable|string|max:100',
-            'color'          => 'nullable|string|max:50',
-            'sort_order'     => 'nullable|integer|min:0',
-            'title_en'       => 'required|string|max:255',
-            'title_ar'       => 'nullable|string|max:255',
-            'organization_en' => 'nullable|string|max:255',
-            'organization_ar' => 'nullable|string|max:255',
-            'year_label_en'  => 'nullable|string|max:100',
-            'year_label_ar'  => 'nullable|string|max:100',
-        ]);
+        $request->validate(array_merge([
+            'icon'       => 'nullable|string|max:100',
+            'color'      => 'nullable|string|max:50',
+            'sort_order' => 'nullable|integer|min:0',
+        ], AdminLocales::fieldRules([
+            'title'        => 'string|max:255',
+            'organization' => 'nullable|string|max:255',
+            'year_label'   => 'nullable|string|max:100',
+        ], requiredFields: ['title'])));
 
         $award->update([
             'icon'       => $request->icon,
@@ -83,16 +71,7 @@ class AwardController extends Controller
             'sort_order' => $request->sort_order ?? 0,
         ]);
 
-        foreach (['en', 'ar'] as $locale) {
-            $award->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title'        => $request->input("title_{$locale}"),
-                    'organization' => $request->input("organization_{$locale}"),
-                    'year_label'   => $request->input("year_label_{$locale}"),
-                ]
-            );
-        }
+        AdminLocales::syncTranslations($award, $request, ['title', 'organization', 'year_label']);
 
         session()->flash('success', 'Award updated successfully.');
 

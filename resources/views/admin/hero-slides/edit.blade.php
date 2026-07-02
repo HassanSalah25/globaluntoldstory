@@ -46,97 +46,70 @@
         </div>
 
         {{-- Translation Tabs --}}
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" x-data="{ tab: 'en' }">
-            <h3 class="text-base font-semibold text-gray-900 mb-4">Translations</h3>
-            <div class="flex border-b border-gray-200 mb-6">
-                <button type="button" @click="tab = 'en'" :class="tab === 'en' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">English</button>
-                <button type="button" @click="tab = 'ar'" :class="tab === 'ar' ? 'border-b-2 border-red-600 text-red-600' : 'text-gray-500 hover:text-gray-700'" class="px-4 py-2 font-medium text-sm -mb-px">عربي</button>
-            </div>
-
-            {{-- English --}}
-            <div x-show="tab === 'en'" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Badge</label>
-                    <input type="text" name="badge_en" value="{{ old('badge_en', $translations['en']->badge ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                    <input type="text" name="title_en" value="{{ old('title_en', $translations['en']->title ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title Highlight</label>
-                    <input type="text" name="title_highlight_en" value="{{ old('title_highlight_en', $translations['en']->title_highlight ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Subtitle</label>
-                    <input type="text" name="subtitle_en" value="{{ old('subtitle_en', $translations['en']->subtitle ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                    <textarea name="description_en" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('description_en', $translations['en']->description ?? '') }}</textarea>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">CTA Primary Label</label>
-                        <input type="text" name="cta_primary_label_en" value="{{ old('cta_primary_label_en', $translations['en']->cta_primary_label ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
+        @component('admin.components.locale-tabs', ['heading' => 'Translations'])
+            @foreach($adminLocales as $locale)
+                @component('admin.components.locale-panel', ['locale' => $locale])
+                    @include('admin.components.locale-field', [
+                        'name' => 'badge',
+                        'label' => 'Badge',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->badge ?? '',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'title',
+                        'label' => 'Title',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->title ?? '',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'title_highlight',
+                        'label' => 'Title Highlight',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->title_highlight ?? '',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'subtitle',
+                        'label' => 'Subtitle',
+                        'locale' => $locale,
+                        'value' => $translations[$locale['code']]->subtitle ?? '',
+                    ])
+                    @include('admin.components.locale-field', [
+                        'name' => 'description',
+                        'label' => 'Description',
+                        'locale' => $locale,
+                        'type' => 'textarea',
+                        'rows' => 3,
+                        'value' => $translations[$locale['code']]->description ?? '',
+                    ])
+                    <div class="grid grid-cols-2 gap-4">
+                        @include('admin.components.locale-field', [
+                            'name' => 'cta_primary_label',
+                            'label' => 'CTA Primary Label',
+                            'locale' => $locale,
+                            'value' => $translations[$locale['code']]->cta_primary_label ?? '',
+                        ])
+                        @include('admin.components.locale-field', [
+                            'name' => 'cta_primary_url',
+                            'label' => 'CTA Primary URL',
+                            'locale' => $locale,
+                            'value' => $translations[$locale['code']]->cta_primary_url ?? '',
+                        ])
+                        @include('admin.components.locale-field', [
+                            'name' => 'cta_secondary_label',
+                            'label' => 'CTA Secondary Label',
+                            'locale' => $locale,
+                            'value' => $translations[$locale['code']]->cta_secondary_label ?? '',
+                        ])
+                        @include('admin.components.locale-field', [
+                            'name' => 'cta_secondary_url',
+                            'label' => 'CTA Secondary URL',
+                            'locale' => $locale,
+                            'value' => $translations[$locale['code']]->cta_secondary_url ?? '',
+                        ])
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">CTA Primary URL</label>
-                        <input type="text" name="cta_primary_url_en" value="{{ old('cta_primary_url_en', $translations['en']->cta_primary_url ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">CTA Secondary Label</label>
-                        <input type="text" name="cta_secondary_label_en" value="{{ old('cta_secondary_label_en', $translations['en']->cta_secondary_label ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">CTA Secondary URL</label>
-                        <input type="text" name="cta_secondary_url_en" value="{{ old('cta_secondary_url_en', $translations['en']->cta_secondary_url ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                </div>
-            </div>
-
-            {{-- Arabic --}}
-            <div x-show="tab === 'ar'" dir="rtl" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">شارة</label>
-                    <input type="text" name="badge_ar" value="{{ old('badge_ar', $translations['ar']->badge ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان</label>
-                    <input type="text" name="title_ar" value="{{ old('title_ar', $translations['ar']->title ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان المميز</label>
-                    <input type="text" name="title_highlight_ar" value="{{ old('title_highlight_ar', $translations['ar']->title_highlight ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">العنوان الفرعي</label>
-                    <input type="text" name="subtitle_ar" value="{{ old('subtitle_ar', $translations['ar']->subtitle ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">الوصف</label>
-                    <textarea name="description_ar" rows="3" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">{{ old('description_ar', $translations['ar']->description ?? '') }}</textarea>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">نص الزر الرئيسي</label>
-                        <input type="text" name="cta_primary_label_ar" value="{{ old('cta_primary_label_ar', $translations['ar']->cta_primary_label ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">رابط الزر الرئيسي</label>
-                        <input type="text" name="cta_primary_url_ar" value="{{ old('cta_primary_url_ar', $translations['ar']->cta_primary_url ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">نص الزر الثانوي</label>
-                        <input type="text" name="cta_secondary_label_ar" value="{{ old('cta_secondary_label_ar', $translations['ar']->cta_secondary_label ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">رابط الزر الثانوي</label>
-                        <input type="text" name="cta_secondary_url_ar" value="{{ old('cta_secondary_url_ar', $translations['ar']->cta_secondary_url ?? '') }}" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    </div>
-                </div>
-            </div>
-        </div>
+                @endcomponent
+            @endforeach
+        @endcomponent
 
         <div class="flex items-center gap-3">
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg font-medium">Save Changes</button>
