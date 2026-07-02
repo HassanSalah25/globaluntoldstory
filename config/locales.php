@@ -26,6 +26,6 @@ return [
     |
     */
 
-    'required' => ['en', 'ar'],
+    'required' => ['en'],
 
 ];

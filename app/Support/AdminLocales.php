@@ -15,7 +15,7 @@ class AdminLocales
 
     public static function required(): array
     {
-        return config('locales.required', ['en', 'ar']);
+        return config('locales.required', ['en']);
     }
 
     /**
@@ -40,7 +40,7 @@ class AdminLocales
      * Build validation rules for translated fields across all admin locales.
      *
      * @param  array<string, string>  $fields  Field name => base rule (without required/nullable prefix)
-     * @param  array<string>  $requiredFields  Field names required for required locales (en, ar)
+     * @param  array<string>  $requiredFields  Field names required for required locales (en by default)
      */
     public static function fieldRules(array $fields, array $requiredFields = []): array
     {

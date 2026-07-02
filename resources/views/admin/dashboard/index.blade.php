@@ -15,7 +15,7 @@
     @foreach($adminLocales as $i => $locale)
         <span class="font-medium">{{ $locale['native'] }}</span>@if($locale['required'])<span class="text-red-600">*</span>@endif@if($i < count($adminLocales) - 1), @endif
     @endforeach
-    . English and Arabic are required; other languages are optional.
+    . English is required; all other languages are optional.
 </div>
 
 {{-- ── Stat Cards ─────────────────────────────────── --}}
