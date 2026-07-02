@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\Page;
 use App\Models\PortfolioItem;
 use App\Models\Service;
+use App\Support\CmsOverlayTranslationImporter;
 use App\Support\EntityTranslationImporter;
 use App\Support\StructuredUiImporter;
 use Illuminate\Database\Seeder;
@@ -64,9 +65,11 @@ class MultilingualContentSeeder extends Seeder
         $this->command?->info('Importing menus, stats, section headers, and static UI labels…');
         $uiImporter = new StructuredUiImporter;
         $entityImporter = new EntityTranslationImporter;
+        $overlayImporter = new CmsOverlayTranslationImporter;
         foreach (self::TARGET_LOCALES as $locale) {
             $uiImporter->import($locale, $this->contentRoot);
             $entityImporter->import($locale, $this->contentRoot);
+            $overlayImporter->import($locale, $this->contentRoot);
         }
 
         $this->command?->info('Multilingual content import complete.');

@@ -46,7 +46,7 @@ class ContentSeeder extends Seeder
         $this->seedPages();
         $this->seedHeroSlides();
         $this->seedStats();
-        $this->seedServices();
+        // $this->seedServices();
         $this->seedProcessSteps();
         $this->seedTestimonials();
         $categories = $this->seedCategories();
@@ -696,40 +696,70 @@ class ContentSeeder extends Seeder
     {
         PortfolioItem::query()->delete();
 
-        $projects = [
-            ['al-nokhba-digital-marketing', 'digital-ads', 'Al-Nokhba Group', 'digital-marketing', '3 Months', '$14,000', '+240% Sales Increase, 5.2x ROI', '+240% Sales', 'large', 'Al-Nokhba Digital Marketing Blitz', 'حملة النخبة للتسويق الرقمي', '+240% Sales Increase, 5.2x ROI', 'زيادة المبيعات +٢٤٠٪، عائد الاستثمار ٥.٢ ضعف'],
-            ['rikaz-real-estate-identity', 'branding', 'Rikaz Development', 'branding-design', '1 Month', '$7,000', 'Unique modern logo & comprehensive brand guidelines', 'Full Identity', 'small', 'Rikaz Real Estate Visual Identity', 'الهوية البصرية لشركة ركاز العقارية', 'Unique modern logo & comprehensive brand guidelines', 'تصميم شعار فريد ودليل هوية بصرية كاملة'],
-            ['masar-app-launch-video', 'video', 'Masar EdTech', 'gaming-video', '2 Months', '$9,500', '3.5M Views, +180% App Downloads boost', '3.5M Views', 'large', 'Masar Learning App Launch Video', 'فيديو إطلاق تطبيق مسار التعليمي', '3.5M Views, +180% App Downloads boost', '٣.٥ مليون مشاهدة، زيادة التحميلات +١٨٠٪'],
-            ['gourmet-social-growth', 'social', 'Gourmet International', 'social-media', '6 Months', '$5,000/mo', '+45k New followers, +130% Monthly engagement', '+45k Followers', 'small', 'Gourmet Burgers Social Growth & Content', 'إدارة السوشيال ميديا لمطاعم جورميه', '+45k New followers, +130% Monthly engagement', '+٤٥ ألف متابع جديد، تفاعل شهري +١٣٠٪'],
-            ['fashion-brand-google-campaign', 'digital-ads', 'Fashion Brand Ltd', 'fashion-retail', '4 Months', '$22,000', '+320% Return on Ad Spend, 8,000+ Conversions', '+320% ROAS', 'small', 'Fashion Brand Google Search Campaign', 'حملة إعلانات جوجل لبراند فاشن', '+320% Return on Ad Spend, 8,000+ Conversions', '+٣٢٠٪ عائد على الإنفاق الإعلاني، ٨ آلاف تحويل'],
-            ['myhealth-influencer-campaign', 'social', 'MyHealth Ltd', 'gaming-arena', '2 Months', '$11,000', 'Featured by 15 major fitness influencers, sold out stock', 'Sold Out', 'small', 'MyHealth Influencer Launch Campaign', 'حملة المؤثرين لمنتج صحتي الرياضي', 'Featured by 15 major fitness influencers, sold out stock', 'تغطية من ١٥ مؤثر، مبيعات نفدت بالكامل'],
+        $groups = [
+            'commercial-advertising' => [
+                'category' => 'digital-ads',
+                'media' => ['digital-marketing', 'fashion-retail', 'gaming-video'],
+            ],
+            'documentary' => [
+                'category' => 'video',
+                'media' => ['film-production', 'cinema-camera', 'camera-equipment'],
+            ],
+            'industry' => [
+                'category' => 'video',
+                'media' => ['analytics-dashboard', 'executive-portrait', 'camera-equipment', 'film-production', 'portrait-man-1', 'portrait-man-2', 'cinema-camera'],
+            ],
+            'tv-show-live' => [
+                'category' => 'video',
+                'media' => ['gaming-video', 'gaming-arena'],
+            ],
         ];
 
-        foreach ($projects as $i => $p) {
-            [$slug, $catSlug, $client, $mediaKey, $duration, $budget, $results, $metric, $grid, $enTitle, $arTitle, $enResults, $arResults] = $p;
-            $item = PortfolioItem::query()->create([
-                'slug' => $slug,
-                'category_id' => $categories['portfolio'][$catSlug] ?? null,
-                'client_name' => $client,
-                'image_url' => $this->media($mediaKey),
-                'duration' => $duration,
-                'budget' => $budget,
-                'results' => $results,
-                'metric' => $metric,
-                'sort_order' => $i + 1,
-                'is_featured' => in_array($grid, ['large'], true),
-                'is_active' => true,
-                'grid_size' => $grid,
-            ]);
-            $this->seedTranslations($item, [
-                'title' => $enTitle,
-                'results_text' => $enResults,
-                'metric' => $metric,
-            ], [
-                'title' => $arTitle,
-                'results_text' => $arResults,
-                'metric' => $metric,
-            ]);
+        $sortOrder = 0;
+
+        foreach ($groups as $portfolioSlug => $config) {
+            $data = $this->loadStructuredPortfolio($portfolioSlug, 'en');
+
+            foreach ($data['items'] ?? [] as $index => $item) {
+                if (! is_array($item)) {
+                    continue;
+                }
+
+                $sortOrder++;
+                $description = $item['description'] ?? [];
+                $resultsText = is_array($description) ? implode("\n", $description) : (string) $description;
+                $resultsShort = is_array($description) && isset($description[0])
+                    ? \Illuminate\Support\Str::limit($description[0], 240)
+                    : \Illuminate\Support\Str::limit($resultsText, 240);
+                $metric = $item['service'] ?? $item['client'] ?? 'Production';
+                $mediaKeys = $config['media'];
+                $mediaKey = $mediaKeys[$index % count($mediaKeys)];
+
+                $model = PortfolioItem::query()->create([
+                    'slug' => $portfolioSlug.'-'.$index,
+                    'category_id' => $categories['portfolio'][$config['category']] ?? null,
+                    'client_name' => $item['client'] ?? '',
+                    'image_url' => $this->media($mediaKey),
+                    'duration' => $item['industry'] ?? null,
+                    'budget' => $item['service'] ?? null,
+                    'results' => $resultsShort,
+                    'metric' => $metric,
+                    'sort_order' => $sortOrder,
+                    'is_featured' => $index === 0,
+                    'is_active' => true,
+                    'grid_size' => ($index === 0 && $sortOrder <= 4) ? 'large' : 'small',
+                ]);
+
+                $this->seedTranslations($model, [
+                    'title' => $item['title'] ?? '',
+                    'results_text' => $resultsText,
+                    'metric' => $metric,
+                ], [
+                    'title' => $item['title'] ?? '',
+                    'results_text' => $resultsText,
+                    'metric' => $metric,
+                ]);
+            }
         }
     }
 
@@ -1065,6 +1095,16 @@ class ContentSeeder extends Seeder
     private function loadStructuredArticle(string $slug, string $locale): array
     {
         $path = database_path("structured_content/content/articles/{$slug}/{$locale}.json");
+        if (! is_file($path)) {
+            return [];
+        }
+
+        return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    private function loadStructuredPortfolio(string $slug, string $locale): array
+    {
+        $path = database_path("structured_content/content/portfolios/{$slug}/{$locale}.json");
         if (! is_file($path)) {
             return [];
         }
