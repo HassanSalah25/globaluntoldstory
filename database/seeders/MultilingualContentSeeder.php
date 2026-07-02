@@ -3,9 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\BlogPost;
+use App\Models\Category;
 use App\Models\Page;
 use App\Models\PortfolioItem;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use RuntimeException;
@@ -37,6 +39,13 @@ class MultilingualContentSeeder extends Seeder
         'tv-shows-production' => 'tv-broadcast',
     ];
 
+    private const PORTFOLIO_CATEGORY_MAP = [
+        'commercial-advertising' => 'video',
+        'documentary' => 'video',
+        'industry' => 'video',
+        'tv-show-live' => 'video',
+    ];
+
     private string $contentRoot;
 
     public function run(): void
@@ -48,12 +57,11 @@ class MultilingualContentSeeder extends Seeder
         }
 
         $manifest = json_decode((string) file_get_contents($manifestPath), true, 512, JSON_THROW_ON_ERROR);
+        $this->command?->info('Ensuring English base records exist for articles and portfolio items…');
+        $this->seedEnglishBaseRecords($manifest);
 
-        $entries = array_filter(
-            $manifest,
-            fn (array $entry) => in_array($entry['locale'], self::TARGET_LOCALES, true)
-        );
-        $this->command?->info('Importing '.count($entries).' multilingual translation files (en/ar unchanged)…');
+        $entries = array_filter($manifest, fn (array $entry) => in_array($entry['locale'], self::TARGET_LOCALES, true));
+        $this->command?->info('Importing '.count($entries).' multilingual translation files…');
 
         foreach ($entries as $entry) {
             $this->importEntry($entry);
@@ -76,6 +84,21 @@ class MultilingualContentSeeder extends Seeder
         throw new RuntimeException(
             'Structured content directory not found. Place files in database/structured_content or set STRUCTURED_CONTENT_PATH.'
         );
+    }
+
+    private function seedEnglishBaseRecords(array $manifest): void
+    {
+        foreach ($manifest as $entry) {
+            if ($entry['locale'] !== 'en') {
+                continue;
+            }
+            if ($entry['category'] === 'articles') {
+                $this->ensureBlogPostFromEnglish($entry);
+            }
+            if ($entry['category'] === 'portfolios' && $entry['slug'] !== 'our-portfolio') {
+                $this->ensurePortfolioItemsFromEnglish($entry);
+            }
+        }
     }
 
     private function importEntry(array $entry): void
@@ -164,28 +187,38 @@ class MultilingualContentSeeder extends Seeder
         ]);
     }
 
-    private function seedArticleTranslation(string $sourceSlug, string $locale, array $data): void
+    private function ensureBlogPostFromEnglish(array $entry): void
     {
-        $post = BlogPost::query()->where('slug', $sourceSlug)->first();
-        if (! $post) {
-            $this->command?->warn("Blog post not found, skipping {$locale} translation: {$sourceSlug}");
-
-            return;
-        }
-
-        $this->upsertBlogPostTranslation($post, $locale, $data);
+        $this->upsertBlogPost('en', $entry['slug'], $this->loadContentFile($entry['file']));
     }
 
-    private function upsertBlogPostTranslation(BlogPost $post, string $locale, array $data): void
+    private function seedArticleTranslation(string $sourceSlug, string $locale, array $data): void
+    {
+        $this->upsertBlogPost($locale, $sourceSlug, $data);
+    }
+
+    private function upsertBlogPost(string $locale, string $slug, array $data): void
     {
         $sections = $data['sections'] ?? [];
         $rawTitle = trim((string) ($data['title'] ?? ''));
-        $title = $this->resolveArticleTitle($post->slug, $rawTitle, $sections);
+        $title = $this->resolveArticleTitle($slug, $rawTitle, $sections);
         $body = $this->sectionsToHtml([], $sections);
 
         if ($rawTitle !== '' && $rawTitle !== $title && ! str_contains($body, e($rawTitle))) {
             $body = '<p>'.e($rawTitle).'</p>'.$body;
         }
+
+        $post = BlogPost::query()->firstOrCreate(['slug' => $slug], [
+            'category_id' => Category::query()->where('type', 'blog')->orderBy('sort_order')->value('id'),
+            'author_name' => 'The Untold Story',
+            'author_image_url' => null,
+            'featured_image_url' => null,
+            'published_at' => Carbon::parse('2026-06-01'),
+            'read_time_minutes' => max(3, (int) ceil(str_word_count(strip_tags($body)) / 200)),
+            'is_featured' => false,
+            'is_published' => true,
+            'sort_order' => BlogPost::query()->count() + 1,
+        ]);
 
         $post->translations()->updateOrCreate(['locale' => $locale], [
             'title' => $title,
@@ -215,6 +248,11 @@ class MultilingualContentSeeder extends Seeder
         return Str::limit(Str::headline(str_replace('-', ' ', $slug)), 200, '');
     }
 
+    private function ensurePortfolioItemsFromEnglish(array $entry): void
+    {
+        $this->upsertPortfolioItems('en', $entry['slug'], $this->loadContentFile($entry['file']));
+    }
+
     private function seedPortfolioTranslations(string $portfolioSlug, string $locale, array $data): void
     {
         if ($portfolioSlug === 'our-portfolio') {
@@ -236,6 +274,7 @@ class MultilingualContentSeeder extends Seeder
 
     private function upsertPortfolioItems(string $locale, string $portfolioSlug, array $data): void
     {
+        $categoryId = Category::query()->where('type', 'portfolio')->where('slug', self::PORTFOLIO_CATEGORY_MAP[$portfolioSlug] ?? 'video')->value('id');
         foreach ($data['items'] ?? [] as $index => $item) {
             if (! is_array($item)) {
                 continue;
@@ -243,11 +282,19 @@ class MultilingualContentSeeder extends Seeder
             $itemSlug = $portfolioSlug.'-'.$index;
             $description = $item['description'] ?? [];
             $resultsText = is_array($description) ? implode("\n", $description) : (string) $description;
-            $portfolioItem = PortfolioItem::query()->where('slug', $itemSlug)->first();
-            if (! $portfolioItem) {
-                continue;
-            }
-
+            $portfolioItem = PortfolioItem::query()->firstOrCreate(['slug' => $itemSlug], [
+                'category_id' => $categoryId,
+                'client_name' => $item['client'] ?? 'The Untold Story',
+                'image_url' => null,
+                'duration' => null,
+                'budget' => null,
+                'results' => Str::limit($resultsText, 250, '…'),
+                'metric' => null,
+                'sort_order' => ($index + 1) * 10,
+                'is_featured' => $index === 0,
+                'is_active' => true,
+                'grid_size' => $index === 0 ? 'large' : 'small',
+            ]);
             $portfolioItem->translations()->updateOrCreate(['locale' => $locale], [
                 'title' => $item['title'] ?? Str::headline($itemSlug),
                 'results_text' => $resultsText,
