@@ -28,6 +28,7 @@ use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\TimelineEvent;
 use App\Models\ValueItem;
+use App\Support\SeederTranslations;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -45,7 +46,7 @@ class ContentSeeder extends Seeder
         $this->seedPages();
         $this->seedHeroSlides();
         $this->seedStats();
-        // $this->seedServices();
+        $this->seedServices();
         $this->seedProcessSteps();
         $this->seedTestimonials();
         $categories = $this->seedCategories();
@@ -67,8 +68,7 @@ class ContentSeeder extends Seeder
 
     private function seedTranslations(object $model, array $en, array $ar): void
     {
-        $model->translations()->create(array_merge(['locale' => 'en'], $en));
-        $model->translations()->create(array_merge(['locale' => 'ar'], $ar));
+        SeederTranslations::seed($model, SeederTranslations::fromEnAr($en, $ar));
     }
 
     private function parseStatValue(string $value): array
@@ -113,9 +113,10 @@ class ContentSeeder extends Seeder
                 ['key' => $key],
                 ['group' => $group, 'value' => null]
             );
-            $setting->translations()->delete();
-            $setting->translations()->create(['locale' => 'en', 'value' => $values['en']]);
-            $setting->translations()->create(['locale' => 'ar', 'value' => $values['ar']]);
+            SeederTranslations::seedSetting(
+                $setting,
+                SeederTranslations::scalarMap($values['en'], $values['ar'])
+            );
         }
 
         $commonKeys = [
@@ -136,9 +137,7 @@ class ContentSeeder extends Seeder
 
         foreach ($commonKeys as $key => [$en, $ar]) {
             $setting = Setting::query()->updateOrCreate(['key' => $key], ['group' => 'common', 'value' => null]);
-            $setting->translations()->delete();
-            $setting->translations()->create(['locale' => 'en', 'value' => $en]);
-            $setting->translations()->create(['locale' => 'ar', 'value' => $ar]);
+            SeederTranslations::seedSetting($setting, SeederTranslations::scalarMap($en, $ar));
         }
 
         $this->seedSectionUiSettings();
@@ -199,8 +198,7 @@ class ContentSeeder extends Seeder
                 ['key' => $key],
                 ['group' => $group, 'value' => null]
             );
-            $setting->translations()->updateOrCreate(['locale' => 'en'], ['value' => $en]);
-            $setting->translations()->updateOrCreate(['locale' => 'ar'], ['value' => $ar]);
+            SeederTranslations::seedSetting($setting, SeederTranslations::scalarMap($en, $ar));
         }
     }
 
