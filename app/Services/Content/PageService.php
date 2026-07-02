@@ -146,14 +146,14 @@ class PageService
                 'missionDesc' => $mission?->content,
                 'visionTitle' => $vision?->title,
                 'visionDesc' => $vision?->content,
-                'valuesBadge' => $locale === 'ar' ? 'ما الذي نقدمه' : 'What We Offer',
-                'valuesTitle' => $locale === 'ar' ? 'إنتاج شامل بإتقان' : 'End-to-End Production Excellence',
+                'valuesBadge' => $this->section('about_values_badge', $locale, 'What We Offer'),
+                'valuesTitle' => $this->section('about_values_title', $locale, 'End-to-End Production Excellence'),
                 'valuesList' => $values,
-                'teamBadge' => $locale === 'ar' ? 'القيادة' : 'Leadership',
-                'teamTitle' => $locale === 'ar' ? 'قيادة The Untold Story' : 'Leading The Untold Story',
+                'teamBadge' => $this->section('about_team_badge', $locale, 'Leadership'),
+                'teamTitle' => $this->section('about_team_title', $locale, 'Leading The Untold Story'),
                 'teamList' => $team,
-                'partnersBadge' => $locale === 'ar' ? 'موثوق من قبل عمالقة الصناعة' : 'Trusted By Industry Titans',
-                'partnersTitle' => 'Trusted By Industry Titans',
+                'partnersBadge' => $this->section('about_partners_badge', $locale, 'Trusted By Industry Titans'),
+                'partnersTitle' => $this->section('about_partners_title', $locale, 'Trusted By Industry Titans'),
             ],
             'timeline' => $timeline,
             'skills' => $skills,
@@ -182,22 +182,18 @@ class PageService
 
         return [
             'services_page' => [
-                'gridBadge' => $locale === 'ar' ? 'خدماتنا' : 'Our Services',
-                'gridTitle' => $locale === 'ar' ? 'اختر خدمة أدناه' : 'Choose a service below',
+                'gridBadge' => $this->section('services_grid_badge', $locale, 'Our Services'),
+                'gridTitle' => $this->section('services_grid_title', $locale, 'Choose a service below'),
                 'quoteTitle' => $this->settings->get('common.request_service', $locale),
-                'quoteSubtext' => $locale === 'ar'
-                    ? 'أرسل brief وسنرد بالخطة المناسبة والخطوات التالية.'
-                    : 'Send your brief and we will respond with the right plan and next steps.',
-                'quoteEmailLabel' => $locale === 'ar' ? 'البريد الإلكتروني' : 'Email',
+                'quoteSubtext' => $this->section('services_quote_subtext', $locale, 'Send your brief and we will respond with the right plan and next steps.'),
+                'quoteEmailLabel' => $this->section('contact_quote_email_label', $locale, 'Email'),
                 'quoteEmail' => $this->settings->get('site.email', $locale),
-                'quotePhoneLabel' => $locale === 'ar' ? 'الهاتف وWhatsApp' : 'Phone and WhatsApp',
+                'quotePhoneLabel' => $this->section('contact_quote_phone_label', $locale, 'Phone and WhatsApp'),
                 'quotePhone' => $this->settings->get('site.phone', $locale),
                 'whyTitle' => $this->settings->get('common.why_us', $locale),
                 'whyList' => $whyList,
                 'ctaTitle' => $this->settings->get('common.request_service', $locale),
-                'ctaSub' => $locale === 'ar'
-                    ? 'أرسل brief وسنرد بالخطة المناسبة والخطوات التالية.'
-                    : 'Send your brief and we will respond with the right plan and next steps.',
+                'ctaSub' => $this->section('services_cta_sub', $locale, 'Send your brief and we will respond with the right plan and next steps.'),
                 'ctaBtn' => $this->settings->get('common.request_service', $locale),
             ],
             'services' => $this->services->listAll($locale),
@@ -297,26 +293,29 @@ class PageService
 
         return [
             'contact_page' => [
-                'infoTitle' => $locale === 'ar' ? 'معلومات الاتصال' : 'Contact Info',
+                'infoTitle' => $this->section('contact_info_title', $locale, 'Contact Info'),
                 'email' => $this->settings->get('site.email', $locale),
                 'offices' => $offices,
-                'officesSectionTitle' => $locale === 'ar' ? 'مكاتبنا' : 'Our Offices',
-                'officesSectionSubtext' => $locale === 'ar'
-                    ? 'نحن موجودون في مصر والإمارات لنكون دائماً قريبين منك'
-                    : 'We are present in Egypt and the UAE to always be close to you',
-                'formTitle' => $locale === 'ar' ? 'أرسل رسالة' : 'Send a Message',
+                'officesSectionTitle' => $this->section('contact_offices_title', $locale, 'Our Offices'),
+                'officesSectionSubtext' => $this->section('contact_offices_subtext', $locale, 'We are present in Egypt and the UAE to always be close to you'),
+                'formTitle' => $this->section('contact_form_title', $locale, 'Send a Message'),
                 'labels' => [
-                    'name' => $locale === 'ar' ? 'الاسم الكامل *' : 'Full Name *',
-                    'email' => $locale === 'ar' ? 'البريد الإلكتروني *' : 'Email Address *',
-                    'phone' => $locale === 'ar' ? 'رقم الهاتف' : 'Phone Number',
-                    'service' => $locale === 'ar' ? 'الخدمة المطلوبة' : 'Requested Service',
-                    'message' => $locale === 'ar' ? 'رسالتك *' : 'Your Message *',
-                    'chooseService' => $locale === 'ar' ? 'اختر الخدمة' : 'Choose a Service',
+                    'name' => $this->section('contact_label_name', $locale, 'Full Name *'),
+                    'email' => $this->section('contact_label_email', $locale, 'Email Address *'),
+                    'phone' => $this->section('contact_label_phone', $locale, 'Phone Number'),
+                    'service' => $this->section('contact_label_service', $locale, 'Requested Service'),
+                    'message' => $this->section('contact_label_message', $locale, 'Your Message *'),
+                    'chooseService' => $this->section('contact_label_choose_service', $locale, 'Choose a Service'),
                 ],
             ],
             'why_list' => $whyList,
             'resources' => $resources,
             'services' => $this->services->listAll($locale),
         ];
+    }
+
+    private function section(string $key, string $locale, string $fallback): string
+    {
+        return $this->settings->get("sections.{$key}", $locale) ?? $fallback;
     }
 }

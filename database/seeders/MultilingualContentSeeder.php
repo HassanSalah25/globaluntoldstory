@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\Page;
 use App\Models\PortfolioItem;
 use App\Models\Service;
+use App\Support\StructuredUiImporter;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use RuntimeException;
@@ -57,6 +58,12 @@ class MultilingualContentSeeder extends Seeder
 
         foreach ($entries as $entry) {
             $this->importEntry($entry);
+        }
+
+        $this->command?->info('Importing menus, stats, section headers, and static UI labels…');
+        $uiImporter = new StructuredUiImporter;
+        foreach (self::TARGET_LOCALES as $locale) {
+            $uiImporter->import($locale, $this->contentRoot);
         }
 
         $this->command?->info('Multilingual content import complete.');

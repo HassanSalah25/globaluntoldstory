@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\AdminLocales;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreNewsletterRequest extends FormRequest
@@ -15,7 +16,7 @@ class StoreNewsletterRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email', 'max:255'],
-            'locale' => ['nullable', 'string', 'in:en,ar'],
+            'locale' => ['nullable', 'string', AdminLocales::validationRule()],
         ];
     }
 }

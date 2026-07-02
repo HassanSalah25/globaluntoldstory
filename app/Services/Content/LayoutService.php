@@ -2,6 +2,7 @@
 
 namespace App\Services\Content;
 
+use App\Support\AdminLocales;
 use App\Models\ClientLogo;
 use App\Models\Menu;
 use App\Models\Office;
@@ -18,6 +19,7 @@ class LayoutService
     public function getLayout(string $locale): array
     {
         return [
+            'locales' => AdminLocales::public(),
             'site_config' => $this->settings->getSiteConfig($locale),
             'nav_links' => $this->getNavLinks($locale),
             'footer' => $this->getFooter($locale),
@@ -112,15 +114,15 @@ class LayoutService
 
         return [
             'brandDesc' => $this->settings->get('footer.brand_desc', $locale),
-            'aboutTitle' => $locale === 'ar' ? 'عن الشركة' : 'About',
+            'aboutTitle' => $this->settings->get('footer.about_title', $locale) ?? 'About',
             'aboutLinks' => $aboutLinks,
-            'servicesTitle' => $locale === 'ar' ? 'صفحات أخرى' : 'More Pages',
+            'servicesTitle' => $this->settings->get('footer.services_title', $locale) ?? 'More Pages',
             'serviceLinks' => $serviceLinks,
-            'quickLinks' => $locale === 'ar' ? 'روابط سريعة' : 'Quick Links',
+            'quickLinks' => $this->settings->get('footer.quick_links', $locale) ?? 'Quick Links',
             'contactUs' => $this->settings->get('common.contact_us', $locale),
-            'emailLabel' => $locale === 'ar' ? 'البريد الإلكتروني' : 'Email',
-            'allRights' => $locale === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.',
-            'adminDashboard' => $locale === 'ar' ? 'لوحة تحكم الإدارة ←' : 'Admin Dashboard →',
+            'emailLabel' => $this->settings->get('footer.email_label', $locale) ?? 'Email',
+            'allRights' => $this->settings->get('footer.all_rights', $locale) ?? 'All rights reserved.',
+            'adminDashboard' => $this->settings->get('footer.admin_dashboard', $locale) ?? 'Admin Dashboard →',
             'offices' => $offices,
         ];
     }

@@ -13,9 +13,19 @@ class AdminLocales
         return config('locales.admin', Locale::values());
     }
 
+    public static function publicCodes(): array
+    {
+        return config('locales.public', self::codes());
+    }
+
     public static function required(): array
     {
         return config('locales.required', ['en']);
+    }
+
+    public static function validationRule(): string
+    {
+        return 'in:'.implode(',', self::publicCodes());
     }
 
     /**
@@ -23,7 +33,24 @@ class AdminLocales
      */
     public static function all(): array
     {
-        return collect(self::codes())->map(function (string $code) {
+        return self::mapCodes(self::codes());
+    }
+
+    /**
+     * @return array<int, array{code: string, label: string, native: string, rtl: bool, required: bool}>
+     */
+    public static function public(): array
+    {
+        return self::mapCodes(self::publicCodes());
+    }
+
+    /**
+     * @param  array<int, string>  $codes
+     * @return array<int, array{code: string, label: string, native: string, rtl: bool, required: bool}>
+     */
+    private static function mapCodes(array $codes): array
+    {
+        return collect($codes)->map(function (string $code) {
             $locale = Locale::resolve($code);
 
             return [

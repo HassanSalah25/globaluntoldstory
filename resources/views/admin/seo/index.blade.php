@@ -73,7 +73,7 @@
                     </td>
                     <td class="px-4 py-3">
                         @php $locales = $meta->translations->pluck('locale'); @endphp
-                        @foreach(['en','ar'] as $loc)
+                        @foreach(collect($adminLocales)->pluck('code') as $loc)
                             @if($locales->contains($loc))
                             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 mr-1">{{ strtoupper($loc) }}</span>
                             @else

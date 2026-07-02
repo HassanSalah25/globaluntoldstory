@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\AdminLocales;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreContactRequest extends FormRequest
@@ -20,7 +21,7 @@ class StoreContactRequest extends FormRequest
             'service' => ['nullable', 'string', 'max:255'],
             'budget' => ['nullable', 'string', 'max:100'],
             'message' => ['required', 'string', 'max:5000'],
-            'locale' => ['nullable', 'string', 'in:en,ar'],
+            'locale' => ['nullable', 'string', AdminLocales::validationRule()],
         ];
     }
 }

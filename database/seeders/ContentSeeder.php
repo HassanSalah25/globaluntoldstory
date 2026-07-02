@@ -140,6 +140,68 @@ class ContentSeeder extends Seeder
             $setting->translations()->create(['locale' => 'en', 'value' => $en]);
             $setting->translations()->create(['locale' => 'ar', 'value' => $ar]);
         }
+
+        $this->seedSectionUiSettings();
+    }
+
+    private function seedSectionUiSettings(): void
+    {
+        $sectionKeys = [
+            'sections.portfolio_title' => ['Projects done by The Untold Story', 'مشاريع من إنجاز The Untold Story'],
+            'sections.quote_badge' => ['Where story meets execution', 'حيث تلتقي القصة بالتنفيذ'],
+            'sections.quote_title' => ['Predictable budgets. Premium results.', 'ميزانيات متوقعة. نتائج متميزة.'],
+            'sections.work_showcase_badge' => ['✨ Our Work', '✨ أحدث أعمالنا'],
+            'sections.work_showcase_title' => ['Projects done by The Untold Story', 'إبداع يتجاوز التوقعات'],
+            'sections.work_showcase_subtitle' => ['Film, video, advertising, documentaries, and corporate content', 'نماذج من مشاريعنا الناجحة في مختلف المجالات'],
+            'sections.work_showcase_view_all' => ['Our Work', 'عرض جميع الأعمال'],
+            'sections.process_badge' => ['Production Cycle', 'دورة الإنتاج'],
+            'sections.process_title' => ['The Untold Story delivers the full production cycle', 'The Untold Story تقدّم دورة الإنتاج الكاملة'],
+            'sections.testimonials_badge' => ['Creative Creations', 'Creative Creations'],
+            'sections.testimonials_title' => ['Behind every Frame', 'Behind every Frame'],
+            'sections.blog_badge' => ['News & Insights', 'المدونة'],
+            'sections.blog_title' => ['News & Insights', 'آخر الأخبار والرؤى التسويقية'],
+            'sections.blog_subtext' => ['Company news and updates', 'تابع أحدث المقالات والإلهامات حول الإعلان الرقمي، التسويق، والهوية البصرية.'],
+            'sections.faq_badge' => ['FAQ', 'الأسئلة الشائعة'],
+            'sections.faq_title' => ['Answers to Your Key Questions', 'أجوبة لأهم أسئلتك'],
+            'sections.about_values_badge' => ['What We Offer', 'ما الذي نقدمه'],
+            'sections.about_values_title' => ['End-to-End Production Excellence', 'إنتاج شامل بإتقان'],
+            'sections.about_team_badge' => ['Leadership', 'القيادة'],
+            'sections.about_team_title' => ['Leading The Untold Story', 'قيادة The Untold Story'],
+            'sections.about_partners_badge' => ['Trusted By Industry Titans', 'موثوق من قبل عمالقة الصناعة'],
+            'sections.about_partners_title' => ['Trusted By Industry Titans', 'موثوق من قبل عمالقة الصناعة'],
+            'sections.services_grid_badge' => ['Our Services', 'خدماتنا'],
+            'sections.services_grid_title' => ['Choose a service below', 'اختر خدمة أدناه'],
+            'sections.services_quote_subtext' => ['Send your brief and we will respond with the right plan and next steps.', 'أرسل brief وسنرد بالخطة المناسبة والخطوات التالية.'],
+            'sections.services_cta_sub' => ['Send your brief and we will respond with the right plan and next steps.', 'أرسل brief وسنرد بالخطة المناسبة والخطوات التالية.'],
+            'sections.contact_info_title' => ['Contact Info', 'معلومات الاتصال'],
+            'sections.contact_offices_title' => ['Our Offices', 'مكاتبنا'],
+            'sections.contact_offices_subtext' => ['We are present in Egypt and the UAE to always be close to you', 'نحن موجودون في مصر والإمارات لنكون دائماً قريبين منك'],
+            'sections.contact_form_title' => ['Send a Message', 'أرسل رسالة'],
+            'sections.contact_label_name' => ['Full Name *', 'الاسم الكامل *'],
+            'sections.contact_label_email' => ['Email Address *', 'البريد الإلكتروني *'],
+            'sections.contact_label_phone' => ['Phone Number', 'رقم الهاتف'],
+            'sections.contact_label_service' => ['Requested Service', 'الخدمة المطلوبة'],
+            'sections.contact_label_message' => ['Your Message *', 'رسالتك *'],
+            'sections.contact_label_choose_service' => ['Choose a Service', 'اختر الخدمة'],
+            'sections.contact_quote_email_label' => ['Email', 'البريد الإلكتروني'],
+            'sections.contact_quote_phone_label' => ['Phone and WhatsApp', 'الهاتف وWhatsApp'],
+            'footer.about_title' => ['About', 'عن الشركة'],
+            'footer.services_title' => ['More Pages', 'صفحات أخرى'],
+            'footer.quick_links' => ['Quick Links', 'روابط سريعة'],
+            'footer.email_label' => ['Email', 'البريد الإلكتروني'],
+            'footer.all_rights' => ['All rights reserved.', 'جميع الحقوق محفوظة.'],
+            'footer.admin_dashboard' => ['Admin Dashboard →', 'لوحة تحكم الإدارة ←'],
+        ];
+
+        foreach ($sectionKeys as $key => [$en, $ar]) {
+            $group = str_starts_with($key, 'footer.') ? 'footer' : 'sections';
+            $setting = Setting::query()->updateOrCreate(
+                ['key' => $key],
+                ['group' => $group, 'value' => null]
+            );
+            $setting->translations()->updateOrCreate(['locale' => 'en'], ['value' => $en]);
+            $setting->translations()->updateOrCreate(['locale' => 'ar'], ['value' => $ar]);
+        }
     }
 
     private function seedMenus(): void

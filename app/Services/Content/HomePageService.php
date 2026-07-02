@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\Stat;
 use App\Models\Testimonial;
 use App\Services\Media\FrontendMediaImporter;
+use App\Services\Settings\SettingService;
 use App\Services\Seo\SeoService;
 use App\Support\MediaUrl;
 
@@ -22,6 +23,7 @@ class HomePageService
         private readonly SeoService $seo,
         private readonly ServiceCatalogService $services,
         private readonly BlogService $blog,
+        private readonly SettingService $settings,
     ) {}
 
     public function getHome(string $locale): array
@@ -42,9 +44,12 @@ class HomePageService
         $ctaBannerT = $ctaBanner?->translate($locale);
         $photographyT = $photographySection?->translate($locale);
         $heroSettings = $heroSplit?->settings ?? [];
+        $servicesIntroSettings = $servicesIntro?->settings ?? [];
         $photographySettings = $photographySection?->settings ?? [];
-        $pipeline = $heroSettings['production_pipeline']
-            ?? $servicesIntro?->settings['production_pipeline']
+        $pipeline = $heroSettings["production_pipeline_{$locale}"]
+            ?? $servicesIntroSettings["production_pipeline_{$locale}"]
+            ?? $heroSettings['production_pipeline']
+            ?? $servicesIntroSettings['production_pipeline']
             ?? [];
 
         $photographyService = Service::query()
@@ -84,21 +89,19 @@ class HomePageService
                 'servicesSubtext' => $servicesIntroT?->subtitle,
                 'servicesCta' => $servicesIntroT?->content,
                 'productionPipeline' => $pipeline,
-                'portfolioTitle' => $locale === 'ar' ? 'مشاريع من إنجاز The Untold Story' : 'Projects done by The Untold Story',
-                'quoteBadge' => $locale === 'ar' ? 'حيث تلتقي القصة بالتنفيذ' : 'Where story meets execution',
-                'quoteTitle' => $locale === 'ar' ? 'ميزانيات متوقعة. نتائج متميزة.' : 'Predictable budgets. Premium results.',
+                'portfolioTitle' => $this->section('portfolio_title', $locale, 'Projects done by The Untold Story'),
+                'quoteBadge' => $this->section('quote_badge', $locale, 'Where story meets execution'),
+                'quoteTitle' => $this->section('quote_title', $locale, 'Predictable budgets. Premium results.'),
                 'photographyBadge' => $photographyT?->badge ?? $photographyCopy['badge'],
                 'photographyTitle' => $photographyT?->title ?? $photographyCopy['title'],
                 'photographyDesc' => $photographyT?->content ?? $photographyCopy['description'],
                 'photographyTagline' => $photographyT?->subtitle ?? $photographyCopy['tagline'],
                 'photographyImage' => $photographyImage,
-                'creativeTitle' => 'Creative Creations',
-                'creativeSubtitle' => 'Behind every Frame',
-                'blogBadge' => $locale === 'ar' ? 'المدونة' : 'News & Insights',
-                'blogTitle' => $locale === 'ar' ? 'آخر الأخبار والرؤى التسويقية' : 'News & Insights',
-                'blogSubtext' => $locale === 'ar'
-                    ? 'تابع أحدث المقالات والإلهامات حول الإعلان الرقمي، التسويق، والهوية البصرية.'
-                    : 'Company news and updates',
+                'creativeTitle' => $this->section('testimonials_badge', $locale, 'Creative Creations'),
+                'creativeSubtitle' => $this->section('testimonials_title', $locale, 'Behind every Frame'),
+                'blogBadge' => $this->section('blog_badge', $locale, 'News & Insights'),
+                'blogTitle' => $this->section('blog_title', $locale, 'News & Insights'),
+                'blogSubtext' => $this->section('blog_subtext', $locale, 'Company news and updates'),
                 'ctaBannerTitle' => $ctaBannerT?->title,
                 'ctaBannerText' => $ctaBannerT?->content,
             ],
@@ -156,8 +159,8 @@ class HomePageService
     {
         if ($heroSplit && $heroSplitT) {
             $settings = $heroSplit->settings ?? [];
-            $suffixKey = $locale === 'ar' ? 'headline_suffix_ar' : 'headline_suffix_en';
-            $secondaryLabelKey = $locale === 'ar' ? 'cta_secondary_label_ar' : 'cta_secondary_label_en';
+            $suffixKey = "headline_suffix_{$locale}";
+            $secondaryLabelKey = "cta_secondary_label_{$locale}";
 
             return [
                 'badge' => $heroSplitT->badge,
@@ -188,8 +191,8 @@ class HomePageService
         }
 
         $settings = $heroSplit->settings ?? [];
-        $suffixKey = $locale === 'ar' ? 'headline_suffix_ar' : 'headline_suffix_en';
-        $secondaryLabelKey = $locale === 'ar' ? 'cta_secondary_label_ar' : 'cta_secondary_label_en';
+        $suffixKey = "headline_suffix_{$locale}";
+        $secondaryLabelKey = "cta_secondary_label_{$locale}";
 
         return [
             'badge' => $heroSplitT->badge,
@@ -208,7 +211,7 @@ class HomePageService
                 'label' => $settings[$secondaryLabelKey] ?? null,
                 'href' => $settings['cta_secondary_url'] ?? null,
             ],
-            'productionPipeline' => $settings['production_pipeline'] ?? [],
+            'productionPipeline' => $settings["production_pipeline_{$locale}"] ?? $settings['production_pipeline'] ?? [],
         ];
     }
 
@@ -279,12 +282,10 @@ class HomePageService
         }
 
         return [
-            'badge' => $locale === 'ar' ? '✨ أحدث أعمالنا' : '✨ Our Work',
-            'title' => $locale === 'ar' ? 'إبداع يتجاوز التوقعات' : 'Projects done by The Untold Story',
-            'subtitle' => $locale === 'ar'
-                ? 'نماذج من مشاريعنا الناجحة في مختلف المجالات'
-                : 'Film, video, advertising, documentaries, and corporate content',
-            'viewAll' => $locale === 'ar' ? 'عرض جميع الأعمال' : 'Our Work',
+            'badge' => $this->section('work_showcase_badge', $locale, '✨ Our Work'),
+            'title' => $this->section('work_showcase_title', $locale, 'Projects done by The Untold Story'),
+            'subtitle' => $this->section('work_showcase_subtitle', $locale, 'Film, video, advertising, documentaries, and corporate content'),
+            'viewAll' => $this->section('work_showcase_view_all', $locale, 'Our Work'),
             'projects' => $items->map(function (PortfolioItem $item) use ($locale) {
                 $t = $item->translate($locale);
                 $categoryT = $item->category?->translate($locale);
@@ -309,10 +310,8 @@ class HomePageService
             ->get();
 
         return [
-            'badge' => $locale === 'ar' ? 'دورة الإنتاج' : 'Production Cycle',
-            'title' => $locale === 'ar'
-                ? 'The Untold Story تقدّم دورة الإنتاج الكاملة'
-                : 'The Untold Story delivers the full production cycle',
+            'badge' => $this->section('process_badge', $locale, 'Production Cycle'),
+            'title' => $this->section('process_title', $locale, 'The Untold Story delivers the full production cycle'),
             'steps' => $steps->map(function (ProcessStep $step) use ($locale) {
                 $t = $step->translate($locale);
 
@@ -335,8 +334,8 @@ class HomePageService
             ->get();
 
         return [
-            'badge' => 'Creative Creations',
-            'title' => 'Behind every Frame',
+            'badge' => $this->section('testimonials_badge', $locale, 'Creative Creations'),
+            'title' => $this->section('testimonials_title', $locale, 'Behind every Frame'),
             'list' => $items->map(function (Testimonial $item) use ($locale) {
                 $t = $item->translate($locale);
 
@@ -379,8 +378,8 @@ class HomePageService
             ->get();
 
         return [
-            'badge' => $locale === 'ar' ? 'الأسئلة الشائعة' : 'FAQ',
-            'title' => $locale === 'ar' ? 'أجوبة لأهم أسئلتك' : 'Answers to Your Key Questions',
+            'badge' => $this->section('faq_badge', $locale, 'FAQ'),
+            'title' => $this->section('faq_title', $locale, 'Answers to Your Key Questions'),
             'list' => $items->map(function (Faq $faq) use ($locale) {
                 $t = $faq->translate($locale);
 
@@ -390,5 +389,10 @@ class HomePageService
                 ];
             })->values()->all(),
         ];
+    }
+
+    private function section(string $key, string $locale, string $fallback): string
+    {
+        return $this->settings->get("sections.{$key}", $locale) ?? $fallback;
     }
 }

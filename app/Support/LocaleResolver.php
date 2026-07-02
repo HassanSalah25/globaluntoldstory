@@ -21,6 +21,12 @@ class LocaleResolver
             $locale = explode('-', $locale)[0];
         }
 
-        return Locale::resolve(is_string($locale) ? $locale : null);
+        $code = is_string($locale) ? $locale : null;
+
+        if ($code !== null && ! in_array($code, AdminLocales::publicCodes(), true)) {
+            $code = null;
+        }
+
+        return Locale::resolve($code);
     }
 }

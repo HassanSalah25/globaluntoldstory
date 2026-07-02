@@ -14,7 +14,25 @@ return [
     |
     */
 
-    'admin' => Locale::values(),
+    'admin' => array_values(array_filter(
+        Locale::values(),
+        fn (string $code) => ! in_array($code, ['ar'], true),
+    )),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Public API locales
+    |--------------------------------------------------------------------------
+    |
+    | Locales accepted by the public API and frontend language switcher.
+    | Requests for other locales fall back to English.
+    |
+    */
+
+    'public' => array_values(array_filter(
+        Locale::values(),
+        fn (string $code) => ! in_array($code, ['ar'], true),
+    )),
 
     /*
     |--------------------------------------------------------------------------
