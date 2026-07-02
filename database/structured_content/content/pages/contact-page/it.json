@@ -1,0 +1,27 @@
+{
+  "locale": "it",
+  "language": "Italian",
+  "type": "page",
+  "slug": "contact-page",
+  "source_file": "Contact Page\\ITALIANO.docx",
+  "blocks": [
+    {
+      "heading": "Indirizzo dell’ufficio",
+      "body": [
+        "Egyptian Media Production City, Egitto",
+        "Numero di telefono",
+        "+201001299639",
+        "Indirizzo e-mail",
+        "bendary@globaluntoldstory.com"
+      ]
+    },
+    {
+      "heading": "Ufficio negli EAU",
+      "body": [
+        "Business Bay, Dubai, EAU",
+        "Numero di telefono",
+        "+971547711772"
+      ]
+    }
+  ]
+}

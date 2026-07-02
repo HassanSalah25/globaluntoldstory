@@ -1,0 +1,21 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "portfolio",
+  "slug": "our-portfolio",
+  "source_file": "Portfolios\\Our Portfolio\\ESPAÑOL.docx",
+  "items": [
+    {
+      "title": "Soluciones mágicas con The Untold Story",
+      "description": [
+        "Documental",
+        "Programa de televisión y producción en vivo",
+        "Industria"
+      ],
+      "client": null,
+      "service": null,
+      "industry": null,
+      "raw_meta": []
+    }
+  ]
+}

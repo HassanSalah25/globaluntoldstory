@@ -1,0 +1,64 @@
+{
+  "locale": "it",
+  "language": "Italian",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\ITALIANO.docx",
+  "title": "Produzione di Programmi TV & Diretta Live",
+  "subtitle": "",
+  "intro": [
+    "Produzione completa per show in studio, segmenti in esterna e coperture live quando timing, workflow tecnico e affidabilità contano davvero. Dallo sviluppo del format alla regia multicamera e alla consegna finale, tutto è pronto per broadcast e piattaforme."
+  ],
+  "sections": [
+    {
+      "heading": "Cosa includiamo",
+      "body": []
+    },
+    {
+      "heading": "Sviluppo format e struttura episodi/stagioni",
+      "body": []
+    },
+    {
+      "heading": "Run-down, script e segment beats",
+      "body": []
+    },
+    {
+      "heading": "Produzione studio multicamera + control room",
+      "body": []
+    },
+    {
+      "heading": "Produzione in esterna (insert, pacchetti, segmenti)",
+      "body": []
+    },
+    {
+      "heading": "Direzione presentatori/talent (supporto on-air)",
+      "body": []
+    },
+    {
+      "heading": "Live streaming e simulcast TV + digitale",
+      "body": [],
+      "meta": [
+        {
+          "key": "Pacchetti grafici",
+          "value": "lower-thirds, sigle, stings, transizioni"
+        },
+        {
+          "key": "Montaggio e consegna finale",
+          "value": "finishing, audio, mastering, versioni"
+        },
+        {
+          "key": "Workflow tecnico broadcast",
+          "value": "camere, audio, comunicazioni, recording, delivery"
+        },
+        {
+          "key": "Localizzazione",
+          "value": "sottotitoli, VO, doppiaggio, packaging multilingue"
+        }
+      ]
+    },
+    {
+      "heading": "WhatsApp (preventivo in 24h) | Email (invia brief/RFP)",
+      "body": []
+    }
+  ]
+}

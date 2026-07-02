@@ -1,0 +1,84 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "portfolio",
+  "slug": "commercial-advertising",
+  "source_file": "Portfolios\\Commercial Advertising\\TÜRKÇE.docx",
+  "items": [
+    {
+      "title": "The Garage Abu Dhabi | Fine dining marka filmi",
+      "description": [
+        "The Garage Abu Dhabi için oluşturulan fine dining marka filmi, mekânın atmosferini, servis anlarını ve premium yemek deneyimini yakalamak için tasarlandı.",
+        "Çalışma, mekânın sinematik geniş planlarını tabaklanmış yemeklerin ve içecek anlarının yakın planlarıyla sorunsuz şekilde birleştirerek atmosfer, iştah ve net bir mekân hissi oluşturur.",
+        "Dijital platformlar ve marka pazarlama kullanımı için rafine bir hospitality materyali olarak tasarlandı."
+      ],
+      "client": "The Garage Abu Dhabi",
+      "service": "Reklam videosu",
+      "industry": "Restoran",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "The Garage Abu Dhabi"
+        ],
+        [
+          "Hizmet",
+          "Reklam videosu"
+        ],
+        [
+          "Sektör",
+          "Restoran"
+        ]
+      ]
+    },
+    {
+      "title": "Önceki gönderi",
+      "description": [
+        "Tanashy Design için sade bir moda promosu, temiz kadraj ve minimal yönlendirme etrafında oluşturulmuş, model odaklı bir görsel yaklaşım sunar.",
+        "Çalışma, dikkati görünüm ve marka hissi üzerinde tutmak için tasarlanmış duruş, styling ve ince harekete odaklanır.",
+        "Sosyal ve dijital kullanım için hafif, platforma hazır bir materyal olarak oluşturuldu."
+      ],
+      "client": "Tanashy Designs",
+      "service": "Reklam videosu",
+      "industry": "Moda",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Tanashy Designs"
+        ],
+        [
+          "Hizmet",
+          "Reklam videosu"
+        ],
+        [
+          "Sektör",
+          "Moda"
+        ]
+      ]
+    },
+    {
+      "title": "Huawei | Reklam filmi",
+      "description": [
+        "Huawei için oluşturulan reklam videosu, marka iletişimini temiz ve modern bir ticari tonla desteklemek üzere geliştirildi.",
+        "Film, abartıya kaçmadan kısa, platforma hazır bir mesaj sunmak için rafine görsellere ve net bir tempoya odaklanır.",
+        "Dijital yayılım ve daha geniş pazarlama kullanımı için çok yönlü bir kampanya materyali olarak oluşturuldu."
+      ],
+      "client": "Huawei",
+      "service": "Reklam videosu",
+      "industry": "Elektronik",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Huawei"
+        ],
+        [
+          "Hizmet",
+          "Reklam videosu"
+        ],
+        [
+          "Sektör",
+          "Elektronik"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "locale": "it",
+  "language": "Italian",
+  "type": "portfolio",
+  "slug": "commercial-advertising",
+  "source_file": "Portfolios\\Commercial Advertising\\ITALIANO.docx",
+  "items": [
+    {
+      "title": "The Garage Abu Dhabi | Film di marca per alta ristorazione",
+      "description": [
+        "Un film di marca per alta ristorazione creato per The Garage Abu Dhabi, pensato per catturare l’atmosfera del luogo, i momenti di servizio e l’esperienza gastronomica premium.",
+        "Il contenuto combina in modo fluido ampie inquadrature cinematografiche dello spazio con primi piani di piatti impiattati e momenti legati alle bevande, costruendo atmosfera, appetito e un chiaro senso del luogo.",
+        "Progettato come asset hospitality rifinito per piattaforme digitali e uso nel marketing di marca."
+      ],
+      "client": "The Garage Abu Dhabi",
+      "service": null,
+      "industry": null,
+      "raw_meta": [
+        [
+          "Cliente",
+          "The Garage Abu Dhabi"
+        ],
+        [
+          "Servizio",
+          "Video pubblicitario"
+        ],
+        [
+          "Settore",
+          "Ristorante gastronomico"
+        ]
+      ]
+    },
+    {
+      "title": "Post precedente",
+      "description": [
+        "Una semplice promo moda per Tanashy Design, con un visual guidato da modella, costruito attorno a inquadrature pulite e direzione minima.",
+        "Il contenuto si concentra su presenza, styling e movimento sottile, pensati per mantenere l’attenzione sul look e sulla sensazione del marchio.",
+        "Creato come asset leggero e pronto per piattaforme sociali e digitali."
+      ],
+      "client": "Tanashy Designs",
+      "service": null,
+      "industry": null,
+      "raw_meta": [
+        [
+          "Cliente",
+          "Tanashy Designs"
+        ],
+        [
+          "Servizio",
+          "Video pubblicitario"
+        ],
+        [
+          "Settore",
+          "Moda"
+        ]
+      ]
+    },
+    {
+      "title": "Huawei | Film pubblicitario",
+      "description": [
+        "Un video pubblicitario creato per Huawei, sviluppato per supportare la comunicazione del marchio con un tono commerciale pulito e moderno.",
+        "Il film si concentra su visuali rifinite e ritmo chiaro per trasmettere un messaggio conciso, pronto per le piattaforme, senza esagerazioni.",
+        "Creato come asset di campagna versatile per distribuzione digitale e uso marketing più ampio."
+      ],
+      "client": "Huawei",
+      "service": null,
+      "industry": null,
+      "raw_meta": [
+        [
+          "Cliente",
+          "Huawei"
+        ],
+        [
+          "Servizio",
+          "Video pubblicitario"
+        ],
+        [
+          "Settore",
+          "Elettronica"
+        ]
+      ]
+    }
+  ]
+}

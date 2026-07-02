@@ -1,0 +1,113 @@
+{
+  "locale": "pt",
+  "language": "Portuguese (BR)",
+  "type": "services-overview",
+  "slug": "services-overview",
+  "source_file": "Services\\PORTUGUES BR.docx",
+  "blocks": [
+    {
+      "heading": "Servicos",
+      "body": [
+        "Estudio de producao de film e video com servico completo no Egito e na regiao MENA. Escolha um servico ou envie seu brief e indicamos o melhor caminho."
+      ]
+    },
+    {
+      "heading": "Fotografia",
+      "body": [
+        "Fotografia premium para marcas, produtos, executivos e eventos com entrega consistente."
+      ]
+    },
+    {
+      "heading": "Producao publicitaria",
+      "body": [
+        "Campanhas e comerciais do conceito a filmagem e entrega final."
+      ]
+    },
+    {
+      "heading": "Edicao e entrega final",
+      "body": [
+        "Edicao, cor, som, master e versoes em multiplos formatos por plataforma."
+      ]
+    },
+    {
+      "heading": "Cobertura de eventos e producao ao vivo",
+      "body": [
+        "Multicamera, live streaming, drone e entregas rapidas para conferencias e shows."
+      ]
+    },
+    {
+      "heading": "Producao documental",
+      "body": [
+        "Documentarios e series com base em pesquisa para plataformas, emissoras e instituicoes."
+      ]
+    },
+    {
+      "heading": "Servicos de producao no Egito para equipes internacionais",
+      "body": [
+        "Permissoes, fixing, equipe, equipamento, logistica e scouting de locacoes no Egito."
+      ]
+    },
+    {
+      "heading": "Producao de podcast",
+      "body": [
+        "Podcast de audio e video em estudio ou em locacao, com edicao e pacotes de clips."
+      ]
+    },
+    {
+      "heading": "Conteudo corporativo e industrial",
+      "body": [
+        "Filmes corporativos claros e confiaveis para energia, educacao, real estate e industria."
+      ]
+    },
+    {
+      "heading": "Producao de programas de TV e transmissao ao vivo",
+      "body": [
+        "Producao em estudio e externa com control room, run down, graficos e entrega."
+      ]
+    },
+    {
+      "heading": "Motion CGI e visuais com apoio de IA",
+      "body": [
+        "Motion 2D, 3D, CGI e visuais com apoio de IA para elevar a narrativa."
+      ]
+    },
+    {
+      "heading": "Dublagem voice over e localizacao",
+      "body": [
+        "Legendas, voice over, dublagem, ADR e packaging multilingue conforme padroes."
+      ]
+    },
+    {
+      "heading": "Solucoes de marketing e performance",
+      "body": [
+        "Estrategia de conteudo, media buying, testes criativos e sistemas de campanha."
+      ]
+    },
+    {
+      "heading": "Pedir orcamento",
+      "body": [
+        "Envie seu brief e retornamos com um plano claro e proximos passos."
+      ],
+      "meta": [
+        {
+          "key": "Email",
+          "value": "bendary@globaluntoldstory.com"
+        },
+        {
+          "key": "Telefone e WhatsApp",
+          "value": "+20 100 129 9639"
+        }
+      ]
+    },
+    {
+      "heading": "Nome completo",
+      "body": [
+        "Email",
+        "Telefone",
+        "Servico de interesse",
+        "Mensagem",
+        "Enviar"
+      ]
+    }
+  ]
+}

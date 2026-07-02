@@ -1,0 +1,184 @@
+{
+  "locale": "en",
+  "language": "English",
+  "type": "portfolio",
+  "slug": "industry",
+  "source_file": "Portfolios\\Industry\\ENGLISH.docx",
+  "items": [
+    {
+      "title": "Alliance | Dubai Economy & Tourism Corporate Event",
+      "description": [
+        "We produce corporate event coverage like this for high-profile stakeholder gatherings, capturing key moments on-site and shaping them into a clean, platform-ready recap.",
+        "This film covers an Alliance event in Dubai, created around economy and tourism themes in collaboration with Dubai’s Department of Economy and Tourism, designed for a corporate audience.",
+        "Delivered as part of an event package with flexibility for shorter cutdowns and speaker-focused versions."
+      ],
+      "client": "Alliance",
+      "service": "Event Coverage",
+      "industry": "Economy and Tourism",
+      "raw_meta": [
+        [
+          "Client",
+          "Alliance"
+        ],
+        [
+          "Service",
+          "Event Coverage"
+        ],
+        [
+          "Industry",
+          "Economy and Tourism"
+        ]
+      ]
+    },
+    {
+      "title": "ADNOC Shared Services Gathering | UAE (2025)",
+      "description": [
+        "We produce event coverage videos like this for corporate gatherings, capturing the energy on-site and distilling leadership messaging into clear, platform-ready edits.",
+        "This clip features moments from ADNOC’s first Shared Services gathering of the year, highlighting the team’s role through challenges and the 2025 focus areas, with AI positioned as a top priority.",
+        "Part of a multi-video event package, highlights, speaker moments, and cutdowns, created for internal and external communications."
+      ],
+      "client": "ADNOC (UAE)",
+      "service": "Event Coverage",
+      "industry": "Energy",
+      "raw_meta": [
+        [
+          "Client",
+          "ADNOC (UAE)"
+        ],
+        [
+          "Service",
+          "Event Coverage"
+        ],
+        [
+          "Industry",
+          "Energy"
+        ]
+      ]
+    },
+    {
+      "title": "Energy Operations Overview | ENAP in Egypt",
+      "description": [
+        "A corporate overview of ENAP, Chile’s state-owned energy company, and its role across exploration and production, refining and marketing, and gas and energy, framed through its international footprint, including Egypt.",
+        "The film highlights ENAP’s work in Egypt across concessions in the Western Desert, North Sinai, and the offshore Mediterranean, including joint-venture operations and performance milestones tied to mature assets with growth potential.",
+        "It also reinforces operational values, safety-first culture, people as a core asset, and continuous improvement, alongside exploration outcomes and discoveries referenced in the timeline."
+      ],
+      "client": "ENAP in Egypt",
+      "service": "Corporate Content",
+      "industry": "Energy",
+      "raw_meta": [
+        [
+          "Client",
+          "ENAP in Egypt"
+        ],
+        [
+          "Service",
+          "Corporate Content"
+        ],
+        [
+          "Industry",
+          "Energy"
+        ]
+      ]
+    },
+    {
+      "title": "A Corporate Film | Apache Egypt",
+      "description": [
+        "A corporate impact film highlighting Apache’s long-term presence in Egypt since 1996, including major investment and leadership in the country’s oil and gas sector.",
+        "The video spotlights Apache’s “Give Where We Live” commitment, supporting Egypt Vision 2030 through education, community development, and social initiatives, with a strong focus on girls’ education through the Springboard program and ongoing support for schools in rural and operational areas.",
+        "It also features broader community support, from healthcare initiatives and blood donation campaigns to orphanage support, sanitation, and scholarships for Egyptian students."
+      ],
+      "client": "Apache Egypt",
+      "service": "Corporate Content",
+      "industry": "Energy",
+      "raw_meta": [
+        [
+          "Client",
+          "Apache Egypt"
+        ],
+        [
+          "Service",
+          "Corporate Content"
+        ],
+        [
+          "Industry",
+          "Energy"
+        ]
+      ]
+    },
+    {
+      "title": "A Corporate Story | Engazat",
+      "description": [
+        "A corporate documentary created for Engazat, built to present the company story through a documentary-style lens.",
+        "The film focuses on real environments, authentic moments, and a clear narrative structure that supports brand storytelling in a credible, human way.",
+        "Designed as a premium, long-form corporate asset for presentations, digital platforms, and stakeholder communications."
+      ],
+      "client": "Engazat",
+      "service": "Corporate Content",
+      "industry": "Energy",
+      "raw_meta": [
+        [
+          "Client",
+          "Engazat"
+        ],
+        [
+          "Service",
+          "Corporate Content"
+        ],
+        [
+          "Industry",
+          "Energy"
+        ]
+      ]
+    },
+    {
+      "title": "Corporate Content Beauty Shots | Engazat",
+      "description": [
+        "A curated selection of beauty shots created as part of a corporate content project for Engazat.",
+        "The video focuses on clean, cinematic visuals, locations, atmosphere, and detail-driven moments captured to support brand storytelling and elevate the overall look and feel.",
+        "Built as a flexible visual asset for use across multiple edits, teasers, and corporate communications."
+      ],
+      "client": "Engazat",
+      "service": "Corporate Content",
+      "industry": "Energy",
+      "raw_meta": [
+        [
+          "Client",
+          "Engazat"
+        ],
+        [
+          "Service",
+          "Corporate Content"
+        ],
+        [
+          "Industry",
+          "Energy"
+        ]
+      ]
+    },
+    {
+      "title": "ILO x UE Documentary Film",
+      "description": [
+        "We produce short documentary films like this for development programs and FMCG partners, combining interviews with real on-ground footage to communicate impact clearly and credibly.",
+        "This 3-minute film for the ILO features Upper Egypt for Food Products (UE), showcasing the farm-to-factory journey through interviews and visuals from the farms and the facilities where produce is washed, processed, and packaged.",
+        "Delivered as a concise storytelling piece for stakeholder communications, reporting, and multi-platform distribution."
+      ],
+      "client": "ILO x UE",
+      "service": "Documentary Film",
+      "industry": "Food Products",
+      "raw_meta": [
+        [
+          "Client",
+          "ILO x UE"
+        ],
+        [
+          "Service",
+          "Documentary Film"
+        ],
+        [
+          "Industry",
+          "Food Products"
+        ]
+      ]
+    }
+  ]
+}

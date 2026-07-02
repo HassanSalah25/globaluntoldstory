@@ -1,0 +1,84 @@
+{
+  "locale": "en",
+  "language": "English",
+  "type": "portfolio",
+  "slug": "commercial-advertising",
+  "source_file": "Portfolios\\Commercial Advertising\\ENGLISH.docx",
+  "items": [
+    {
+      "title": "The Garage Abu Dhabi | Fine Dining Brand Film",
+      "description": [
+        "A fine dining brand film for The Garage Abu Dhabi, created to capture the venue’s atmosphere, service moments, and premium dining experience.",
+        "The piece seamlessly blends cinematic wide shots of the space with close-ups of plated dishes and drink moments, building mood, appetite, and a clear sense of place.",
+        "Designed as a polished hospitality asset for digital platforms and brand marketing use."
+      ],
+      "client": "The Garage Abu Dhabi",
+      "service": "Advertising Video",
+      "industry": "Dining Restaurant",
+      "raw_meta": [
+        [
+          "Client",
+          "The Garage Abu Dhabi"
+        ],
+        [
+          "Service",
+          "Advertising Video"
+        ],
+        [
+          "Industry",
+          "Dining Restaurant"
+        ]
+      ]
+    },
+    {
+      "title": "Prev Post",
+      "description": [
+        "A simple fashion promo for Tanashy Design, featuring a model-led visual built around clean framing and minimal direction.",
+        "The piece focuses on presence, styling, and subtle movement designed to keep attention on the look and brand feel.",
+        "Created as a lightweight, platform-ready asset for social and digital use."
+      ],
+      "client": "Tanashy Designs",
+      "service": "Advertising Video",
+      "industry": "Fashion",
+      "raw_meta": [
+        [
+          "Client",
+          "Tanashy Designs"
+        ],
+        [
+          "Service",
+          "Advertising Video"
+        ],
+        [
+          "Industry",
+          "Fashion"
+        ]
+      ]
+    },
+    {
+      "title": "Huawei | Advertising Film",
+      "description": [
+        "An advertising video created for Huawei, developed to support brand communication in a clean, modern commercial tone.",
+        "The film focuses on polished visuals and clear pacing to deliver a concise, platform-ready message without overstatement.",
+        "Built as a versatile campaign asset for digital rollout and broader marketing use."
+      ],
+      "client": "Huawei",
+      "service": "Advertising Video",
+      "industry": "Electronics",
+      "raw_meta": [
+        [
+          "Client",
+          "Huawei"
+        ],
+        [
+          "Service",
+          "Advertising Video"
+        ],
+        [
+          "Industry",
+          "Electronics"
+        ]
+      ]
+    }
+  ]
+}

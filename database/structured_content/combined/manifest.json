@@ -1,0 +1,1196 @@
+[
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "de",
+    "file": "content/pages/home-page/de.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "en",
+    "file": "content/pages/home-page/en.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "es",
+    "file": "content/pages/home-page/es.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "fr",
+    "file": "content/pages/home-page/fr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "it",
+    "file": "content/pages/home-page/it.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "pt",
+    "file": "content/pages/home-page/pt.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "tr",
+    "file": "content/pages/home-page/tr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "home-page",
+    "locale": "ru",
+    "file": "content/pages/home-page/ru.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "de",
+    "file": "content/pages/about-us/de.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "en",
+    "file": "content/pages/about-us/en.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "es",
+    "file": "content/pages/about-us/es.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "fr",
+    "file": "content/pages/about-us/fr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "it",
+    "file": "content/pages/about-us/it.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "pt",
+    "file": "content/pages/about-us/pt.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "tr",
+    "file": "content/pages/about-us/tr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "about-us",
+    "locale": "ru",
+    "file": "content/pages/about-us/ru.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "de",
+    "file": "content/pages/contact-page/de.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "en",
+    "file": "content/pages/contact-page/en.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "es",
+    "file": "content/pages/contact-page/es.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "fr",
+    "file": "content/pages/contact-page/fr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "it",
+    "file": "content/pages/contact-page/it.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "pt",
+    "file": "content/pages/contact-page/pt.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "tr",
+    "file": "content/pages/contact-page/tr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "contact-page",
+    "locale": "ru",
+    "file": "content/pages/contact-page/ru.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "de",
+    "file": "content/pages/services-overview/de.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "en",
+    "file": "content/pages/services-overview/en.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "es",
+    "file": "content/pages/services-overview/es.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "fr",
+    "file": "content/pages/services-overview/fr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "it",
+    "file": "content/pages/services-overview/it.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "pt",
+    "file": "content/pages/services-overview/pt.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "tr",
+    "file": "content/pages/services-overview/tr.json"
+  },
+  {
+    "category": "pages",
+    "slug": "services-overview",
+    "locale": "ru",
+    "file": "content/pages/services-overview/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "de",
+    "file": "content/services/commercial-advertising-production/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "en",
+    "file": "content/services/commercial-advertising-production/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "es",
+    "file": "content/services/commercial-advertising-production/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "fr",
+    "file": "content/services/commercial-advertising-production/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "it",
+    "file": "content/services/commercial-advertising-production/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "pt",
+    "file": "content/services/commercial-advertising-production/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "tr",
+    "file": "content/services/commercial-advertising-production/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "commercial-advertising-production",
+    "locale": "ru",
+    "file": "content/services/commercial-advertising-production/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "de",
+    "file": "content/services/corporate-industrial-content/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "en",
+    "file": "content/services/corporate-industrial-content/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "es",
+    "file": "content/services/corporate-industrial-content/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "it",
+    "file": "content/services/corporate-industrial-content/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "pt",
+    "file": "content/services/corporate-industrial-content/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "tr",
+    "file": "content/services/corporate-industrial-content/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "corporate-industrial-content",
+    "locale": "ru",
+    "file": "content/services/corporate-industrial-content/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "de",
+    "file": "content/services/documentary-production/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "en",
+    "file": "content/services/documentary-production/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "es",
+    "file": "content/services/documentary-production/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "fr",
+    "file": "content/services/documentary-production/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "it",
+    "file": "content/services/documentary-production/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "pt",
+    "file": "content/services/documentary-production/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "tr",
+    "file": "content/services/documentary-production/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "documentary-production",
+    "locale": "ru",
+    "file": "content/services/documentary-production/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "de",
+    "file": "content/services/event-coverage-live-production/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "en",
+    "file": "content/services/event-coverage-live-production/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "es",
+    "file": "content/services/event-coverage-live-production/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "fr",
+    "file": "content/services/event-coverage-live-production/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "it",
+    "file": "content/services/event-coverage-live-production/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "pt",
+    "file": "content/services/event-coverage-live-production/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "tr",
+    "file": "content/services/event-coverage-live-production/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "event-coverage-live-production",
+    "locale": "ru",
+    "file": "content/services/event-coverage-live-production/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "de",
+    "file": "content/services/marketing-solutions-performance/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "en",
+    "file": "content/services/marketing-solutions-performance/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "es",
+    "file": "content/services/marketing-solutions-performance/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "fr",
+    "file": "content/services/marketing-solutions-performance/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "it",
+    "file": "content/services/marketing-solutions-performance/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "pt",
+    "file": "content/services/marketing-solutions-performance/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "tr",
+    "file": "content/services/marketing-solutions-performance/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "marketing-solutions-performance",
+    "locale": "ru",
+    "file": "content/services/marketing-solutions-performance/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "de",
+    "file": "content/services/motion-cgi-ai-powered-visuals/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "en",
+    "file": "content/services/motion-cgi-ai-powered-visuals/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "es",
+    "file": "content/services/motion-cgi-ai-powered-visuals/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "fr",
+    "file": "content/services/motion-cgi-ai-powered-visuals/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "it",
+    "file": "content/services/motion-cgi-ai-powered-visuals/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "pt",
+    "file": "content/services/motion-cgi-ai-powered-visuals/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "tr",
+    "file": "content/services/motion-cgi-ai-powered-visuals/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "motion-cgi-ai-powered-visuals",
+    "locale": "ru",
+    "file": "content/services/motion-cgi-ai-powered-visuals/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "de",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "en",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "es",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "fr",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "it",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "pt",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "tr",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "multilingual-dubbing-voice-over-localization",
+    "locale": "ru",
+    "file": "content/services/multilingual-dubbing-voice-over-localization/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "de",
+    "file": "content/services/on-ground-production-services-egypt/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "en",
+    "file": "content/services/on-ground-production-services-egypt/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "es",
+    "file": "content/services/on-ground-production-services-egypt/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "fr",
+    "file": "content/services/on-ground-production-services-egypt/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "it",
+    "file": "content/services/on-ground-production-services-egypt/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "pt",
+    "file": "content/services/on-ground-production-services-egypt/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "tr",
+    "file": "content/services/on-ground-production-services-egypt/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "on-ground-production-services-egypt",
+    "locale": "ru",
+    "file": "content/services/on-ground-production-services-egypt/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "de",
+    "file": "content/services/original-ip-development/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "en",
+    "file": "content/services/original-ip-development/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "es",
+    "file": "content/services/original-ip-development/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "fr",
+    "file": "content/services/original-ip-development/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "it",
+    "file": "content/services/original-ip-development/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "pt",
+    "file": "content/services/original-ip-development/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "tr",
+    "file": "content/services/original-ip-development/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "original-ip-development",
+    "locale": "ru",
+    "file": "content/services/original-ip-development/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "de",
+    "file": "content/services/photography/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "en",
+    "file": "content/services/photography/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "es",
+    "file": "content/services/photography/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "fr",
+    "file": "content/services/photography/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "it",
+    "file": "content/services/photography/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "pt",
+    "file": "content/services/photography/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "tr",
+    "file": "content/services/photography/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "photography",
+    "locale": "ru",
+    "file": "content/services/photography/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "de",
+    "file": "content/services/podcast-production/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "en",
+    "file": "content/services/podcast-production/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "es",
+    "file": "content/services/podcast-production/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "fr",
+    "file": "content/services/podcast-production/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "it",
+    "file": "content/services/podcast-production/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "pt",
+    "file": "content/services/podcast-production/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "tr",
+    "file": "content/services/podcast-production/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "podcast-production",
+    "locale": "ru",
+    "file": "content/services/podcast-production/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "de",
+    "file": "content/services/post-production-mastering/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "en",
+    "file": "content/services/post-production-mastering/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "es",
+    "file": "content/services/post-production-mastering/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "fr",
+    "file": "content/services/post-production-mastering/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "it",
+    "file": "content/services/post-production-mastering/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "pt",
+    "file": "content/services/post-production-mastering/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "tr",
+    "file": "content/services/post-production-mastering/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "post-production-mastering",
+    "locale": "ru",
+    "file": "content/services/post-production-mastering/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "de",
+    "file": "content/services/tv-shows-production/de.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "en",
+    "file": "content/services/tv-shows-production/en.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "es",
+    "file": "content/services/tv-shows-production/es.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "fr",
+    "file": "content/services/tv-shows-production/fr.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "it",
+    "file": "content/services/tv-shows-production/it.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "pt",
+    "file": "content/services/tv-shows-production/pt.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "tr",
+    "file": "content/services/tv-shows-production/tr.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "ru",
+    "file": "content/services/tv-shows-production/ru.json"
+  },
+  {
+    "category": "services",
+    "slug": "tv-shows-production",
+    "locale": "ar",
+    "file": "content/services/tv-shows-production/ar.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "de",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/de.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "en",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/en.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "es",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/es.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "fr",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/fr.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "it",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/it.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "pt",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/pt.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "tr",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/tr.json"
+  },
+  {
+    "category": "articles",
+    "slug": "how-to-choose-a-media-production-agency-in-egypt",
+    "locale": "ru",
+    "file": "content/articles/how-to-choose-a-media-production-agency-in-egypt/ru.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "de",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/de.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "en",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/en.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "es",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/es.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "fr",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/fr.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "it",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/it.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "pt",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/pt.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "tr",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/tr.json"
+  },
+  {
+    "category": "articles",
+    "slug": "the-video-production-journey-from-idea-to-impact",
+    "locale": "ru",
+    "file": "content/articles/the-video-production-journey-from-idea-to-impact/ru.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "de",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/de.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "en",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/en.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "es",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/es.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "fr",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/fr.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "it",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/it.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "pt",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/pt.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "tr",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/tr.json"
+  },
+  {
+    "category": "articles",
+    "slug": "why-every-brand-needs-a-story-that-moves-people",
+    "locale": "ru",
+    "file": "content/articles/why-every-brand-needs-a-story-that-moves-people/ru.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "de",
+    "file": "content/portfolios/commercial-advertising/de.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "en",
+    "file": "content/portfolios/commercial-advertising/en.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "es",
+    "file": "content/portfolios/commercial-advertising/es.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "fr",
+    "file": "content/portfolios/commercial-advertising/fr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "it",
+    "file": "content/portfolios/commercial-advertising/it.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "pt",
+    "file": "content/portfolios/commercial-advertising/pt.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "commercial-advertising",
+    "locale": "tr",
+    "file": "content/portfolios/commercial-advertising/tr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "de",
+    "file": "content/portfolios/documentary/de.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "en",
+    "file": "content/portfolios/documentary/en.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "es",
+    "file": "content/portfolios/documentary/es.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "fr",
+    "file": "content/portfolios/documentary/fr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "it",
+    "file": "content/portfolios/documentary/it.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "pt",
+    "file": "content/portfolios/documentary/pt.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "tr",
+    "file": "content/portfolios/documentary/tr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "documentary",
+    "locale": "ru",
+    "file": "content/portfolios/documentary/ru.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "de",
+    "file": "content/portfolios/industry/de.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "en",
+    "file": "content/portfolios/industry/en.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "es",
+    "file": "content/portfolios/industry/es.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "fr",
+    "file": "content/portfolios/industry/fr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "it",
+    "file": "content/portfolios/industry/it.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "pt",
+    "file": "content/portfolios/industry/pt.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "tr",
+    "file": "content/portfolios/industry/tr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "industry",
+    "locale": "ru",
+    "file": "content/portfolios/industry/ru.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "de",
+    "file": "content/portfolios/our-portfolio/de.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "en",
+    "file": "content/portfolios/our-portfolio/en.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "es",
+    "file": "content/portfolios/our-portfolio/es.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "fr",
+    "file": "content/portfolios/our-portfolio/fr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "it",
+    "file": "content/portfolios/our-portfolio/it.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "pt",
+    "file": "content/portfolios/our-portfolio/pt.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "tr",
+    "file": "content/portfolios/our-portfolio/tr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "our-portfolio",
+    "locale": "ru",
+    "file": "content/portfolios/our-portfolio/ru.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "de",
+    "file": "content/portfolios/tv-show-live/de.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "en",
+    "file": "content/portfolios/tv-show-live/en.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "es",
+    "file": "content/portfolios/tv-show-live/es.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "fr",
+    "file": "content/portfolios/tv-show-live/fr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "it",
+    "file": "content/portfolios/tv-show-live/it.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "pt",
+    "file": "content/portfolios/tv-show-live/pt.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "tr",
+    "file": "content/portfolios/tv-show-live/tr.json"
+  },
+  {
+    "category": "portfolios",
+    "slug": "tv-show-live",
+    "locale": "ru",
+    "file": "content/portfolios/tv-show-live/ru.json"
+  }
+]

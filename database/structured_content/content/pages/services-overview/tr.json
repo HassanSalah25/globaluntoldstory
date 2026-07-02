@@ -1,0 +1,113 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "services-overview",
+  "slug": "services-overview",
+  "source_file": "Services\\TURKCE.docx",
+  "blocks": [
+    {
+      "heading": "Hizmetler",
+      "body": [
+        "Misir ve MENA bolgesinde tam kapsamli film ve video prodüksiyon stüdyosu. Bir hizmet secin veya brief gonderin, dogru plani oneralim."
+      ]
+    },
+    {
+      "heading": "Fotograf",
+      "body": [
+        "Marka, urun, yonetici ve etkinlikler icin premium fotograf cekimi ve duzenli teslim."
+      ]
+    },
+    {
+      "heading": "Reklam prodüksiyonu",
+      "body": [
+        "Kampanya ve reklam filmleri fikirden cekime ve final teslimata kadar."
+      ]
+    },
+    {
+      "heading": "Kurgu ve final teslim",
+      "body": [
+        "Kurgu, renk, ses, mastering ve platformlara uygun coklu versiyonlar."
+      ]
+    },
+    {
+      "heading": "Etkinlik cekimi ve canli prodüksiyon",
+      "body": [
+        "Cok kamerali cekim, canli yayin, drone ve hizli teslimatlar."
+      ]
+    },
+    {
+      "heading": "Belgesel prodüksiyonu",
+      "body": [
+        "Arastirma temelli belgesel film ve seri prodüksiyonu, platform ve kurumlara uygun."
+      ]
+    },
+    {
+      "heading": "Uluslararasi ekipler icin Misir da prodüksiyon hizmetleri",
+      "body": [
+        "Izinler, fixing, ekip, ekipman, lojistik ve lokasyon scouting."
+      ]
+    },
+    {
+      "heading": "Podcast prodüksiyonu",
+      "body": [
+        "Stüdyo veya lokasyonda audio ve video podcast, kurgu ve klip paketleri."
+      ]
+    },
+    {
+      "heading": "Kurumsal ve endustriyel icerik",
+      "body": [
+        "Enerji, egitim, gayrimenkul ve endustri icin net ve guvenilir kurumsal filmler."
+      ]
+    },
+    {
+      "heading": "TV ve canli yayin prodüksiyonu",
+      "body": [
+        "Stüdyo ve saha prodüksiyonu, control room, run down, grafik paketleri ve teslim."
+      ]
+    },
+    {
+      "heading": "Motion CGI ve yapay zeka destekli gorseller",
+      "body": [
+        "2D motion, 3D, CGI ve yapay zeka destekli gorseller ile daha guclu anlatim."
+      ]
+    },
+    {
+      "heading": "Dublaj voice over ve lokalizasyon",
+      "body": [
+        "Altyazi, voice over, dublaj, ADR ve cok dilli paketleme."
+      ]
+    },
+    {
+      "heading": "Pazarlama cozumleri ve performance",
+      "body": [
+        "Icerik stratejisi, media buying, kreatif test ve kampanya sistemleri."
+      ]
+    },
+    {
+      "heading": "Teklif iste",
+      "body": [
+        "Brief gonderin, net bir plan ve sonraki adimlarla geri donelim."
+      ],
+      "meta": [
+        {
+          "key": "Email",
+          "value": "bendary@globaluntoldstory.com"
+        },
+        {
+          "key": "Telefon ve WhatsApp",
+          "value": "+20 100 129 9639"
+        }
+      ]
+    },
+    {
+      "heading": "Ad soyad",
+      "body": [
+        "Email",
+        "Telefon",
+        "Ilgilendiginiz hizmet",
+        "Mesaj",
+        "Gonder"
+      ]
+    }
+  ]
+}

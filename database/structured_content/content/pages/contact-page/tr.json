@@ -1,0 +1,27 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "page",
+  "slug": "contact-page",
+  "source_file": "Contact Page\\TURKCE.docx",
+  "blocks": [
+    {
+      "heading": "Ofis adresi",
+      "body": [
+        "Egyptian Media Production City, Mısır",
+        "Telefon numarası",
+        "+201001299639",
+        "E-posta adresi",
+        "bendary@globaluntoldstory.com"
+      ]
+    },
+    {
+      "heading": "BAE ofisi",
+      "body": [
+        "Business Bay, Dubai, BAE",
+        "Telefon numarası",
+        "+971547711772"
+      ]
+    }
+  ]
+}

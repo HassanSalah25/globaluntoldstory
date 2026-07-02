@@ -1,0 +1,59 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "portfolio",
+  "slug": "tv-show-live",
+  "source_file": "Portfolios\\TV Show & Live\\TÜRKÇE.docx",
+  "items": [
+    {
+      "title": "Hamaki ‘Haga Mestakhabeya’ 10 Years Concert | Canlı",
+      "description": [
+        "10 Years konser kutlaması kapsamında Hamaki’nin “Nefsi Aba’a Ganbo” performansını yakalayan bir konser videosu.",
+        "Canlı enerji, kalabalık atmosferi ve performans odaklı tempo etrafında oluşturulan çalışma, sahnedeki önemli anları rafine, etkinliğe hazır bir formatta sunar.",
+        "Dijital yayınlama ve konser tanıtımı için uygun bir highlight materyali olarak oluşturuldu."
+      ],
+      "client": "Live Concert",
+      "service": "Canlı çekim",
+      "industry": "Canlı konserler",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Live Concert"
+        ],
+        [
+          "Hizmet",
+          "Canlı çekim"
+        ],
+        [
+          "Sektör",
+          "Canlı konserler"
+        ]
+      ]
+    },
+    {
+      "title": "La Casa de Papel | Promo (Netflix)",
+      "description": [
+        "Netflix için oluşturulan sosyal medya tarzı promo, Arapça konuşan hayranların La Casa de Papel’e duydukları heyecanı ve bağlarını paylaşmalarını içerir.",
+        "Seriden ilham alan styling ile Arap lokasyonlarında çekilen video, dizi ve fandom kültürü etrafında paylaşılan bir topluluk anını yakalar.",
+        "Konuşma başlatmak ve bölgesel etkileşimi artırmak için izleyici öncelikli bir parça olarak tasarlandı."
+      ],
+      "client": "Netflix",
+      "service": "Promo video",
+      "industry": "Talep üzerine video platformu",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Netflix"
+        ],
+        [
+          "Hizmet",
+          "Promo video"
+        ],
+        [
+          "Sektör",
+          "Talep üzerine video platformu"
+        ]
+      ]
+    }
+  ]
+}

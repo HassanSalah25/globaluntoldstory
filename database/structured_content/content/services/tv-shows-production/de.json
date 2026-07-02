@@ -1,0 +1,64 @@
+{
+  "locale": "de",
+  "language": "German",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\DEUTSCH.docx",
+  "title": "TV-Show- & Live-Broadcast-Produktion",
+  "subtitle": "",
+  "intro": [
+    "Full-Service TV- und Live-Broadcast-Produktion für Studio formate, Außendrehs und Live-Coverage—wenn Timing, technischer Ablauf und Zuverlässigkeit entscheidend sind. Von Formatentwicklung über Multi-Kamera-Regie bis zur finalen Auslieferung: sendefertig, präzise, planbar."
+  ],
+  "sections": [
+    {
+      "heading": "Leistungsumfang",
+      "body": []
+    },
+    {
+      "heading": "Format- & Showentwicklung (Struktur, Pace, Segmentlogik)",
+      "body": []
+    },
+    {
+      "heading": "Run-down, Skripte & Segmenttexte",
+      "body": []
+    },
+    {
+      "heading": "Studio Multi-Kamera-Produktion inkl. Regie/Control Room",
+      "body": []
+    },
+    {
+      "heading": "Field Production (Einspieler, Beiträge, vorproduzierte Packages)",
+      "body": []
+    },
+    {
+      "heading": "Talent-/Presenter- निर्देशन (On-Air Support)",
+      "body": []
+    },
+    {
+      "heading": "Live-Streaming & Simulcast (TV + Digital)",
+      "body": [],
+      "meta": [
+        {
+          "key": "Grafikpakete",
+          "value": "Bauchbinden, Opener, Stings, Transitions"
+        },
+        {
+          "key": "Schnitt & Final Delivery",
+          "value": "Finishing, Sound, Mastering, Versionen"
+        },
+        {
+          "key": "Broadcast-Workflow",
+          "value": "Kamera/Audio/Comms/Recording/Delivery"
+        },
+        {
+          "key": "Lokalisierung",
+          "value": "Untertitel, VO, Dubbing, mehrsprachiges Packaging"
+        }
+      ]
+    },
+    {
+      "heading": "WhatsApp (Angebot in 24h) | Email (Brief/RFP senden)",
+      "body": []
+    }
+  ]
+}

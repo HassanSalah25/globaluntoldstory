@@ -1,0 +1,21 @@
+{
+  "locale": "fr",
+  "language": "French",
+  "type": "portfolio",
+  "slug": "our-portfolio",
+  "source_file": "Portfolios\\Our Portfolio\\FRANÇAIS.docx",
+  "items": [
+    {
+      "title": "Des solutions magiques avec The Untold Story",
+      "description": [
+        "Documentaire",
+        "Émission télévisée et production en direct",
+        "Secteur"
+      ],
+      "client": null,
+      "service": null,
+      "industry": null,
+      "raw_meta": []
+    }
+  ]
+}

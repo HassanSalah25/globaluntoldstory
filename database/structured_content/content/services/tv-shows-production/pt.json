@@ -1,0 +1,64 @@
+{
+  "locale": "pt",
+  "language": "Portuguese (BR)",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\PORTUGUÊS.docx",
+  "title": "Produção de Programas de TV & Transmissão Ao Vivo",
+  "subtitle": "",
+  "intro": [
+    "Produção completa para programas em estúdio, captações externas e cobertura ao vivo quando timing, fluxo técnico e confiabilidade são essenciais. Do desenvolvimento do formato à direção multicâmera e entrega final, tudo é feito com padrão de broadcast."
+  ],
+  "sections": [
+    {
+      "heading": "O que entregamos",
+      "body": []
+    },
+    {
+      "heading": "Desenvolvimento de formato e estrutura de programa",
+      "body": []
+    },
+    {
+      "heading": "Run-down, roteiros e linhas de conteúdo",
+      "body": []
+    },
+    {
+      "heading": "Produção em estúdio multicâmera + control room",
+      "body": []
+    },
+    {
+      "heading": "Produção externa (inserts, matérias, packages)",
+      "body": []
+    },
+    {
+      "heading": "Direção de apresentadores/talentos (suporte on-air)",
+      "body": []
+    },
+    {
+      "heading": "Live streaming e simulcast (TV + digital)",
+      "body": [],
+      "meta": [
+        {
+          "key": "Pacotes gráficos",
+          "value": "lower-thirds, vinhetas, transições, abertura"
+        },
+        {
+          "key": "Edição e entrega final",
+          "value": "finishing, áudio, master, versões"
+        },
+        {
+          "key": "Workflow técnico broadcast",
+          "value": "câmeras, áudio, comms, gravação, entrega"
+        },
+        {
+          "key": "Localização",
+          "value": "legendas, VO, dublagem, packaging multilíngue"
+        }
+      ]
+    },
+    {
+      "heading": "WhatsApp (orçamento em 24h) | Email (enviar brief/RFP)",
+      "body": []
+    }
+  ]
+}

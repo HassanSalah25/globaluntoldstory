@@ -1,0 +1,113 @@
+{
+  "locale": "it",
+  "language": "Italian",
+  "type": "services-overview",
+  "slug": "services-overview",
+  "source_file": "Services\\ITALIANO.docx",
+  "blocks": [
+    {
+      "heading": "Servizi",
+      "body": [
+        "Studio di produzione film e video a servizio completo in Egitto e nella regione MENA. Scegli un servizio o invia il brief e proponiamo il piano giusto."
+      ]
+    },
+    {
+      "heading": "Fotografia",
+      "body": [
+        "Fotografia premium per brand, prodotti, executive ed eventi con consegna pulita e coerente."
+      ]
+    },
+    {
+      "heading": "Produzione pubblicitaria",
+      "body": [
+        "Campagne e spot dal concept alle riprese e alla consegna finale."
+      ]
+    },
+    {
+      "heading": "Montaggio e consegna finale",
+      "body": [
+        "Montaggio, color, audio, mastering e versioni multi formato per piattaforme e broadcast."
+      ]
+    },
+    {
+      "heading": "Copertura eventi e produzione live",
+      "body": [
+        "Multi camera, live streaming, drone e consegne rapide per conferenze e concerti."
+      ]
+    },
+    {
+      "heading": "Produzione documentari",
+      "body": [
+        "Documentari e serie basati su ricerca per piattaforme, broadcaster e istituzioni."
+      ]
+    },
+    {
+      "heading": "Servizi di produzione in Egitto per troupe internazionali",
+      "body": [
+        "Permessi, fixing, crew, attrezzatura, logistica e location scouting in Egitto."
+      ]
+    },
+    {
+      "heading": "Produzione podcast",
+      "body": [
+        "Podcast audio e video in studio o on location, con montaggio e pacchetti clip."
+      ]
+    },
+    {
+      "heading": "Contenuti corporate e industriali",
+      "body": [
+        "Film corporate chiari e credibili per energia, education, real estate e industria."
+      ]
+    },
+    {
+      "heading": "Produzione TV e live broadcast",
+      "body": [
+        "Produzione studio e field con control room, run down, grafica e delivery."
+      ]
+    },
+    {
+      "heading": "Motion CGI e visual con supporto AI",
+      "body": [
+        "Motion 2D, 3D, CGI e visual con supporto AI per elevare lo storytelling."
+      ]
+    },
+    {
+      "heading": "Doppiaggio voice over e localizzazione",
+      "body": [
+        "Sottotitoli, voice over, doppiaggio, ADR e packaging multilingue secondo standard."
+      ]
+    },
+    {
+      "heading": "Soluzioni marketing e performance",
+      "body": [
+        "Strategia contenuti, media buying, creative testing e sistemi di campagna."
+      ]
+    },
+    {
+      "heading": "Richiedi preventivo",
+      "body": [
+        "Invia il brief e rispondiamo con un piano chiaro e i prossimi passi."
+      ],
+      "meta": [
+        {
+          "key": "Email",
+          "value": "bendary@globaluntoldstory.com"
+        },
+        {
+          "key": "Telefono e WhatsApp",
+          "value": "+20 100 129 9639"
+        }
+      ]
+    },
+    {
+      "heading": "Nome e cognome",
+      "body": [
+        "Email",
+        "Telefono",
+        "Servizio di interesse",
+        "Messaggio",
+        "Invia"
+      ]
+    }
+  ]
+}

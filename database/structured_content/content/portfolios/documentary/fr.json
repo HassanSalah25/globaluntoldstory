@@ -1,0 +1,84 @@
+{
+  "locale": "fr",
+  "language": "French",
+  "type": "portfolio",
+  "slug": "documentary",
+  "source_file": "Portfolios\\Documentary\\FRANÇAIS.docx",
+  "items": [
+    {
+      "title": "Un film institutionnel | Apache Egypt",
+      "description": [
+        "Un film institutionnel d’impact mettant en lumière la présence à long terme d’Apache en Égypte depuis 1996, incluant d’importants investissements et un rôle de leadership dans le secteur pétrolier et gazier du pays.",
+        "La vidéo met en avant l’engagement d’Apache « Give Where We Live », en soutien à Egypt Vision 2030 à travers l’éducation, le développement communautaire et les initiatives sociales, avec un fort accent sur l’éducation des filles grâce au programme Springboard et au soutien continu des écoles dans les zones rurales et opérationnelles.",
+        "Elle présente également un soutien communautaire plus large, des initiatives de santé et campagnes de don de sang au soutien des orphelinats, à l’assainissement et aux bourses pour les étudiants égyptiens."
+      ],
+      "client": "Apache Egypt",
+      "service": "Contenu institutionnel",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "Apache Egypt"
+        ],
+        [
+          "Service",
+          "Contenu institutionnel"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Une histoire institutionnelle | Engazat",
+      "description": [
+        "Un documentaire institutionnel créé pour Engazat, conçu pour présenter l’histoire de l’entreprise à travers une approche documentaire.",
+        "Le film se concentre sur des environnements réels, des moments authentiques et une structure narrative claire qui soutient la narration de marque d’une manière crédible et humaine.",
+        "Conçu comme un support institutionnel premium de long format pour les présentations, les plateformes numériques et la communication avec les parties prenantes."
+      ],
+      "client": "Engazat",
+      "service": "Contenu institutionnel",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "Engazat"
+        ],
+        [
+          "Service",
+          "Contenu institutionnel"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Film documentaire ILO x UE",
+      "description": [
+        "Nous produisons des films documentaires courts comme celui-ci pour des programmes de développement et des partenaires de produits de grande consommation, en combinant interviews et images réelles sur le terrain afin de communiquer l’impact clairement et avec crédibilité.",
+        "Ce film de 3 minutes pour l’ILO présente Upper Egypt for Food Products (UE), montrant le parcours de la ferme à l’usine à travers des interviews et des images des fermes et des installations où les produits sont lavés, transformés et emballés.",
+        "Livré comme une pièce narrative concise pour la communication avec les parties prenantes, les rapports et la distribution multiplateforme."
+      ],
+      "client": "ILO x UE",
+      "service": "Film documentaire",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "ILO x UE"
+        ],
+        [
+          "Service",
+          "Film documentaire"
+        ],
+        [
+          "Secteur",
+          "Produits alimentaires"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "locale": "en",
+  "language": "English",
+  "type": "portfolio",
+  "slug": "our-portfolio",
+  "source_file": "Portfolios\\Our Portfolio\\ENGLISH.docx",
+  "items": [
+    {
+      "title": "Magical solutions with The Untold Story",
+      "description": [
+        "Documentary",
+        "TV Show & Live",
+        "Industry"
+      ],
+      "client": null,
+      "service": null,
+      "industry": null,
+      "raw_meta": []
+    }
+  ]
+}

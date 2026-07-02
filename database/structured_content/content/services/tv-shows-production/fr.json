@@ -1,0 +1,72 @@
+{
+  "locale": "fr",
+  "language": "French",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\FRANÇAIS.docx",
+  "title": "Production d’émissions TV & diffusion en direct",
+  "subtitle": "",
+  "intro": [
+    "Production TV et live broadcast à grande échelle pour émissions en studio, segments terrain et couvertures en direct là où le timing, le workflow technique et la fiabilité font toute la différence. Du développement du format à la réalisation multi-caméras et à la livraison finale, chaque émission est pensée pour répondre aux standards de diffusion."
+  ],
+  "sections": [
+    {
+      "heading": "Ce que nous prenons en charge",
+      "body": []
+    },
+    {
+      "heading": "Développement du format & structure d’émission",
+      "body": []
+    },
+    {
+      "heading": "Run-down, scripts et déroulé des séquences",
+      "body": []
+    },
+    {
+      "heading": "Production studio multi-caméras + régie (control room)",
+      "body": []
+    },
+    {
+      "heading": "Tournages terrain (inserts, sujets, packages)",
+      "body": []
+    },
+    {
+      "heading": "Direction des talents / présentateurs (coaching à l’antenne)",
+      "body": []
+    },
+    {
+      "heading": "Live streaming & simulcast TV + digital",
+      "body": [],
+      "meta": [
+        {
+          "key": "Habillage graphique",
+          "value": "lower-thirds, jingles, transitions, génériques"
+        },
+        {
+          "key": "Montage & livraison finale",
+          "value": "finitions, son, mastering, versions"
+        }
+      ]
+    },
+    {
+      "heading": "Workflow technique broadcast : caméras, audio, coms, enregistrement, delivery",
+      "body": [],
+      "meta": [
+        {
+          "key": "Localisation",
+          "value": "sous-titres, voix-off, doublage, packaging multilingue"
+        }
+      ]
+    },
+    {
+      "heading": "Pourquoi The Untold Story",
+      "body": [
+        "Formats scalables, maîtrise technique, coordination studio/terrain, livrables prêts TV + plateformes."
+      ]
+    },
+    {
+      "heading": "WhatsApp (devis en 24h) | Email (envoyer brief/RFP)",
+      "body": []
+    }
+  ]
+}

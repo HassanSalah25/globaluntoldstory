@@ -1,0 +1,113 @@
+{
+  "locale": "de",
+  "language": "German",
+  "type": "services-overview",
+  "slug": "services-overview",
+  "source_file": "Services\\DEUTSCH.docx",
+  "blocks": [
+    {
+      "heading": "Leistungen",
+      "body": [
+        "Ein Full Service Studio für Film und Video in Ägypten und der MENA Region. Wählen Sie eine Leistung oder senden Sie Ihr Briefing und wir empfehlen das passende Setup."
+      ]
+    },
+    {
+      "heading": "Fotografie",
+      "body": [
+        "Premium Fotografie für Marken, Produkte, Executives und Events mit konsistenter Bildsprache."
+      ]
+    },
+    {
+      "heading": "Werbefilmproduktion",
+      "body": [
+        "Kampagnen und Werbefilme von der Idee bis zum Dreh und zur finalen Auslieferung."
+      ]
+    },
+    {
+      "heading": "Schnitt und finale Auslieferung",
+      "body": [
+        "Schnitt, Color Grading, Sound, Mastering und Versionen für Plattformen und Broadcast."
+      ]
+    },
+    {
+      "heading": "Event Coverage und Live Produktion",
+      "body": [
+        "Multi Kamera, Live Streaming, Drohne und schnelle Deliverables für Konferenzen und Konzerte."
+      ]
+    },
+    {
+      "heading": "Dokumentarproduktion",
+      "body": [
+        "Recherchebasierte Dokumentationen und Serien für Plattformen, Sender und Institutionen."
+      ]
+    },
+    {
+      "heading": "On Ground Production Services in Ägypten",
+      "body": [
+        "Genehmigungen, Fixing, Crew, Equipment, Logistik und Location Scouting für internationale Drehs."
+      ]
+    },
+    {
+      "heading": "Podcast Produktion",
+      "body": [
+        "Audio und Video Podcasts im Studio oder on location, inklusive Schnitt und Clip Paketen."
+      ]
+    },
+    {
+      "heading": "Corporate und Industrial Content",
+      "body": [
+        "Klare, glaubwürdige Corporate Filme für Energie, Bildung, Immobilien und Industrie."
+      ]
+    },
+    {
+      "heading": "TV Shows und Live Broadcast Produktion",
+      "body": [
+        "Studio und Field Production mit Regie Workflow, Run downs, Grafikpaketen und Delivery."
+      ]
+    },
+    {
+      "heading": "Motion CGI und KI Visuals",
+      "body": [
+        "2D Motion, 3D, CGI und KI unterstützte Visuals zur Erklärung komplexer Inhalte."
+      ]
+    },
+    {
+      "heading": "Dubbing Voice Over und Lokalisierung",
+      "body": [
+        "Untertitel, Voice Over, Dubbing, ADR und mehrsprachiges Packaging nach Spezifikation."
+      ]
+    },
+    {
+      "heading": "Marketing Lösungen und Performance",
+      "body": [
+        "Content Strategie, Media Buying, Creative Testing und Kampagnen Systeme rund um Produktion."
+      ]
+    },
+    {
+      "heading": "Angebot anfragen",
+      "body": [
+        "Senden Sie Ihr Briefing und wir melden uns mit einem klaren Plan und nächsten Schritten."
+      ],
+      "meta": [
+        {
+          "key": "Email",
+          "value": "bendary@globaluntoldstory.com"
+        },
+        {
+          "key": "Telefon und WhatsApp",
+          "value": "+20 100 129 9639"
+        }
+      ]
+    },
+    {
+      "heading": "Vollständiger Name",
+      "body": [
+        "Email Adresse",
+        "Telefonnummer",
+        "Interessiert an",
+        "Nachricht",
+        "Absenden"
+      ]
+    }
+  ]
+}

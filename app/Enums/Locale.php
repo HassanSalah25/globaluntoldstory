@@ -6,6 +6,13 @@ enum Locale: string
 {
     case English = 'en';
     case Arabic = 'ar';
+    case German = 'de';
+    case Spanish = 'es';
+    case French = 'fr';
+    case Italian = 'it';
+    case Portuguese = 'pt';
+    case Turkish = 'tr';
+    case Russian = 'ru';
 
     public static function values(): array
     {
@@ -16,6 +23,13 @@ enum Locale: string
     {
         return match ($locale) {
             'ar' => self::Arabic,
+            'de' => self::German,
+            'es' => self::Spanish,
+            'fr' => self::French,
+            'it' => self::Italian,
+            'pt' => self::Portuguese,
+            'tr' => self::Turkish,
+            'ru' => self::Russian,
             default => self::English,
         };
     }

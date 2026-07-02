@@ -1,0 +1,84 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "portfolio",
+  "slug": "documentary",
+  "source_file": "Portfolios\\Documentary\\TÜRKÇE.docx",
+  "items": [
+    {
+      "title": "Kurumsal film | Apache Egypt",
+      "description": [
+        "Apache’nin 1996’dan bu yana Mısır’daki uzun vadeli varlığını, ülkenin petrol ve gaz sektöründeki büyük yatırımlarını ve liderliğini vurgulayan kurumsal etki filmi.",
+        "Video, Apache’nin “Give Where We Live” taahhüdünü öne çıkarır; eğitim, toplum gelişimi ve sosyal girişimler yoluyla Egypt Vision 2030’u destekler. Springboard programı aracılığıyla kız çocuklarının eğitimine ve kırsal ile operasyonel bölgelerdeki okullara sürekli desteğe güçlü bir odak sunar.",
+        "Ayrıca sağlık girişimleri ve kan bağışı kampanyalarından yetimhane desteğine, sanitasyona ve Mısırlı öğrenciler için burslara kadar daha geniş toplumsal desteği de gösterir."
+      ],
+      "client": "Apache Egypt",
+      "service": "Kurumsal içerik",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Apache Egypt"
+        ],
+        [
+          "Hizmet",
+          "Kurumsal içerik"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "Kurumsal hikâye | Engazat",
+      "description": [
+        "Engazat için oluşturulan, şirket hikâyesini belgesel tarzı bir bakışla sunmak üzere tasarlanmış kurumsal belgesel.",
+        "Film, marka anlatımını güvenilir ve insani bir şekilde destekleyen gerçek ortamlar, otantik anlar ve net bir anlatı yapısına odaklanır.",
+        "Sunumlar, dijital platformlar ve paydaş iletişimleri için premium, uzun formatlı bir kurumsal materyal olarak tasarlanmıştır."
+      ],
+      "client": "Engazat",
+      "service": "Kurumsal içerik",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Engazat"
+        ],
+        [
+          "Hizmet",
+          "Kurumsal içerik"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "ILO x UE belgesel filmi",
+      "description": [
+        "Gelişim programları ve hızlı tüketim ürünleri partnerleri için bu tür kısa belgesel filmler üretiyoruz; etkiyi net ve güvenilir şekilde iletmek için röportajları gerçek saha görüntüleriyle birleştiriyoruz.",
+        "ILO için hazırlanan bu 3 dakikalık film, Upper Egypt for Food Products (UE)’yi öne çıkarır; çiftliklerden ürünlerin yıkandığı, işlendiği ve paketlendiği tesislere uzanan çiftlikten fabrikaya yolculuğu röportajlar ve görsellerle sunar.",
+        "Paydaş iletişimleri, raporlama ve çok platformlu dağıtım için özlü bir anlatı parçası olarak teslim edilmiştir."
+      ],
+      "client": "ILO x UE",
+      "service": "Belgesel film",
+      "industry": "Gıda ürünleri",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "ILO x UE"
+        ],
+        [
+          "Hizmet",
+          "Belgesel film"
+        ],
+        [
+          "Sektör",
+          "Gıda ürünleri"
+        ]
+      ]
+    }
+  ]
+}

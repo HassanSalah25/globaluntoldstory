@@ -1,0 +1,113 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "services-overview",
+  "slug": "services-overview",
+  "source_file": "Services\\ESPANOL.docx",
+  "blocks": [
+    {
+      "heading": "Servicios",
+      "body": [
+        "Estudio de producción de film y video con servicio completo en Egipto y la región MENA. Elige un servicio o envía tu brief y te proponemos el enfoque correcto."
+      ]
+    },
+    {
+      "heading": "Fotografía",
+      "body": [
+        "Fotografía premium para marcas, productos, ejecutivos y eventos con entrega limpia y consistente."
+      ]
+    },
+    {
+      "heading": "Producción publicitaria",
+      "body": [
+        "Campañas y comerciales desde el concepto hasta el rodaje y la entrega final."
+      ]
+    },
+    {
+      "heading": "Edición y entrega final",
+      "body": [
+        "Edición, color, sonido, master y versiones en múltiples formatos según la plataforma."
+      ]
+    },
+    {
+      "heading": "Cobertura de eventos y producción en vivo",
+      "body": [
+        "Multicámara, live streaming, dron y entregas rápidas para conferencias y conciertos."
+      ]
+    },
+    {
+      "heading": "Producción documental",
+      "body": [
+        "Documentales y series con base en investigación para plataformas, canales e instituciones."
+      ]
+    },
+    {
+      "heading": "Servicios de producción en Egipto para equipos internacionales",
+      "body": [
+        "Permisos, fixing, equipo, alquiler técnico, logística y scouting de locaciones en Egipto."
+      ]
+    },
+    {
+      "heading": "Producción de podcast",
+      "body": [
+        "Podcast de audio y video en estudio o en locación, con edición y clips listos para publicar."
+      ]
+    },
+    {
+      "heading": "Contenido corporativo e industrial",
+      "body": [
+        "Films corporativos claros y creíbles para energía, educación, real estate e industrias complejas."
+      ]
+    },
+    {
+      "heading": "Producción de programas de TV y broadcast en vivo",
+      "body": [
+        "Producción de estudio y exterior con control room, run down, gráficos y entrega final."
+      ]
+    },
+    {
+      "heading": "Motion CGI y visuales con apoyo de IA",
+      "body": [
+        "Motion 2D, 3D, CGI y visuales con apoyo de IA para elevar la narrativa."
+      ]
+    },
+    {
+      "heading": "Doblaje voz en off y localización",
+      "body": [
+        "Subtítulos, voz en off, doblaje, ADR y empaquetado multilingue según estándares."
+      ]
+    },
+    {
+      "heading": "Soluciones de marketing y performance",
+      "body": [
+        "Estrategia de contenido, media buying, pruebas creativas y sistemas de campaña."
+      ]
+    },
+    {
+      "heading": "Solicitar cotización",
+      "body": [
+        "Envía tu brief y respondemos con un plan claro y los siguientes pasos."
+      ],
+      "meta": [
+        {
+          "key": "Email",
+          "value": "bendary@globaluntoldstory.com"
+        },
+        {
+          "key": "Teléfono y WhatsApp",
+          "value": "+20 100 129 9639"
+        }
+      ]
+    },
+    {
+      "heading": "Nombre completo",
+      "body": [
+        "Correo electrónico",
+        "Teléfono",
+        "Servicio de interés",
+        "Mensaje",
+        "Enviar"
+      ]
+    }
+  ]
+}

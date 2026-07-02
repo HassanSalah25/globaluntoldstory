@@ -1,0 +1,64 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\ESPAÑOL.docx",
+  "title": "Producción de Programas de TV & Emisión en Vivo",
+  "subtitle": "",
+  "intro": [
+    "Producción integral para programas de estudio, segmentos en exterior y coberturas en vivo cuando el timing, el flujo técnico y la ejecución fiable son clave. Desde el diseño del formato hasta la realización multicámara y la entrega final, todo se entrega listo para emisión."
+  ],
+  "sections": [
+    {
+      "heading": "Qué incluye",
+      "body": []
+    },
+    {
+      "heading": "Desarrollo de formato y estructura de episodios",
+      "body": []
+    },
+    {
+      "heading": "Run-down, guiones y beats de programa",
+      "body": []
+    },
+    {
+      "heading": "Producción de estudio multicámara + control room",
+      "body": []
+    },
+    {
+      "heading": "Producción en exterior (inserts, paquetes, segmentos)",
+      "body": []
+    },
+    {
+      "heading": "Dirección de presentadores y talentos (soporte on-air)",
+      "body": []
+    },
+    {
+      "heading": "Live streaming y simulcast TV + digital",
+      "body": [],
+      "meta": [
+        {
+          "key": "Paquetes gráficos",
+          "value": "lower-thirds, transiciones, stings, apertura"
+        },
+        {
+          "key": "Edición y entrega final",
+          "value": "finishing, sonido, mastering, versiones"
+        },
+        {
+          "key": "Flujo técnico broadcast",
+          "value": "cámaras, audio, comunicaciones, grabación, entrega"
+        },
+        {
+          "key": "Localización",
+          "value": "subtítulos, VO, doblaje, empaquetado multilingüe"
+        }
+      ]
+    },
+    {
+      "heading": "WhatsApp (cotización en 24h) | Email (enviar brief/RFP)",
+      "body": []
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\TÜRKÇE.docx",
+  "title": "TV Programı ve Canlı Yayın Prodüksiyonu",
+  "subtitle": "",
+  "intro": [
+    "Stüdyo programları, saha çekimleri ve canlı yayınlar için uçtan uca prodüksiyon zamanlama, teknik akış ve güvenilir uygulamanın kritik olduğu işler. Format geliştirmeden çok kameralı rejiye ve final teslimine kadar yayın standardında üretim."
+  ],
+  "sections": [
+    {
+      "heading": "Kapsam",
+      "body": []
+    },
+    {
+      "heading": "Format ve program yapısı geliştirme",
+      "body": []
+    },
+    {
+      "heading": "Run-down, senaryo ve segment akışı",
+      "body": []
+    },
+    {
+      "heading": "Çok kameralı stüdyo prodüksiyonu + control room",
+      "body": []
+    },
+    {
+      "heading": "Saha prodüksiyonu (insert, paket, dış çekim)",
+      "body": []
+    },
+    {
+      "heading": "Sunucu/konuk yönlendirme (on-air destek)",
+      "body": []
+    },
+    {
+      "heading": "Canlı yayın ve dijital simultane yayın",
+      "body": [],
+      "meta": [
+        {
+          "key": "Grafik paketleri",
+          "value": "lower-thirds, jenerik, geçiş, sting"
+        },
+        {
+          "key": "Kurgu ve final teslim",
+          "value": "finishing, ses, mastering, versiyonlama"
+        },
+        {
+          "key": "Broadcast teknik workflow",
+          "value": "kamera, ses, iletişim, kayıt, teslim"
+        },
+        {
+          "key": "Lokalizasyon",
+          "value": "altyazı, VO, dublaj, çok dilli paketleme"
+        }
+      ]
+    },
+    {
+      "heading": "WhatsApp (24 saatte teklif) | Email (brief/RFP gönder)",
+      "body": []
+    }
+  ]
+}

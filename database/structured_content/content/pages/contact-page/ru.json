@@ -1,0 +1,27 @@
+{
+  "locale": "ru",
+  "language": "Russian",
+  "type": "page",
+  "slug": "contact-page",
+  "source_file": "Contact Page\\РУССКИЙ.docx",
+  "blocks": [
+    {
+      "heading": "Адрес офиса",
+      "body": [
+        "Египетский город медиапроизводства, Египет",
+        "Номер телефона",
+        "+201001299639",
+        "Адрес электронной почты",
+        "bendary@globaluntoldstory.com"
+      ]
+    },
+    {
+      "heading": "Офис в ОАЭ",
+      "body": [
+        "Бизнес-Бэй, Дубай, ОАЭ",
+        "Номер телефона",
+        "+971547711772"
+      ]
+    }
+  ]
+}

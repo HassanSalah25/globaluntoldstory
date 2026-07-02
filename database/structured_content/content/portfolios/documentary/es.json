@@ -1,0 +1,84 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "portfolio",
+  "slug": "documentary",
+  "source_file": "Portfolios\\Documentary\\ESPAÑOL.docx",
+  "items": [
+    {
+      "title": "Una película corporativa | Apache Egypt",
+      "description": [
+        "Una película corporativa de impacto que destaca la presencia a largo plazo de Apache en Egipto desde 1996, incluyendo una gran inversión y liderazgo en el sector de petróleo y gas del país.",
+        "El video destaca el compromiso de Apache “Give Where We Live”, apoyando Egypt Vision 2030 a través de educación, desarrollo comunitario e iniciativas sociales, con un fuerte enfoque en la educación de niñas mediante el programa Springboard y el apoyo continuo a escuelas en zonas rurales y operativas.",
+        "También presenta un apoyo comunitario más amplio, desde iniciativas de salud y campañas de donación de sangre hasta apoyo a orfanatos, saneamiento y becas para estudiantes egipcios."
+      ],
+      "client": "Apache Egypt",
+      "service": "Contenido corporativo",
+      "industry": "Energía",
+      "raw_meta": [
+        [
+          "Cliente",
+          "Apache Egypt"
+        ],
+        [
+          "Servicio",
+          "Contenido corporativo"
+        ],
+        [
+          "Industria",
+          "Energía"
+        ]
+      ]
+    },
+    {
+      "title": "Una historia corporativa | Engazat",
+      "description": [
+        "Un documental corporativo creado para Engazat, diseñado para presentar la historia de la empresa desde una perspectiva documental.",
+        "La película se enfoca en entornos reales, momentos auténticos y una estructura narrativa clara que apoya la narrativa de marca de una forma creíble y humana.",
+        "Diseñada como un activo corporativo premium de formato largo para presentaciones, plataformas digitales y comunicación con partes interesadas."
+      ],
+      "client": "Engazat",
+      "service": "Contenido corporativo",
+      "industry": "Energía",
+      "raw_meta": [
+        [
+          "Cliente",
+          "Engazat"
+        ],
+        [
+          "Servicio",
+          "Contenido corporativo"
+        ],
+        [
+          "Industria",
+          "Energía"
+        ]
+      ]
+    },
+    {
+      "title": "Documental ILO x UE",
+      "description": [
+        "Producimos documentales cortos como este para programas de desarrollo y socios de productos de consumo masivo, combinando entrevistas con material real en campo para comunicar impacto de forma clara y creíble.",
+        "Esta película de 3 minutos para la ILO presenta a Upper Egypt for Food Products (UE), mostrando el recorrido del campo a la fábrica mediante entrevistas y visuales de las granjas y las instalaciones donde los productos se lavan, procesan y empacan.",
+        "Entregada como una pieza narrativa concisa para comunicación con partes interesadas, reportes y distribución multiplataforma."
+      ],
+      "client": "ILO x UE",
+      "service": "Documental",
+      "industry": "Productos alimenticios",
+      "raw_meta": [
+        [
+          "Cliente",
+          "ILO x UE"
+        ],
+        [
+          "Servicio",
+          "Documental"
+        ],
+        [
+          "Industria",
+          "Productos alimenticios"
+        ]
+      ]
+    }
+  ]
+}

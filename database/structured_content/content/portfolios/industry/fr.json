@@ -1,0 +1,184 @@
+{
+  "locale": "fr",
+  "language": "French",
+  "type": "portfolio",
+  "slug": "industry",
+  "source_file": "Portfolios\\Industry\\FRANÇAIS.docx",
+  "items": [
+    {
+      "title": "Alliance | Événement institutionnel Dubai Economy & Tourism",
+      "description": [
+        "Nous produisons des couvertures d’événements institutionnels comme celle-ci pour des rassemblements de haut niveau avec des parties prenantes, en capturant les moments clés sur site et en les transformant en un récapitulatif propre, prêt pour les plateformes.",
+        "Ce film couvre un événement Alliance à Dubaï, créé autour des thèmes de l’économie et du tourisme en collaboration avec le Department of Economy and Tourism de Dubaï, conçu pour une audience institutionnelle.",
+        "Livré dans le cadre d’un package événementiel avec flexibilité pour des versions courtes et des versions centrées sur les intervenants."
+      ],
+      "client": "Alliance",
+      "service": "Couverture d’événements",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "Alliance"
+        ],
+        [
+          "Service",
+          "Couverture d’événements"
+        ],
+        [
+          "Secteur",
+          "Économie et tourisme"
+        ]
+      ]
+    },
+    {
+      "title": "ADNOC Shared Services Gathering | EAU (2025)",
+      "description": [
+        "Nous produisons des vidéos de couverture événementielle comme celle-ci pour des rassemblements institutionnels, en capturant l’énergie sur site et en transformant les messages de leadership en montages clairs, prêts pour les plateformes.",
+        "Ce clip présente des moments du premier Shared Services Gathering d’ADNOC de l’année, mettant en avant le rôle de l’équipe face aux défis et les axes prioritaires de 2025, avec l’intelligence artificielle positionnée comme priorité majeure.",
+        "Fait partie d’un package événementiel multi-vidéos, comprenant moments forts, interventions de speakers et versions courtes, créé pour les communications internes et externes."
+      ],
+      "client": "ADNOC (EAU)",
+      "service": "Couverture d’événements",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "ADNOC (EAU)"
+        ],
+        [
+          "Service",
+          "Couverture d’événements"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Vue d’ensemble des opérations énergétiques | ENAP en Égypte",
+      "description": [
+        "Une vue d’ensemble institutionnelle d’ENAP, société énergétique publique chilienne, et de son rôle dans l’exploration et la production, le raffinage et le marketing, ainsi que le gaz et l’énergie, présentée à travers son empreinte internationale, y compris en Égypte.",
+        "Le film met en avant le travail d’ENAP en Égypte à travers ses concessions dans le Désert occidental, le Nord-Sinaï et la Méditerranée offshore, y compris les opérations en coentreprise et les jalons de performance liés à des actifs matures avec potentiel de croissance.",
+        "Il renforce également les valeurs opérationnelles, culture de sécurité avant tout, les personnes comme actif central et amélioration continue, aux côtés des résultats d’exploration et des découvertes mentionnés dans la chronologie."
+      ],
+      "client": "ENAP en Égypte",
+      "service": "Contenu institutionnel",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "ENAP en Égypte"
+        ],
+        [
+          "Service",
+          "Contenu institutionnel"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Un film institutionnel | Apache Egypt",
+      "description": [
+        "Un film institutionnel d’impact mettant en lumière la présence à long terme d’Apache en Égypte depuis 1996, incluant d’importants investissements et un rôle de leadership dans le secteur pétrolier et gazier du pays.",
+        "La vidéo met en avant l’engagement d’Apache « Give Where We Live », en soutien à Egypt Vision 2030 à travers l’éducation, le développement communautaire et les initiatives sociales, avec un fort accent sur l’éducation des filles grâce au programme Springboard et au soutien continu des écoles dans les zones rurales et opérationnelles.",
+        "Elle présente également un soutien communautaire plus large, des initiatives de santé et campagnes de don de sang au soutien des orphelinats, à l’assainissement et aux bourses pour les étudiants égyptiens."
+      ],
+      "client": "Apache Egypt",
+      "service": "Contenu institutionnel",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "Apache Egypt"
+        ],
+        [
+          "Service",
+          "Contenu institutionnel"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Une histoire institutionnelle | Engazat",
+      "description": [
+        "Un documentaire institutionnel créé pour Engazat, conçu pour présenter l’histoire de l’entreprise à travers une approche documentaire.",
+        "Le film se concentre sur des environnements réels, des moments authentiques et une structure narrative claire qui soutient la narration de marque d’une manière crédible et humaine.",
+        "Conçu comme un support institutionnel premium de long format pour les présentations, les plateformes numériques et la communication avec les parties prenantes."
+      ],
+      "client": "Engazat",
+      "service": "Contenu institutionnel",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "Engazat"
+        ],
+        [
+          "Service",
+          "Contenu institutionnel"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Beauty shots de contenu institutionnel | Engazat",
+      "description": [
+        "Une sélection organisée de beauty shots créée dans le cadre d’un projet de contenu institutionnel pour Engazat.",
+        "La vidéo se concentre sur des visuels propres et cinématographiques, des lieux, une atmosphère et des moments guidés par les détails, capturés pour soutenir la narration de marque et élever l’apparence et le ressenti global.",
+        "Conçue comme un support visuel flexible pour plusieurs montages, teasers et communications institutionnelles."
+      ],
+      "client": "Engazat",
+      "service": "Contenu institutionnel",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "Engazat"
+        ],
+        [
+          "Service",
+          "Contenu institutionnel"
+        ],
+        [
+          "Secteur",
+          "Énergie"
+        ]
+      ]
+    },
+    {
+      "title": "Film documentaire ILO x UE",
+      "description": [
+        "Nous produisons des films documentaires courts comme celui-ci pour des programmes de développement et des partenaires de produits de grande consommation, en combinant interviews et images réelles sur le terrain afin de communiquer l’impact clairement et avec crédibilité.",
+        "Ce film de 3 minutes pour l’ILO présente Upper Egypt for Food Products (UE), montrant le parcours de la ferme à l’usine à travers des interviews et des images des fermes et des installations où les produits sont lavés, transformés et emballés.",
+        "Livré comme une pièce narrative concise pour la communication avec les parties prenantes, les rapports et la distribution multiplateforme."
+      ],
+      "client": "ILO x UE",
+      "service": "Film documentaire",
+      "industry": null,
+      "raw_meta": [
+        [
+          "Client",
+          "ILO x UE"
+        ],
+        [
+          "Service",
+          "Film documentaire"
+        ],
+        [
+          "Secteur",
+          "Produits alimentaires"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "portfolio",
+  "slug": "commercial-advertising",
+  "source_file": "Portfolios\\Commercial Advertising\\ESPAÑOL.docx",
+  "items": [
+    {
+      "title": "The Garage Abu Dhabi | Película de marca para alta gastronomía",
+      "description": [
+        "Una película de marca para alta gastronomía creada para The Garage Abu Dhabi, diseñada para capturar la atmósfera del lugar, los momentos de servicio y la experiencia gastronómica premium.",
+        "La pieza combina de forma fluida planos amplios cinematográficos del espacio con primeros planos de platos servidos y momentos de bebida, construyendo ambiente, apetito y una clara sensación de lugar.",
+        "Diseñada como un activo pulido de hospitalidad para plataformas digitales y uso en marketing de marca."
+      ],
+      "client": "The Garage Abu Dhabi",
+      "service": "Video publicitario",
+      "industry": "Restaurante gastronómico",
+      "raw_meta": [
+        [
+          "Cliente",
+          "The Garage Abu Dhabi"
+        ],
+        [
+          "Servicio",
+          "Video publicitario"
+        ],
+        [
+          "Industria",
+          "Restaurante gastronómico"
+        ]
+      ]
+    },
+    {
+      "title": "Publicación anterior",
+      "description": [
+        "Una promoción de moda simple para Tanashy Design, con un visual protagonizado por modelo, construido alrededor de encuadres limpios y dirección mínima.",
+        "La pieza se enfoca en presencia, estilismo y movimiento sutil, diseñados para mantener la atención en el look y la sensación de marca.",
+        "Creada como un activo ligero y listo para plataformas sociales y digitales."
+      ],
+      "client": "Tanashy Designs",
+      "service": "Video publicitario",
+      "industry": "Moda",
+      "raw_meta": [
+        [
+          "Cliente",
+          "Tanashy Designs"
+        ],
+        [
+          "Servicio",
+          "Video publicitario"
+        ],
+        [
+          "Industria",
+          "Moda"
+        ]
+      ]
+    },
+    {
+      "title": "Huawei | Película publicitaria",
+      "description": [
+        "Un video publicitario creado para Huawei, desarrollado para apoyar la comunicación de marca con un tono comercial limpio y moderno.",
+        "La película se enfoca en visuales pulidos y un ritmo claro para transmitir un mensaje conciso, listo para plataformas, sin exageración.",
+        "Creada como un activo de campaña versátil para despliegue digital y uso de marketing más amplio."
+      ],
+      "client": "Huawei",
+      "service": "Video publicitario",
+      "industry": "Electrónica",
+      "raw_meta": [
+        [
+          "Cliente",
+          "Huawei"
+        ],
+        [
+          "Servicio",
+          "Video publicitario"
+        ],
+        [
+          "Industria",
+          "Electrónica"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "locale": "tr",
+  "language": "Turkish",
+  "type": "portfolio",
+  "slug": "industry",
+  "source_file": "Portfolios\\Industry\\TÜRKÇE.docx",
+  "items": [
+    {
+      "title": "Alliance | Dubai Economy & Tourism kurumsal etkinliği",
+      "description": [
+        "Bu tür kurumsal etkinlik çekimlerini yüksek profilli paydaş buluşmaları için üretiyoruz; sahadaki önemli anları yakalayıp temiz, platforma hazır bir özet filme dönüştürüyoruz.",
+        "Bu film, Dubai’deki bir Alliance etkinliğini kapsar; Dubai Department of Economy and Tourism iş birliğiyle ekonomi ve turizm temaları etrafında oluşturulmuş, kurumsal bir kitle için tasarlanmıştır.",
+        "Daha kısa versiyonlar ve konuşmacı odaklı kurgular için esneklik sunan bir etkinlik paketi kapsamında teslim edilmiştir."
+      ],
+      "client": "Alliance",
+      "service": "Etkinlik çekimi",
+      "industry": "Ekonomi ve turizm",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Alliance"
+        ],
+        [
+          "Hizmet",
+          "Etkinlik çekimi"
+        ],
+        [
+          "Sektör",
+          "Ekonomi ve turizm"
+        ]
+      ]
+    },
+    {
+      "title": "ADNOC Shared Services Gathering | BAE (2025)",
+      "description": [
+        "Kurumsal buluşmalar için bu tür etkinlik çekimi videoları üretiyoruz; sahadaki enerjiyi yakalayıp liderlik mesajlarını net, platforma hazır kurgulara dönüştürüyoruz.",
+        "Bu klip, ADNOC’un yılın ilk Shared Services Gathering etkinliğinden anları içerir; ekibin zorluklar karşısındaki rolünü ve 2025 odak alanlarını öne çıkarır, yapay zekâyı en önemli öncelik olarak konumlandırır.",
+        "İç ve dış iletişim için oluşturulan çok videolu bir etkinlik paketinin parçasıdır; highlightlar, konuşmacı anları ve kısa versiyonlar içerir."
+      ],
+      "client": "ADNOC (BAE)",
+      "service": "Etkinlik çekimi",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "ADNOC (BAE)"
+        ],
+        [
+          "Hizmet",
+          "Etkinlik çekimi"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "Enerji operasyonları genel bakışı | ENAP Mısır’da",
+      "description": [
+        "Şili’nin devlet enerji şirketi ENAP’in kurumsal genel bakışı; keşif ve üretim, rafineri ve pazarlama, gaz ve enerji alanlarındaki rolü, Mısır dahil uluslararası varlığı üzerinden anlatılır.",
+        "Film, ENAP’in Mısır’daki Batı Çölü, Kuzey Sina ve Akdeniz offshore bölgelerindeki imtiyazlar kapsamındaki çalışmalarını öne çıkarır; joint venture operasyonları ve büyüme potansiyeli taşıyan olgun varlıklarla bağlantılı performans kilometre taşlarını içerir.",
+        "Ayrıca operasyonel değerleri güçlendirir: önce güvenlik kültürü, temel varlık olarak insanlar ve sürekli iyileştirme; zaman çizelgesinde yer alan keşif sonuçları ve bulgularla birlikte sunulur."
+      ],
+      "client": "ENAP Mısır’da",
+      "service": "Kurumsal içerik",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "ENAP Mısır’da"
+        ],
+        [
+          "Hizmet",
+          "Kurumsal içerik"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "Kurumsal film | Apache Egypt",
+      "description": [
+        "Apache’nin 1996’dan bu yana Mısır’daki uzun vadeli varlığını, ülkenin petrol ve gaz sektöründeki büyük yatırımlarını ve liderliğini vurgulayan kurumsal etki filmi.",
+        "Video, Apache’nin “Give Where We Live” taahhüdünü öne çıkarır; eğitim, toplum gelişimi ve sosyal girişimler yoluyla Egypt Vision 2030’u destekler. Springboard programı aracılığıyla kız çocuklarının eğitimine ve kırsal ile operasyonel bölgelerdeki okullara sürekli desteğe güçlü bir odak sunar.",
+        "Ayrıca sağlık girişimleri ve kan bağışı kampanyalarından yetimhane desteğine, sanitasyona ve Mısırlı öğrenciler için burslara kadar daha geniş toplumsal desteği de gösterir."
+      ],
+      "client": "Apache Egypt",
+      "service": "Kurumsal içerik",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Apache Egypt"
+        ],
+        [
+          "Hizmet",
+          "Kurumsal içerik"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "Kurumsal hikâye | Engazat",
+      "description": [
+        "Engazat için oluşturulan, şirket hikâyesini belgesel tarzı bir bakışla sunmak üzere tasarlanmış kurumsal belgesel.",
+        "Film, marka anlatımını güvenilir ve insani bir şekilde destekleyen gerçek ortamlar, otantik anlar ve net bir anlatı yapısına odaklanır.",
+        "Sunumlar, dijital platformlar ve paydaş iletişimleri için premium, uzun formatlı bir kurumsal materyal olarak tasarlanmıştır."
+      ],
+      "client": "Engazat",
+      "service": "Kurumsal içerik",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Engazat"
+        ],
+        [
+          "Hizmet",
+          "Kurumsal içerik"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "Kurumsal içerik beauty shotları | Engazat",
+      "description": [
+        "Engazat için hazırlanan kurumsal içerik projesi kapsamında oluşturulmuş seçilmiş beauty shotlardan oluşan bir derleme.",
+        "Video, marka anlatımını desteklemek ve genel görünüm ile hissi yükseltmek için yakalanan temiz, sinematik görsellere, lokasyonlara, atmosfere ve detay odaklı anlara odaklanır.",
+        "Birden fazla kurgu, teaser ve kurumsal iletişimde kullanılmak üzere esnek bir görsel materyal olarak oluşturulmuştur."
+      ],
+      "client": "Engazat",
+      "service": "Kurumsal içerik",
+      "industry": "Enerji",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "Engazat"
+        ],
+        [
+          "Hizmet",
+          "Kurumsal içerik"
+        ],
+        [
+          "Sektör",
+          "Enerji"
+        ]
+      ]
+    },
+    {
+      "title": "ILO x UE belgesel filmi",
+      "description": [
+        "Gelişim programları ve hızlı tüketim ürünleri partnerleri için bu tür kısa belgesel filmler üretiyoruz; etkiyi net ve güvenilir şekilde iletmek için röportajları gerçek saha görüntüleriyle birleştiriyoruz.",
+        "ILO için hazırlanan bu 3 dakikalık film, Upper Egypt for Food Products (UE)’yi öne çıkarır; çiftliklerden ürünlerin yıkandığı, işlendiği ve paketlendiği tesislere uzanan çiftlikten fabrikaya yolculuğu röportajlar ve görsellerle sunar.",
+        "Paydaş iletişimleri, raporlama ve çok platformlu dağıtım için özlü bir anlatı parçası olarak teslim edilmiştir."
+      ],
+      "client": "ILO x UE",
+      "service": "Belgesel film",
+      "industry": "Gıda ürünleri",
+      "raw_meta": [
+        [
+          "Müşteri",
+          "ILO x UE"
+        ],
+        [
+          "Hizmet",
+          "Belgesel film"
+        ],
+        [
+          "Sektör",
+          "Gıda ürünleri"
+        ]
+      ]
+    }
+  ]
+}

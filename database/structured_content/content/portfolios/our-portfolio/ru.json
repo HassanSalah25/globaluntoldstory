@@ -1,0 +1,21 @@
+{
+  "locale": "ru",
+  "language": "Russian",
+  "type": "portfolio",
+  "slug": "our-portfolio",
+  "source_file": "Portfolios\\Our Portfolio\\РУССКИЙ.docx",
+  "items": [
+    {
+      "title": "Магические решения с The Untold Story",
+      "description": [
+        "Документальный фильм",
+        "Телевизионная программа и живое производство",
+        "Отрасль"
+      ],
+      "client": null,
+      "service": null,
+      "industry": null,
+      "raw_meta": []
+    }
+  ]
+}

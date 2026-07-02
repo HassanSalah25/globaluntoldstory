@@ -1,0 +1,123 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "service",
+  "slug": "podcast-production",
+  "source_file": "Podcast Production\\ESPAÑOL.docx",
+  "title": "Producción de pódcast",
+  "subtitle": "",
+  "intro": [],
+  "sections": [
+    {
+      "heading": "Introducción del servicio",
+      "body": [
+        "Producimos pódcasts con enfoque en claridad premium, producción constante y sistemas de contenido escalables. Desde el desarrollo del concepto hasta la grabación, posproducción y reutilización de contenido, creamos formatos diseñados para entregar episodios completos, clips y transcripciones, asegurando que tu pódcast genere valor a largo plazo."
+      ]
+    },
+    {
+      "heading": "Nuestra experiencia en producción de pódcast",
+      "body": [
+        "The Untold Story cuenta con amplia experiencia produciendo pódcasts de audio y video para marcas, instituciones y creadores. Combinamos planificación editorial, configuración técnica y flujos de producción para asegurar que cada episodio cumpla altos estándares de claridad, narrativa e interacción con la audiencia, mientras sigue siendo escalable y repetible."
+      ]
+    },
+    {
+      "heading": "Qué diferencia a The Untold Story",
+      "body": [
+        "Diseño de pódcast guiado por la historia: Cada programa comienza con un concepto claro, formato estructurado y flujo de trabajo escalable.",
+        "Estándares de producción de alta calidad: Grabación de audio y video, iluminación y diseño de set aseguran resultados profesionales.",
+        "Posproducción integral: Edición, masterización, versiones cortas y clips para redes sociales extienden la vida de cada episodio.",
+        "Preparación para múltiples plataformas: Los episodios y materiales se optimizan para distribución, reutilización social e interacción con la audiencia."
+      ]
+    },
+    {
+      "heading": "Subservicios de producción de pódcast",
+      "body": []
+    },
+    {
+      "heading": "Concepto y diseño de formato de pódcast, historia y estructura",
+      "body": [
+        "Desarrollamos el concepto del programa, posicionamiento, estructura de episodios, flujo de segmentos y formatos de invitados. Nuestro enfoque asegura que el pódcast sea escalable, consistente y atractivo con el tiempo."
+      ]
+    },
+    {
+      "heading": "Planificación de episodios y guion de ejecución",
+      "body": [
+        "Preparamos esquemas de episodios, preguntas clave, líneas de conversación y lógica de tiempos. Este enfoque estructurado mantiene la grabación eficiente, enfocada y editorialmente precisa."
+      ]
+    },
+    {
+      "heading": "Configuración de pódcast en estudio o en locación",
+      "body": [
+        "Configuramos pódcasts tanto para grabaciones en estudio como en sitio, incluyendo preparación del espacio, configuración de equipos y flujo de producción, asegurando una captura confiable en cualquier entorno."
+      ]
+    },
+    {
+      "heading": "Grabación de audio e ingeniería",
+      "body": [
+        "Se captura audio limpio con calidad de emisión mediante selección adecuada de micrófonos, niveles y monitoreo. Cada episodio mantiene consistencia y claridad a lo largo de la serie."
+      ]
+    },
+    {
+      "heading": "Producción de pódcast en video",
+      "body": [
+        "Ofrecemos configuraciones de una o varias cámaras para pódcasts en video, incluyendo dirección y grabación. Diseñado para producir episodios completos y clips de alto rendimiento para plataformas digitales."
+      ]
+    },
+    {
+      "heading": "Iluminación y apariencia del set",
+      "body": [
+        "La iluminación profesional y el estilismo del set crean una identidad visual premium y consistente, especialmente crítica para formatos de pódcast centrados en video."
+      ]
+    },
+    {
+      "heading": "Soporte para grabación remota",
+      "body": [
+        "Apoyamos la captura de invitados remotos con flujos profesionales para mantener la calidad de audio y video entre ubicaciones, minimizando los desafíos comunes de la grabación remota."
+      ]
+    },
+    {
+      "heading": "Edición y posproducción",
+      "body": [
+        "Gestionamos limpieza de audio, mezcla, masterización y edición de video cuando corresponde. Incluye ritmo, ajuste de estructura y estándares de acabado consistentes para entregar episodios pulidos."
+      ]
+    },
+    {
+      "heading": "Clips, versiones cortas y formatos sociales",
+      "body": [
+        "Se producen clips de formato corto, formatos verticales, ganchos y momentos destacados para distribución social. Cada episodio se convierte en un paquete semanal de contenido para máximo alcance."
+      ]
+    },
+    {
+      "heading": "Publicación y preparación de entregables",
+      "body": [
+        "Se proporcionan exportaciones listas para plataformas, títulos, descripciones y entregables formateados para una distribución fluida. Las transcripciones pueden prepararse cuando sea necesario para apoyar accesibilidad y reutilización de contenido."
+      ]
+    },
+    {
+      "heading": "Identidad de marca y herramientas de movimiento",
+      "body": [
+        "Creamos materiales de identidad para pódcast, incluyendo intros, cierres, rótulos inferiores, plantillas y elementos de diseño en movimiento. Asegura un programa visualmente consistente y eficiente en producción."
+      ]
+    },
+    {
+      "heading": "Localización, subtítulos, locución y doblaje",
+      "body": [
+        "Se proporcionan subtítulos, locución y preparación multilingüe para audiencias regionales e internacionales. Apoya la distribución entre mercados y la reutilización de contenido."
+      ]
+    },
+    {
+      "heading": "¿Por qué elegir The Untold Story?",
+      "body": [
+        "Transformamos conceptos de pódcast en producciones de alta calidad con estándares profesionales de audio, video y edición. Cada episodio se diseña para escalabilidad, claridad e interacción con la audiencia, con sistemas de contenido que se extienden mucho más allá de la sesión de grabación."
+      ]
+    },
+    {
+      "heading": "Conclusión",
+      "body": [
+        "Desde el concepto y la configuración hasta la posproducción y distribución, aseguramos que cada episodio de pódcast se entregue con precisión, profesionalismo y eficiencia repetible, maximizando el impacto de tu contenido.",
+        "Lancemos un pódcast que conecte, informe y resuene.",
+        "Agenda una consulta hoy y convierte tu concepto en una serie de pódcast premium y escalable."
+      ]
+    }
+  ]
+}

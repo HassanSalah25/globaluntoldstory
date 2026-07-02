@@ -1,0 +1,59 @@
+{
+  "locale": "es",
+  "language": "Spanish",
+  "type": "portfolio",
+  "slug": "tv-show-live",
+  "source_file": "Portfolios\\TV Show & Live\\ESPAÑOL.docx",
+  "items": [
+    {
+      "title": "Hamaki ‘Haga Mestakhabeya’ 10 Years Concert | En vivo",
+      "description": [
+        "Un video de concierto que captura a Hamaki interpretando “Nefsi Aba’a Ganbo” como parte de la celebración del concierto 10 Years.",
+        "Construida alrededor de la energía en vivo, la atmósfera del público y un ritmo guiado por la actuación, la pieza muestra momentos clave del escenario en un formato pulido y listo para eventos.",
+        "Creada como un activo de destacados adecuado para publicación digital y promoción de conciertos."
+      ],
+      "client": "Live Concert",
+      "service": "Cobertura en vivo",
+      "industry": "Conciertos en vivo",
+      "raw_meta": [
+        [
+          "Cliente",
+          "Live Concert"
+        ],
+        [
+          "Servicio",
+          "Cobertura en vivo"
+        ],
+        [
+          "Industria",
+          "Conciertos en vivo"
+        ]
+      ]
+    },
+    {
+      "title": "La Casa de Papel | Promo (Netflix)",
+      "description": [
+        "Una promo de estilo social creada para Netflix, con fans araboparlantes compartiendo su emoción y conexión con La Casa de Papel.",
+        "Filmado en locaciones árabes con estilismo inspirado en la serie, el video captura un momento comunitario compartido alrededor del programa y la cultura del fandom.",
+        "Diseñado como una pieza centrada en la audiencia para generar conversación y amplificar el engagement regional."
+      ],
+      "client": "Netflix",
+      "service": "Video promocional",
+      "industry": "Plataforma de video bajo demanda",
+      "raw_meta": [
+        [
+          "Cliente",
+          "Netflix"
+        ],
+        [
+          "Servicio",
+          "Video promocional"
+        ],
+        [
+          "Industria",
+          "Plataforma de video bajo demanda"
+        ]
+      ]
+    }
+  ]
+}

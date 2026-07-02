@@ -1,0 +1,27 @@
+{
+  "locale": "de",
+  "language": "German",
+  "type": "page",
+  "slug": "contact-page",
+  "source_file": "Contact Page\\DEUTSCH.docx",
+  "blocks": [
+    {
+      "heading": "Büroadresse",
+      "body": [
+        "Egyptian Media Production City, Ägypten",
+        "Telefonnummer",
+        "+201001299639",
+        "E-Mail-Adresse",
+        "bendary@globaluntoldstory.com"
+      ]
+    },
+    {
+      "heading": "Büro in den VAE",
+      "body": [
+        "Business Bay, Dubai, VAE",
+        "Telefonnummer",
+        "+971547711772"
+      ]
+    }
+  ]
+}

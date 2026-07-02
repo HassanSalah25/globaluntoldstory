@@ -1,0 +1,27 @@
+{
+  "locale": "fr",
+  "language": "French",
+  "type": "page",
+  "slug": "contact-page",
+  "source_file": "Contact Page\\FRANCAIS.docx",
+  "blocks": [
+    {
+      "heading": "Adresse du bureau",
+      "body": [
+        "Egyptian Media Production City, Égypte",
+        "Numéro de téléphone",
+        "+201001299639",
+        "Adresse e-mail",
+        "bendary@globaluntoldstory.com"
+      ]
+    },
+    {
+      "heading": "Bureau aux EAU",
+      "body": [
+        "Business Bay, Dubaï, EAU",
+        "Numéro de téléphone",
+        "+971547711772"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "locale": "en",
+  "language": "English",
+  "type": "service",
+  "slug": "tv-shows-production",
+  "source_file": "Tv Shows Production\\ENGLISH (Refined).docx",
+  "title": "TV Shows & Live Broadcast Production",
+  "subtitle": "",
+  "intro": [
+    "Full scale TV and live broadcast production for studio shows, field segments, and live coverage where timing, technical workflow, and reliability matter. From format development to multi camera direction and final delivery, every show is built to meet broadcast standards and audience expectations."
+  ],
+  "sections": [
+    {
+      "heading": "What this service covers",
+      "body": [],
+      "meta": [
+        {
+          "key": "Format & show development",
+          "value": "Structure, pacing, segment logic, and season-ready planning"
+        },
+        {
+          "key": "Run-downs & scripts",
+          "value": "Tight timing, clear beats, and consistent messaging"
+        }
+      ]
+    },
+    {
+      "heading": "Studio multi-camera production: Direction, control-room workflow, comms, and broadcast discipline",
+      "body": [
+        "Live streaming & simulcast: TV + digital outputs without compromising quality or timing"
+      ],
+      "meta": [
+        {
+          "key": "Field production",
+          "value": "Inserts, packages, and on-location segments with broadcast-grade planning"
+        },
+        {
+          "key": "Talent direction",
+          "value": "On-air performance support for presenters and guests"
+        },
+        {
+          "key": "Graphics packages",
+          "value": "Lower-thirds, openers, stings, transitions, and show branding"
+        },
+        {
+          "key": "Editing & final delivery",
+          "value": "Finishing, sound, mastering, highlights, and platform cutdowns"
+        },
+        {
+          "key": "Broadcast workflow design",
+          "value": "Cameras, audio, IFB/comms, recording, ingest, delivery"
+        },
+        {
+          "key": "Localization",
+          "value": "Subtitles, VO, dubbing, and multi-language packaging aligned with specs"
+        }
+      ]
+    },
+    {
+      "heading": "Why The Untold Story",
+      "body": [],
+      "meta": [
+        {
+          "key": "Scalable show design",
+          "value": "Built to run consistently across episodes and seasons"
+        },
+        {
+          "key": "Technical oversight",
+          "value": "Multi-cam + control-room workflows managed end-to-end"
+        },
+        {
+          "key": "Production control",
+          "value": "Studio + field coordination with clean timing and execution"
+        },
+        {
+          "key": "Platform-ready outputs",
+          "value": "TV deliverables plus digital versions when needed"
+        },
+        {
+          "key": "WhatsApp",
+          "value": "Get a quote in 24h | Email: Send brief/RFP"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "locale": "en",
+  "language": "English",
+  "type": "portfolio",
+  "slug": "tv-show-live",
+  "source_file": "Portfolios\\TV Show & Live\\ENGLISH.docx",
+  "items": [
+    {
+      "title": "Hamaki ‘Haga Mestakhabeya’ 10 Years Concert | Live",
+      "description": [
+        "A concert video capturing Hamaki performing “Nefsi Aba’a Ganbo” as part of the 10 Years concert celebration.",
+        "Built around live energy, crowd atmosphere, and performance-driven pacing, the piece showcases key moments from the stage in a polished, event-ready format.",
+        "Created as a highlight asset suitable for digital publishing and concert promotion."
+      ],
+      "client": "Live Concert",
+      "service": "Live Coverage",
+      "industry": "Live Concerts",
+      "raw_meta": [
+        [
+          "Client",
+          "Live Concert"
+        ],
+        [
+          "Service",
+          "Live Coverage"
+        ],
+        [
+          "Industry",
+          "Live Concerts"
+        ]
+      ]
+    },
+    {
+      "title": "La Casa de Papel | Promo (Netflix)",
+      "description": [
+        "A social-style promo created for Netflix, featuring Arabic-speaking fans sharing their excitement and connection to La Casa de Papel.",
+        "Shot across Arab locations with styling inspired by the series, the video captures a shared community moment around the show and the culture of fandom.",
+        "Designed as an audience-first piece to spark conversation and amplify regional engagement."
+      ],
+      "client": "Netflix",
+      "service": "Promo Video",
+      "industry": "VOD Platform",
+      "raw_meta": [
+        [
+          "Client",
+          "Netflix"
+        ],
+        [
+          "Service",
+          "Promo Video"
+        ],
+        [
+          "Industry",
+          "VOD Platform"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "locale": "de",
+  "language": "German",
+  "type": "portfolio",
+  "slug": "commercial-advertising",
+  "source_file": "Portfolios\\Commercial Advertising\\DEUTSCH.docx",
+  "items": [
+    {
+      "title": "The Garage Abu Dhabi | Markenfilm für gehobene Gastronomie",
+      "description": [
+        "Ein Markenfilm für gehobene Gastronomie für The Garage Abu Dhabi, entwickelt, um die Atmosphäre des Ortes, Servicemomente und das Premium-Dining-Erlebnis einzufangen.",
+        "Der Film verbindet nahtlos filmische Weitaufnahmen des Raumes mit Nahaufnahmen angerichteter Speisen und Getränkemomente, um Stimmung, Appetit und ein klares Gefühl für den Ort aufzubauen.",
+        "Gestaltet als ausgearbeitetes Hospitality-Asset für digitale Plattformen und den Einsatz im Markenmarketing."
+      ],
+      "client": "The Garage Abu Dhabi",
+      "service": null,
+      "industry": "Gastronomisches Restaurant",
+      "raw_meta": [
+        [
+          "Kunde",
+          "The Garage Abu Dhabi"
+        ],
+        [
+          "Leistung",
+          "Werbevideo"
+        ],
+        [
+          "Branche",
+          "Gastronomisches Restaurant"
+        ]
+      ]
+    },
+    {
+      "title": "Vorheriger Beitrag",
+      "description": [
+        "Ein einfaches Mode-Promo-Video für Tanashy Design, mit einem modelgeführten visuellen Ansatz, aufgebaut auf klarer Bildgestaltung und minimaler Regie.",
+        "Der Film konzentriert sich auf Präsenz, Styling und subtile Bewegung, um die Aufmerksamkeit auf den Look und das Markengefühl zu lenken.",
+        "Erstellt als leichtes, plattformbereites Asset für soziale und digitale Nutzung."
+      ],
+      "client": "Tanashy Designs",
+      "service": null,
+      "industry": "Mode",
+      "raw_meta": [
+        [
+          "Kunde",
+          "Tanashy Designs"
+        ],
+        [
+          "Leistung",
+          "Werbevideo"
+        ],
+        [
+          "Branche",
+          "Mode"
+        ]
+      ]
+    },
+    {
+      "title": "Huawei | Werbefilm",
+      "description": [
+        "Ein Werbevideo für Huawei, entwickelt zur Unterstützung der Markenkommunikation in einem klaren, modernen kommerziellen Ton.",
+        "Der Film konzentriert sich auf ausgearbeitete Bilder und klares Timing, um eine prägnante, plattformbereite Botschaft ohne Übertreibung zu vermitteln.",
+        "Erstellt als vielseitiges Kampagnen-Asset für digitale Ausspielung und breitere Marketingnutzung."
+      ],
+      "client": "Huawei",
+      "service": null,
+      "industry": "Elektronik",
+      "raw_meta": [
+        [
+          "Kunde",
+          "Huawei"
+        ],
+        [
+          "Leistung",
+          "Werbevideo"
+        ],
+        [
+          "Branche",
+          "Elektronik"
+        ]
+      ]
+    }
+  ]
+}
