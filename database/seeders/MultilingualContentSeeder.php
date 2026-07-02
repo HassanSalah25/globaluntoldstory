@@ -62,7 +62,7 @@ class MultilingualContentSeeder extends Seeder
 
         $entries = array_filter($manifest, fn (array $entry) => in_array($entry['locale'], self::TARGET_LOCALES, true));
         $this->command?->info('Importing '.count($entries).' multilingual translation files…');
-
+        dd($entries);
         foreach ($entries as $entry) {
             $this->importEntry($entry);
         }
