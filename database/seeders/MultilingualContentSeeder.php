@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\BlogPost;
-use App\Models\Category;
+use App\Models\BlogPouse App\Models\Category;
 use App\Models\Page;
 use App\Models\PortfolioItem;
 use App\Models\Service;
@@ -62,7 +61,7 @@ class MultilingualContentSeeder extends Seeder
 
         $entries = array_filter($manifest, fn (array $entry) => in_array($entry['locale'], self::TARGET_LOCALES, true));
         $this->command?->info('Importing '.count($entries).' multilingual translation files…');
-        dd($entries);
+
         foreach ($entries as $entry) {
             $this->importEntry($entry);
         }
@@ -295,6 +294,18 @@ class MultilingualContentSeeder extends Seeder
                 'is_active' => true,
                 'grid_size' => $index === 0 ? 'large' : 'small',
             ]);
+t = is_array($description) ? implode("\n", $description) : (string) $description            $portfolioItem = PortfolioItem::query()->where('slug', $itemSlug)->first();
+            if (! $portfolioItem) {
+                continue;
+            }
+
+);
+rray($description) ? implode("\n", $description) : (string) $description;
+            $portfolioItem = PortfolioItem::query()->where('slug', $itemSlug)->first();
+            if (! $portfolioItem) {
+                continue;
+            }
+
             $portfolioItem->translations()->updateOrCreate(['locale' => $locale], [
                 'title' => $item['title'] ?? Str::headline($itemSlug),
                 'results_text' => $resultsText,
