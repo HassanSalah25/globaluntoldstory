@@ -117,8 +117,12 @@ class AdminLocales
         return $rules;
     }
 
-    public static function syncTranslations(Model $model, Request $request, array $attributes): void
-    {
+    public static function syncTranslations(
+        Model $model,
+        Request $request,
+        array $attributes,
+        array $requiredFields = []
+    ): void {
         foreach (self::codes() as $locale) {
             $data = [];
 
@@ -126,11 +130,49 @@ class AdminLocales
                 $data[$attribute] = $request->input("{$attribute}_{$locale}");
             }
 
+            $localeIsRequired = in_array($locale, self::required(), true);
+
+            if (! $localeIsRequired && self::shouldSkipOptionalTranslation($data, $requiredFields)) {
+                $model->translations()->where('locale', $locale)->delete();
+
+                continue;
+            }
+
             $model->translations()->updateOrCreate(
                 ['locale' => $locale],
                 $data
             );
         }
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     * @param  array<int, string>  $requiredFields
+     */
+    private static function shouldSkipOptionalTranslation(array $data, array $requiredFields): bool
+    {
+        if ($requiredFields !== []) {
+            foreach ($requiredFields as $field) {
+                if (self::isEmptyValue($data[$field] ?? null)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        foreach ($data as $value) {
+            if (! self::isEmptyValue($value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static function isEmptyValue(mixed $value): bool
+    {
+        return $value === null || $value === '';
     }
 
     public static function inputName(string $field, string $locale): string

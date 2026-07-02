@@ -40,7 +40,7 @@ class TestimonialController extends Controller
             'name' => 'string|max:255',
             'role' => 'nullable|string|max:255',
             'text' => 'nullable|string',
-        ], requiredFields: ['name'])));
+        ], requiredFields: ['name', 'text'])));
 
         $testimonial = Testimonial::create([
             'avatar_url' => $request->avatar_url,
@@ -50,7 +50,7 @@ class TestimonialController extends Controller
             'type'       => $request->type,
         ]);
 
-        AdminLocales::syncTranslations($testimonial, $request, ['name', 'role', 'text']);
+        AdminLocales::syncTranslations($testimonial, $request, ['name', 'role', 'text'], ['name', 'text']);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial created successfully.');
     }
@@ -73,7 +73,7 @@ class TestimonialController extends Controller
             'name' => 'string|max:255',
             'role' => 'nullable|string|max:255',
             'text' => 'nullable|string',
-        ], requiredFields: ['name'])));
+        ], requiredFields: ['name', 'text'])));
 
         $testimonial->update([
             'avatar_url' => $request->avatar_url,
@@ -83,7 +83,7 @@ class TestimonialController extends Controller
             'type'       => $request->type,
         ]);
 
-        AdminLocales::syncTranslations($testimonial, $request, ['name', 'role', 'text']);
+        AdminLocales::syncTranslations($testimonial, $request, ['name', 'role', 'text'], ['name', 'text']);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial updated successfully.');
     }
