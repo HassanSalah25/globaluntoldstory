@@ -48,9 +48,9 @@ class ClientLogoController extends Controller
 
     public function edit(ClientLogo $clientLogo)
     {
-        $clientLogo->load('translations');
+        $translations = $clientLogo->translations->keyBy('locale');
 
-        return view('admin.client-logos.edit', compact('clientLogo'));
+        return view('admin.client-logos.edit', compact('clientLogo', 'translations'));
     }
 
     public function update(Request $request, ClientLogo $clientLogo)
