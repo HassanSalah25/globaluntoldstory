@@ -55,9 +55,9 @@
                         </div>
                         @endif
                     </td>
-                    <td class="px-4 py-3 font-medium text-gray-900">{{ $item->translations->where('locale', 'en')->first()->title ?? '-' }}</td>
+                    <td class="px-4 py-3 font-medium text-gray-900">{{ $item->translations->where('locale', 'en')->first()?->title ?? '-' }}</td>
                     <td class="px-4 py-3 text-gray-600">{{ $item->client_name ?? '-' }}</td>
-                    <td class="px-4 py-3 text-gray-500">{{ $item->category->translations->where('locale', 'en')->first()->name ?? '-' }}</td>
+                    <td class="px-4 py-3 text-gray-500">{{ $item->category?->translations->where('locale', 'en')->first()?->name ?? '-' }}</td>
                     <td class="px-4 py-3">
                         @if($item->is_featured)
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Featured</span>
