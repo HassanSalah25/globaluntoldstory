@@ -26,10 +26,10 @@ class ContactFormService
             'status' => 'new',
         ]);
 
-        $adminEmail = config('mail.admin_email', env('ADMIN_EMAIL'));
+        $adminEmail = config('mail.admin_email');
 
         if ($adminEmail) {
-            Mail::to($adminEmail)->queue(new NewContactRequestMail($contact));
+            Mail::to($adminEmail)->send(new NewContactRequestMail($contact));
         }
 
         return $contact;
