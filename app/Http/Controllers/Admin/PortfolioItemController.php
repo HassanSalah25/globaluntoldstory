@@ -52,7 +52,7 @@ class PortfolioItemController extends Controller
         ], requiredFields: ['title'])));
 
         $portfolioItem = PortfolioItem::create([
-            'slug'        => Str::slug($request->title_en),
+            'slug'        => $this->uniqueSlug(Str::slug($request->title_en)),
             'category_id' => $request->category_id,
             'client_name' => $request->client_name,
             'image_url'   => $request->image_url,
@@ -130,5 +130,19 @@ class PortfolioItemController extends Controller
         $portfolioItem->update(['is_active' => ! $portfolioItem->is_active]);
 
         return redirect()->back()->with('success', 'Portfolio item status updated.');
+    }
+
+    private function uniqueSlug(string $slug): string
+    {
+        $base = $slug;
+        $candidate = $base;
+        $suffix = 2;
+
+        while (PortfolioItem::query()->where('slug', $candidate)->exists()) {
+            $candidate = $base . '-' . $suffix;
+            $suffix++;
+        }
+
+        return $candidate;
     }
 }
