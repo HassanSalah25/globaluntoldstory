@@ -25,6 +25,7 @@ class ClientLogoController extends Controller
     {
         $request->validate(array_merge([
             'name'       => 'required|string|max:255',
+            'image_url'  => 'nullable|string|max:500',
             'sort_order' => 'nullable|integer|min:0',
             'is_active'  => 'boolean',
         ], AdminLocales::fieldRules([
@@ -33,6 +34,7 @@ class ClientLogoController extends Controller
 
         $clientLogo = ClientLogo::create([
             'name'       => $request->name,
+            'image_url'  => $request->image_url,
             'sort_order' => $request->sort_order ?? 0,
             'is_active'  => $request->boolean('is_active', true),
         ]);
@@ -55,6 +57,7 @@ class ClientLogoController extends Controller
     {
         $request->validate(array_merge([
             'name'       => 'required|string|max:255',
+            'image_url'  => 'nullable|string|max:500',
             'sort_order' => 'nullable|integer|min:0',
             'is_active'  => 'boolean',
         ], AdminLocales::fieldRules([
@@ -63,6 +66,7 @@ class ClientLogoController extends Controller
 
         $clientLogo->update([
             'name'       => $request->name,
+            'image_url'  => $request->image_url,
             'sort_order' => $request->sort_order ?? 0,
             'is_active'  => $request->boolean('is_active', true),
         ]);

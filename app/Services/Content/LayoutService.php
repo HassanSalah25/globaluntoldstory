@@ -42,7 +42,11 @@ class LayoutService
     private function getClientLogos(string $locale): array
     {
         return ClientLogo::query()->where('is_active', true)->orderBy('sort_order')->with('translations')->get()
-            ->map(fn ($c) => ['name' => $c->name, 'displayName' => $c->translate($locale)?->display_name])->values()->all();
+            ->map(fn ($c) => [
+                'name' => $c->name,
+                'displayName' => $c->translate($locale)?->display_name,
+                'image' => $c->image_url,
+            ])->values()->all();
     }
 
     private function getNavLinks(string $locale): array

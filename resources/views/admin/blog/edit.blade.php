@@ -112,11 +112,15 @@
                         'value' => old('body_' . $locale['code'], $translations[$locale['code']]->body ?? ''),
                         'dir' => $locale['rtl'] ? 'rtl' : 'ltr',
                     ])
+                    @php
+                        $translationTags = $translations[$locale['code']]?->tags;
+                        $tagsValue = is_array($translationTags) ? implode(', ', $translationTags) : ($translationTags ?? '');
+                    @endphp
                     @include('admin.components.locale-field', [
                         'name' => 'tags',
                         'label' => 'Tags',
                         'locale' => $locale,
-                        'value' => $translations[$locale['code']]->tags ?? '',
+                        'value' => $tagsValue,
                         'help' => $locale['code'] === 'en' ? 'Comma-separated' : null,
                     ])
                 @endcomponent

@@ -24,6 +24,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Logo</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Display Name (EN)</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sort Order</th>
@@ -34,6 +35,13 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse($clientLogos as $logo)
                         <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }}">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                @if($logo->image_url)
+                                    <img src="{{ $logo->image_url }}" alt="{{ $logo->name }}" class="h-10 w-auto max-w-[80px] object-contain">
+                                @else
+                                    <span class="text-xs text-gray-400">No image</span>
+                                @endif
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                 {{ $logo->name }}
                             </td>
@@ -76,7 +84,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-12 text-center text-sm text-gray-500">
+                            <td colspan="6" class="px-6 py-12 text-center text-sm text-gray-500">
                                 No client logos found. <a href="{{ route('admin.client-logos.create') }}" class="text-red-600 hover:underline">Add one</a>.
                             </td>
                         </tr>

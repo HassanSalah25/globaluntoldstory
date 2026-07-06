@@ -34,7 +34,16 @@
                     <input type="text" name="name"
                            value="{{ old('name', $clientLogo->name ?? '') }}"
                            class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm">
-                    <p class="text-xs text-gray-400 mt-1">Used as image filename reference. No spaces.</p>
+                    <p class="text-xs text-gray-400 mt-1">Internal reference label. No spaces.</p>
+                </div>
+                <div>
+                    @include('admin.components.image-picker', [
+                        'name' => 'image_url',
+                        'label' => 'Logo Image',
+                        'value' => old('image_url', $clientLogo->image_url ?? ''),
+                        'previewAspect' => 'aspect-[3/2] max-w-[240px]',
+                        'help' => 'Upload or pick the client logo shown in the Trusted by the Titans section.',
+                    ])
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Sort Order</label>
