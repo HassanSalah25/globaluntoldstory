@@ -14,10 +14,7 @@ return [
     |
     */
 
-    'admin' => array_values(array_filter(
-        Locale::values(),
-        fn (string $code) => ! in_array($code, ['ar'], true),
-    )),
+    'admin' => Locale::values(),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,10 +26,7 @@ return [
     |
     */
 
-    'public' => array_values(array_filter(
-        Locale::values(),
-        fn (string $code) => ! in_array($code, ['ar'], true),
-    )),
+    'public' => Locale::values(),
 
     /*
     |--------------------------------------------------------------------------
