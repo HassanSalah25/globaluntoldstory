@@ -1,5 +1,5 @@
 <div x-data="mediaPickerModal()"
-     @open-media-picker.window="openPicker($event.detail.id)"
+     @open-media-picker.window="openPicker($event.detail)"
      x-cloak>
     <div x-show="open"
          class="fixed inset-0 z-[60] flex items-center justify-center p-4"
@@ -9,7 +9,8 @@
         <div class="relative z-10 flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
             <div class="flex items-center justify-between border-b border-gray-200 px-5 py-4">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900">Select Image</h3>
+                    <h3 class="text-lg font-semibold text-gray-900"
+                        x-text="type === 'video' ? 'Select Video' : 'Select Image'"></h3>
                     <p class="text-sm text-gray-500">Choose from your media library</p>
                 </div>
                 <button type="button" @click="open = false" class="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600">
@@ -45,9 +46,8 @@
             <div class="flex-1 overflow-y-auto px-5 py-4">
                 <div x-show="loading" class="py-16 text-center text-sm text-gray-500">Loading media...</div>
 
-                <div x-show="!loading && items.length === 0" class="py-16 text-center text-sm text-gray-500">
-                    No images found. Upload one using the button below.
-                </div>
+                <div x-show="!loading && items.length === 0" class="py-16 text-center text-sm text-gray-500"
+                     x-text="type === 'video' ? 'No videos found. Upload one using the button below.' : 'No images found. Upload one using the button below.'"></div>
 
                 <div x-show="!loading && items.length > 0" class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
                     <template x-for="item in items" :key="item.id">
@@ -55,7 +55,12 @@
                                 @click="select(item)"
                                 class="group overflow-hidden rounded-xl border border-gray-200 bg-white text-left transition hover:border-red-300 hover:shadow-md">
                             <div class="aspect-square bg-gray-50">
-                                <img :src="item.url" :alt="item.filename" class="h-full w-full object-cover">
+                                <template x-if="(item.mime_type || '').startsWith('video/')">
+                                    <video :src="item.url" class="h-full w-full object-cover bg-black" muted preload="metadata"></video>
+                                </template>
+                                <template x-if="!(item.mime_type || '').startsWith('video/')">
+                                    <img :src="item.url" :alt="item.filename" class="h-full w-full object-cover">
+                                </template>
                             </div>
                             <div class="p-2">
                                 <p class="truncate text-xs font-medium text-gray-700" x-text="item.filename"></p>
@@ -85,8 +90,12 @@
                 </div>
 
                 <label class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700">
-                    <span x-text="uploading ? 'Uploading...' : 'Upload new image'"></span>
-                    <input type="file" accept="image/*" class="hidden" :disabled="uploading" @change="upload($event)">
+                    <span x-text="uploading ? 'Uploading...' : (type === 'video' ? 'Upload new video' : 'Upload new image')"></span>
+                    <input type="file"
+                           :accept="type === 'video' ? 'video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov' : 'image/*'"
+                           class="hidden"
+                           :disabled="uploading"
+                           @change="upload($event)">
                 </label>
             </div>
         </div>
@@ -108,6 +117,7 @@ function mediaPickerModal() {
     return {
         open: false,
         targetId: null,
+        type: 'image',
         items: [],
         folders: [],
         folder: '',
@@ -116,8 +126,11 @@ function mediaPickerModal() {
         uploading: false,
         page: 1,
         lastPage: 1,
-        openPicker(id) {
-            this.targetId = id;
+        openPicker(detail) {
+            const payload = typeof detail === 'string' ? { id: detail } : (detail || {});
+            this.targetId = payload.id;
+            this.type = payload.type || 'image';
+            this.folder = payload.folder || '';
             this.open = true;
             this.load(1);
         },
@@ -127,6 +140,7 @@ function mediaPickerModal() {
                 page: String(page),
                 folder: this.folder,
                 search: this.search,
+                type: this.type,
             });
             const response = await fetch(`{{ route('admin.media.picker') }}?${params.toString()}`, {
                 headers: { 'Accept': 'application/json' },
@@ -151,7 +165,7 @@ function mediaPickerModal() {
             this.uploading = true;
             const formData = new FormData();
             formData.append('file', file);
-            formData.append('folder', this.folder || 'general');
+            formData.append('folder', this.folder || (this.type === 'video' ? 'expertise' : 'general'));
 
             try {
                 const response = await fetch(`{{ route('admin.media.store') }}`, {

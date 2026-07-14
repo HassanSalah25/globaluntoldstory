@@ -75,6 +75,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Value Items
         Route::resource('value-items', Admin\ValueItemController::class)->names('value-items');
 
+        // Expertise Videos (About page production samples)
+        Route::resource('expertise-videos', Admin\ExpertiseVideoController::class)->names('expertise-videos');
+        Route::patch('expertise-videos/{expertise_video}/toggle', [Admin\ExpertiseVideoController::class, 'toggle'])->name('expertise-videos.toggle');
+
         // Feature Highlights
         Route::resource('feature-highlights', Admin\FeatureHighlightController::class)->names('feature-highlights');
 

@@ -25,9 +25,15 @@ class MediaController extends Controller
 
     public function picker(Request $request)
     {
-        $query = MediaAsset::query()
-            ->where('mime_type', 'like', 'image/%')
-            ->latest();
+        $type = $request->input('type', 'image');
+
+        $query = MediaAsset::query()->latest();
+
+        if ($type === 'video') {
+            $query->where('mime_type', 'like', 'video/%');
+        } else {
+            $query->where('mime_type', 'like', 'image/%');
+        }
 
         if ($folder = $request->input('folder')) {
             $query->where('folder', $folder);
@@ -49,9 +55,11 @@ class MediaController extends Controller
                 'path' => $asset->path,
                 'filename' => $asset->filename,
                 'folder' => $asset->folder,
+                'mime_type' => $asset->mime_type,
             ])->values(),
             'current_page' => $mediaAssets->currentPage(),
             'last_page' => $mediaAssets->lastPage(),
+            'type' => $type,
             'folders' => MediaAsset::select('folder')
                 ->distinct()
                 ->whereNotNull('folder')
@@ -64,8 +72,9 @@ class MediaController extends Controller
     {
         $request->validate([
             'files'   => 'nullable|array',
-            'files.*' => 'required|image|max:10240',
-            'file'    => 'nullable|file|max:20480',
+            'files.*' => 'required|file|mimes:jpg,jpeg,png,gif,webp,svg,pdf,zip,mp4,webm,mov|max:512000',
+            'file'    => 'nullable|file|mimes:jpg,jpeg,png,gif,webp,svg,pdf,zip,mp4,webm,mov|max:512000',
+            'folder'  => 'nullable|string|max:100',
         ]);
 
         $uploaded = 0;

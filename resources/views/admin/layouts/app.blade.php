@@ -148,6 +148,7 @@
                 ['route' => 'admin.timeline.index', 'pattern' => 'admin.timeline.*', 'label' => 'Timeline', 'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'],
                 ['route' => 'admin.skill-bars.index', 'pattern' => 'admin.skill-bars.*', 'label' => 'Skills', 'icon' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'],
                 ['route' => 'admin.value-items.index', 'pattern' => 'admin.value-items.*', 'label' => 'Values', 'icon' => 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'],
+                ['route' => 'admin.expertise-videos.index', 'pattern' => 'admin.expertise-videos.*', 'label' => 'Expertise Videos', 'icon' => 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z'],
                 ['route' => 'admin.feature-highlights.index', 'pattern' => 'admin.feature-highlights.*', 'label' => 'Feature Highlights', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'],
                 ['route' => 'admin.process-steps.index', 'pattern' => 'admin.process-steps.*', 'label' => 'Process Steps', 'icon' => 'M4 6h16M4 10h16M4 14h16M4 18h16'],
             ];

@@ -31,8 +31,9 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="md:col-span-3">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Files</label>
-                    <input type="file" name="files[]" multiple accept="image/*,application/pdf,.zip"
+                    <input type="file" name="files[]" multiple accept="image/*,video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov,application/pdf,.zip"
                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+                    <p class="mt-1 text-xs text-gray-500">Images, videos (MP4/WebM/MOV up to 500MB), PDF, or ZIP.</p>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Default Alt Text</label>
@@ -81,6 +82,8 @@
                 @if(str_starts_with($asset->mime_type ?? '', 'image/'))
                 <img src="{{ $asset->url }}" alt="{{ $asset->alt_text }}"
                     class="w-full h-full object-cover">
+                @elseif(str_starts_with($asset->mime_type ?? '', 'video/'))
+                <video src="{{ $asset->url }}" class="w-full h-full object-cover bg-black" muted preload="metadata"></video>
                 @else
                 <div class="w-full h-full flex flex-col items-center justify-center text-gray-400 p-2">
                     <svg class="w-10 h-10 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
