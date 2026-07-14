@@ -65,8 +65,8 @@
                playsinline
                preload="metadata"
                class="aspect-video w-full object-contain bg-black"
-               @loadeddata="previewOk = true"
-               @error="previewOk = false"></video>
+               x-on:loadeddata="previewOk = true"
+               x-on:error="previewOk = false"></video>
         <div x-show="!previewOk" class="bg-gray-100 px-4 py-3 text-center text-sm text-gray-500">
             Video preview could not load.
         </div>
