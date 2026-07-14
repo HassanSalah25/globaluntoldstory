@@ -46,8 +46,9 @@ class ValueItemController extends Controller
     public function edit(ValueItem $valueItem)
     {
         $valueItem->load('translations');
+        $translations = $valueItem->translations->keyBy('locale');
 
-        return view('admin.value-items.edit', compact('valueItem'));
+        return view('admin.value-items.edit', compact('valueItem', 'translations'));
     }
 
     public function update(Request $request, ValueItem $valueItem)
