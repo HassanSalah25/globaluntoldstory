@@ -52,7 +52,7 @@
                 <div class="md:col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Structured Data (JSON-LD)</label>
                     <textarea name="structured_data" rows="6"
-                        placeholder='{"@context": "https://schema.org", "@type": "WebPage", ...}'
+                        placeholder='{"@@context": "https://schema.org", "@type": "WebPage", ...}'
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-transparent">{{ old('structured_data', $seoMeta->structured_data ? json_encode($seoMeta->structured_data, JSON_PRETTY_PRINT) : '') }}</textarea>
                     <p class="text-xs text-gray-400 mt-1">Paste valid JSON-LD structured data. Leave empty to disable.</p>
                 </div>
