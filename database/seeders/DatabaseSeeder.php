@@ -1,3 +1,4 @@
+
 <?php
 
 namespace Database\Seeders;
@@ -12,8 +13,8 @@ class DatabaseSeeder extends Seeder
             // RoleSeeder::class,
             // AdminUserSeeder::class,
             // MediaSeeder::class,
-            ContentSeeder::class,
-            MultilingualContentSeeder::class,
+            // ContentSeeder::class,
+            // MultilingualContentSeeder::class,
         ]);
     }
 }

@@ -13,11 +13,11 @@ class PortfolioItem extends Model
     use HasTranslations, StoresMediaPaths;
 
     protected $fillable = [
-        'slug', 'category_id', 'client_name', 'image_url', 'duration', 'budget',
+        'slug', 'category_id', 'client_name', 'image_url', 'video_url', 'duration', 'budget',
         'results', 'metric', 'sort_order', 'is_featured', 'is_active', 'grid_size',
     ];
 
-    protected array $mediaPathAttributes = ['image_url'];
+    protected array $mediaPathAttributes = ['image_url', 'video_url'];
 
     protected function casts(): array
     {

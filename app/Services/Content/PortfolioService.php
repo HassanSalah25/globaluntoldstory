@@ -62,6 +62,7 @@ class PortfolioService
             'title' => $t?->title,
             'client' => $item->client_name,
             'image' => $item->image_url,
+            'video' => $item->video_url,
             'category' => $categoryT?->name,
             'categorySlug' => $item->category?->slug,
             'duration' => $item->duration,
