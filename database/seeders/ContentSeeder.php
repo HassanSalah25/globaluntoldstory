@@ -41,29 +41,29 @@ class ContentSeeder extends Seeder
 
     public function run(): void
     {
-        $this->seedSettings();
-        $this->seedMenus();
+        // $this->seedSettings();
+        // $this->seedMenus();
         $this->seedPages();
-        $this->seedHeroSlides();
-        $this->seedStats();
+        // $this->seedHeroSlides();
+        // $this->seedStats();
         // $this->seedServices();
-        $this->seedProcessSteps();
-        $this->seedTestimonials();
-        $categories = $this->seedCategories();
-        $this->seedPortfolioItems($categories);
-        $this->seedBlogPosts($categories);
-        $this->seedFaqs();
-        $this->seedTeamMembers();
-        $this->seedTimelineEvents();
-        $this->seedSkillBars();
-        $this->seedValueItems();
-        $this->seedFeatureHighlights();
-        $this->seedOffices();
-        $this->seedPartnerLabels();
-        $this->seedClientLogos();
-        $this->seedResources();
-        $this->seedAwards();
-        $this->seedSeoMeta();
+        // $this->seedProcessSteps();
+        // $this->seedTestimonials();
+        // $categories = $this->seedCategories();
+        // $this->seedPortfolioItems($categories);
+        // $this->seedBlogPosts($categories);
+        // $this->seedFaqs();
+        // $this->seedTeamMembers();
+        // $this->seedTimelineEvents();
+        // $this->seedSkillBars();
+        // $this->seedValueItems();
+        // $this->seedFeatureHighlights();
+        // $this->seedOffices();
+        // $this->seedPartnerLabels();
+        // $this->seedClientLogos();
+        // $this->seedResources();
+        // $this->seedAwards();
+        // $this->seedSeoMeta();
     }
 
     private function seedTranslations(object $model, array $en, array $ar): void
@@ -307,15 +307,15 @@ class ContentSeeder extends Seeder
                         'headline_suffix_ar' => 'خدمات الإنتاج في مصر',
                         'cta_secondary_label_en' => 'Our Work',
                         'cta_secondary_label_ar' => 'أعمالنا',
-                        'cta_secondary_url' => '/portfolio',
+                        'cta_secondary_url' => '/work',
                     ],
                     'is_active' => true,
                 ]);
                 $this->seedTranslations($heroSplit, [
                     'badge' => 'On-Ground Production Services in Egypt',
-                    'title' => 'The Untold Story delivers',
-                    'subtitle' => 'on-ground',
-                    'content' => 'The Untold Story delivers professional on-ground production services in Egypt, including filming permits, location management, production logistics, local crew support, and full-service film production at iconic locations such as the Giza Pyramids.',
+                    'title' => 'We create, produce',
+                    'subtitle' => 'and move audiences',
+                    'content' => 'Film, advertising, documentary services, content, post-production and marketing across Egypt, UAE and Saudi Arabia. From the region to the world...',
                     'cta_label' => 'Contact us for Next project',
                     'cta_url' => '/contact',
                 ], [

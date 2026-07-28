@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
             // RoleSeeder::class,
             // AdminUserSeeder::class,
             // MediaSeeder::class,
-            // ContentSeeder::class,
+            ContentSeeder::class,
             // MultilingualContentSeeder::class,
         ]);
     }
