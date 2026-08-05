@@ -65,7 +65,7 @@ return new class extends Migration
             $table->foreignId('page_id')->constrained()->cascadeOnDelete();
             $table->string('locale', 5)->default('en');
             $table->string('title');
-            $table->string('subtitle')->nullable();
+            $table->text('subtitle')->nullable();
             $table->string('badge')->nullable();
             $table->timestamps();
 
